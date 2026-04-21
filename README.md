@@ -8,103 +8,94 @@ AI-driven serverless workflow automation on AWS.
 - **Infrastructure as Code** — SST v3, versioned in git, testable
 - **Composable** — reusable Lambda building blocks
 
-## Agent: Smith
+## How It Works
 
-Smith is a specialized AI agent that builds, deploys, and manages workflow automations. It can operate as:
-- **Standalone** — via Slack channel or CLI
-- **Subagent** — called by another agent (e.g., JARVIS)
+This repo is **Smith's brain** — a knowledge base that teaches the agent how to build and manage workflow automations. It contains skills, patterns, and best practices, but no infrastructure code.
 
-## Quick Start
+When you tell Smith to create a workflow, he:
+1. Generates SST v3 infrastructure code + Lambda handlers
+2. Deploys to your AWS account (directly or via CI/CD pipeline)
+3. Tracks and monitors deployed workflows
 
-### Prerequisites
-- [Bun](https://bun.sh) runtime
-- AWS account
-- SST v3 is installed automatically via `bun install` (no separate install needed)
+The infrastructure code lives in your own workspace — separate from this brain.
 
-### Setup
+## Getting Started
 
 1. Clone this repo:
    ```bash
    git clone https://github.com/jakubknejzlik/stepforge-brain.git
-   cd stepforge-brain
    ```
 
-2. Install dependencies:
-   ```bash
-   bun install
-   ```
+2. Point your AI agent ([TeamVibe](https://teamvibe.ai) or [Claude Code](https://claude.ai/code)) at this directory
 
-3. Configure AWS access (see [Deployment Modes](#deployment-modes) below)
+3. Tell Smith: `/setup` — he'll guide you through the rest:
+   - Install dependencies
+   - Configure AWS access
+   - Bootstrap your infrastructure workspace
+   - Deploy initial resources
 
-4. Deploy:
-   ```bash
-   sst deploy --stage dev
-   ```
+That's it. Smith handles everything else.
 
 ## Deployment Modes
 
-StepForge supports two deployment approaches. Both produce the same result — the difference is who runs `sst deploy`.
+Smith supports two approaches. You choose during `/setup`.
 
-### Direct Mode (default)
+### Direct Mode
 
-Agent deploys directly to AWS. Fast iteration, suitable for development and personal use.
+Smith deploys directly to your AWS account. Fast, simple, great for personal use.
 
-**Authentication options:**
+- **AWS SSO** — Smith initiates login, you authorize via device code in browser
+- **IAM credentials** — Smith deploys without interaction (for always-on agents)
+- Infrastructure code lives locally (git repo recommended but not required)
+- Smith generates code → deploys → done
 
-**A) AWS SSO (interactive, recommended)**
-- Configure SSO profile in `~/.aws/config`:
-  ```ini
-  [profile stepforge]
-  sso_start_url = https://YOUR_ORG.awsapps.com/start
-  sso_region = eu-central-1
-  sso_account_id = YOUR_ACCOUNT_ID
-  sso_role_name = AdministratorAccess
-  region = eu-central-1
-  ```
-- Agent calls `aws sso login --profile stepforge --no-browser --use-device-code` when needed
-- User authorizes via device code in browser
-- Session expires periodically — agent re-authenticates automatically
+### Pipeline Mode *(planned)*
 
-**B) IAM User (non-interactive)**
-- Configure IAM credentials in `~/.aws/credentials`:
-  ```ini
-  [profile stepforge]
-  aws_access_key_id = AKIA...
-  aws_secret_access_key = ...
-  region = eu-central-1
-  ```
-- Agent deploys without user interaction
-- Suitable for always-on agents
+Smith commits code, CI/CD pipeline deploys. Better for teams and production.
 
-### Pipeline Mode (TODO)
-
-Agent commits code to a separate infrastructure repo. CI/CD pipeline handles deployment. Suitable for production and team environments.
-
-**Planned approach:**
-- GitHub repo with SST infrastructure code
-- GitHub Actions workflow triggered on push/merge to main
-- AWS credentials via OIDC federation or IAM role (stored in GitHub Secrets)
-- Agent's role: generate code → commit → create PR → monitor pipeline
-
-**Why this matters:**
+- Infrastructure code in a git repo (required)
+- GitHub Actions / GitLab CI handles deployment
+- Smith generates code → commits → creates PR → pipeline deploys on merge
 - Agent doesn't need direct AWS access
-- All changes go through code review
-- Audit trail via git history
-- Separation of concerns: brain (knowledge) vs infra (deployment)
 
-## Project Structure
+## What's in This Repo
 
 ```
-├── CLAUDE.md              # Agent instructions
-├── .claude/skills/        # Agent knowledge base
-├── sst.config.ts          # SST v3 configuration
-├── infra/                 # Infrastructure definitions
-├── src/                   # Lambda handlers
-│   ├── blocks/            # Reusable building blocks
-│   └── workflows/         # Workflow-specific code
-├── data/                  # Workflow registry & templates
+stepforge-brain/
+├── CLAUDE.md              # Smith's identity and instructions
+├── README.md              # You are here
+├── .claude/skills/        # Knowledge base
+│   ├── aws-auth/          # AWS authentication patterns
+│   ├── step-functions/    # SFn workflow patterns & examples
+│   ├── lambda-blocks/     # Reusable building block catalog
+│   ├── connectors/        # External service integrations
+│   └── deployment/        # Deploy procedures per mode
+├── data/
+│   ├── registry.yaml      # Deployed workflow index
+│   └── templates/         # Workflow templates
 └── scripts/               # Utility scripts
 ```
+
+**Not in this repo:** SST config, Lambda handlers, infrastructure code. That's generated by Smith into your workspace during `/setup`.
+
+## Using as a Subagent
+
+Another agent (e.g., JARVIS) can call Smith as a subagent:
+
+```markdown
+# In your agent's .claude/agents/workflow.md
+Brain: modules/stepforge-brain/
+Use for: creating workflows, deploying, triggering, monitoring
+```
+
+Add this brain as a git submodule:
+```bash
+git submodule add https://github.com/jakubknejzlik/stepforge-brain.git modules/stepforge-brain
+```
+
+## Contributing
+
+Improvements to skills, patterns, and building blocks are welcome via PR. This public brain is the shared knowledge base — keep contributions generic and reusable.
 
 ## License
 

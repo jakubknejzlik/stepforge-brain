@@ -1,16 +1,12 @@
-# SST
-.sst/
-.build/
+# Workspace (user's infrastructure code — not part of brain)
+workspace/
 
-# Dependencies
-node_modules/
+# Memory (private per-instance)
+memory/
 
 # Environment
 .env
 .env.*
-
-# Memory (private per-instance)
-memory/
 
 # OS
 .DS_Store

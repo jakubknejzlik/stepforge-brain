@@ -2,28 +2,83 @@
 
 How Smith authenticates with AWS for deployments and resource management.
 
-## Direct Mode — AWS SSO
+## Authentication Methods
 
-### Login Flow
-1. Run: `aws sso login --profile <profile> --no-browser --use-device-code`
-2. You'll receive a device code and verification URL
-3. Send both to the user
-4. Wait for user to confirm authorization
-5. Verify: `aws sts get-caller-identity --profile <profile>`
+### A) AWS SSO (interactive — recommended for direct mode)
 
-### Important
-- **Always use `--no-browser --use-device-code`** — agent has no browser
-- **Never store or display AWS credentials** in messages or files
-- SSO sessions expire — if a command fails with auth error, re-login
-
-### SST Deploy with Profile
-```bash
-export AWS_PROFILE=stepforge
-sst deploy --stage dev
-sst deploy --stage dev --target MyWorkflow
-sst dev
+**Setup (one-time):**
+Configure SSO profile in `~/.aws/config`:
+```ini
+[profile stepforge]
+sso_start_url = https://YOUR_ORG.awsapps.com/start
+sso_region = eu-central-1
+sso_account_id = YOUR_ACCOUNT_ID
+sso_role_name = AdministratorAccess
+region = eu-central-1
 ```
 
-## Pipeline Mode (TODO)
+**Login flow:**
+1. Run: `aws sso login --profile stepforge --no-browser --use-device-code`
+2. Send device code + verification URL to user:
+   ```
+   Open this URL and enter the code:
+   URL: https://YOUR_ORG.awsapps.com/start/#/device
+   Code: XXXX-XXXX
+   ```
+3. Wait for user to confirm
+4. Verify: `aws sts get-caller-identity --profile stepforge`
 
-For CI/CD deployment via GitHub Actions. Planned but not yet implemented.
+**Important:**
+- Always use `--no-browser --use-device-code` — agent has no browser
+- Sessions expire — re-login when commands fail with auth errors
+- Never store or display credentials in messages or files
+
+### B) IAM User (non-interactive — for always-on agents)
+
+**Setup (one-time):**
+Configure credentials in `~/.aws/credentials`:
+```ini
+[profile stepforge]
+aws_access_key_id = AKIA...
+aws_secret_access_key = ...
+```
+And region in `~/.aws/config`:
+```ini
+[profile stepforge]
+region = eu-central-1
+```
+
+**Usage:** No login needed — credentials are always available.
+
+### C) CI/CD Pipeline (for pipeline mode)
+
+AWS credentials stored in CI secrets (GitHub Secrets, GitLab CI Variables).
+Authentication handled by the pipeline, not by Smith.
+Options:
+- OIDC federation (recommended — no long-lived credentials)
+- IAM role with access key
+
+## Using with SST
+
+```bash
+# Set profile for all SST commands
+export AWS_PROFILE=stepforge
+
+# Deploy
+sst deploy --stage dev
+sst deploy --stage dev --target MyWorkflow
+
+# Dev mode (hot reload)
+sst dev
+
+# Secrets (user sets, Smith references)
+sst secret set MyApiKey <value> --stage dev
+```
+
+## Choosing Auth Method
+
+| Scenario | Method |
+|---|---|
+| Personal use, interactive | SSO |
+| Always-on agent, no user present | IAM User |
+| Team/production, code review required | Pipeline (CI/CD) |
