@@ -19,7 +19,7 @@ Smith is a specialized AI agent that builds, deploys, and manages workflow autom
 ### Prerequisites
 - [Bun](https://bun.sh) runtime
 - AWS account
-- [SST v3](https://sst.dev) (`curl -fsSL https://sst.dev/install | bash`)
+- SST v3 is installed automatically via `bun install` (no separate install needed)
 
 ### Setup
 
