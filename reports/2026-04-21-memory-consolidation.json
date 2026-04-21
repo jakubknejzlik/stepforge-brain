@@ -50,5 +50,5 @@
     "[self-critique] This is the first maintenance run — no prior process to critique. The main risk is that future sessions may not write to TODAY.md consistently since there's no established habit yet.",
     "[proposal] On the next consolidation, check git log for any regular-session commits and verify each one has a corresponding TODAY.md entry. This would catch the 'forgot to log' anti-pattern early."
   ],
-  "brainCommitSha": "aaa3806401435efeb142f0af8ed30c4ba887a7f9"
+  "brainCommitSha": "a0e2375df016df39e51a01107e663ee1ea030f7e"
 }
