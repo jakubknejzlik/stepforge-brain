@@ -18,7 +18,7 @@ Smith is a specialized AI agent that builds, deploys, and manages workflow autom
 
 ### Prerequisites
 - [Bun](https://bun.sh) runtime
-- AWS account with SSO configured
+- AWS account
 - [SST v3](https://sst.dev) (`curl -fsSL https://sst.dev/install | bash`)
 
 ### Setup
@@ -34,33 +34,63 @@ Smith is a specialized AI agent that builds, deploys, and manages workflow autom
    bun install
    ```
 
-3. Configure AWS SSO profile in `~/.aws/config`:
-   ```ini
-   [profile stepforge]
-   sso_start_url = https://YOUR_ORG.awsapps.com/start
-   sso_region = eu-central-1
-   sso_account_id = YOUR_ACCOUNT_ID
-   sso_role_name = AdministratorAccess
-   region = eu-central-1
-   ```
+3. Configure AWS access (see [Deployment Modes](#deployment-modes) below)
 
-4. Login to AWS:
-   ```bash
-   aws sso login --profile stepforge --no-browser --use-device-code
-   ```
-
-5. Deploy:
+4. Deploy:
    ```bash
    sst deploy --stage dev
    ```
 
 ## Deployment Modes
 
-### Direct (default)
-Agent deploys directly via AWS SSO + `sst deploy`. Fast iteration, suitable for development and personal use.
+StepForge supports two deployment approaches. Both produce the same result — the difference is who runs `sst deploy`.
 
-### Pipeline (future)
-GitHub Actions CI/CD pipeline. Agent commits code, pipeline deploys. Suitable for production and team use.
+### Direct Mode (default)
+
+Agent deploys directly to AWS. Fast iteration, suitable for development and personal use.
+
+**Authentication options:**
+
+**A) AWS SSO (interactive, recommended)**
+- Configure SSO profile in `~/.aws/config`:
+  ```ini
+  [profile stepforge]
+  sso_start_url = https://YOUR_ORG.awsapps.com/start
+  sso_region = eu-central-1
+  sso_account_id = YOUR_ACCOUNT_ID
+  sso_role_name = AdministratorAccess
+  region = eu-central-1
+  ```
+- Agent calls `aws sso login --profile stepforge --no-browser --use-device-code` when needed
+- User authorizes via device code in browser
+- Session expires periodically — agent re-authenticates automatically
+
+**B) IAM User (non-interactive)**
+- Configure IAM credentials in `~/.aws/credentials`:
+  ```ini
+  [profile stepforge]
+  aws_access_key_id = AKIA...
+  aws_secret_access_key = ...
+  region = eu-central-1
+  ```
+- Agent deploys without user interaction
+- Suitable for always-on agents
+
+### Pipeline Mode (TODO)
+
+Agent commits code to a separate infrastructure repo. CI/CD pipeline handles deployment. Suitable for production and team environments.
+
+**Planned approach:**
+- GitHub repo with SST infrastructure code
+- GitHub Actions workflow triggered on push/merge to main
+- AWS credentials via OIDC federation or IAM role (stored in GitHub Secrets)
+- Agent's role: generate code → commit → create PR → monitor pipeline
+
+**Why this matters:**
+- Agent doesn't need direct AWS access
+- All changes go through code review
+- Audit trail via git history
+- Separation of concerns: brain (knowledge) vs infra (deployment)
 
 ## Project Structure
 
