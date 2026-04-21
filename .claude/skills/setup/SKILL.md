@@ -22,8 +22,6 @@ Ask user:
 > 1. **Direct** — I deploy to your AWS account directly (simpler, faster)
 > 2. **Pipeline** — I commit code, CI/CD deploys (safer, team-friendly)
 
-Store choice in `data/config.yaml`.
-
 ### Step 3: Configure AWS Access
 
 **If Direct + SSO:**
@@ -43,10 +41,11 @@ Store choice in `data/config.yaml`.
 2. CI/CD credentials will be configured in the pipeline setup step
 
 ### Step 4: Create Workspace
+Ask user where to create the workspace (must be outside brain directory):
 ```bash
 # Create workspace directory
-mkdir -p workspace
-cd workspace
+mkdir -p /path/to/workspace
+cd /path/to/workspace
 
 # Initialize git repo (if not pipeline mode with existing repo)
 git init
@@ -95,34 +94,37 @@ Generate CI/CD config:
 
 Guide user to configure AWS credentials in CI secrets.
 
-### Step 7: Confirm
+### Step 7: Confirm & Save Config
 - Verify workspace is set up
 - Verify AWS connectivity
-- Update `data/config.yaml` with workspace path and mode
+- Save config to `.local/config.yaml` in brain directory
 - Report: "Setup complete. Tell me what you want to automate."
 
 ## Config File
 
-After setup, `data/config.yaml` stores the configuration:
+After setup, `.local/config.yaml` stores minimal runtime state:
 ```yaml
-workspace:
-  path: ./workspace          # relative to brain root
-  mode: direct               # direct | pipeline
-  git_repo: null             # URL if pipeline mode
-  stage: dev                 # default SST stage
+workspaces:
+  - name: default
+    path: /absolute/path/to/workspace
+    mode: direct           # direct | pipeline
+    git_repo: null         # URL if pipeline mode
+    stage: dev             # default SST stage
 
 aws:
-  profile: stepforge         # AWS profile name
-  auth: sso                  # sso | iam | pipeline
+  profile: stepforge       # AWS profile name
+  auth: sso                # sso | iam | pipeline
   region: eu-central-1
 
 setup_completed: true
 setup_date: 2026-04-21
 ```
 
+Note: `.local/` is gitignored — this config is per-instance, not shared.
+
 ## Re-running Setup
 
-If `/setup` is called again and `data/config.yaml` exists:
+If `/setup` is called again and `.local/config.yaml` exists:
 - Ask: "You already have a configuration. Do you want to reconfigure?"
-- Allow changing mode, AWS settings, or workspace path
+- Allow changing mode, AWS settings, or adding another workspace
 - Don't destroy existing workspace without explicit confirmation

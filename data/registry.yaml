@@ -1,5 +1,0 @@
-# StepForge Workflow Registry
-# Tracks deployed workflows and their status.
-# Updated by Smith after each deployment.
-
-workflows: {}

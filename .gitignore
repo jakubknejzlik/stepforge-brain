@@ -1,12 +1,5 @@
-# Workspace (user's infrastructure code — not part of brain)
-workspace/
-
-# Memory (private per-instance)
-memory/
-
-# Environment
-.env
-.env.*
+# Local runtime state (per-instance, not shared)
+.local/
 
 # OS
 .DS_Store
