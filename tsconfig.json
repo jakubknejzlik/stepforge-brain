@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": ".build",
+    "declaration": true,
+    "paths": {
+      "@stepforge/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*", "infra/**/*"],
+  "exclude": ["node_modules", ".sst", ".build"]
+}
