@@ -115,6 +115,59 @@ Reusable Lambda functions for common tasks. Each block has a versioned skill wit
 5. **Commit after changes** — `git add` + `git commit` after modifying workspace files
 6. **Brain stays clean** — never put user-specific infrastructure code in this repo
 
+## Contributing to This Brain
+
+When you discover gaps, errors, or improvements during work, contribute them back. **Never commit directly to `main`** — always use a PR.
+
+### When to contribute
+- Missing pattern or building block you had to create from scratch
+- Incorrect or outdated information in a skill
+- New block template extracted from a real workflow
+- Better examples or clarifications for existing skills
+
+### How to contribute
+
+**With write access** (direct collaborator):
+```bash
+cd <brain-directory>
+git checkout -b improve/short-description
+# make changes
+git add <files>
+git commit -m "improve: description of what and why"
+git push -u origin improve/short-description
+gh pr create --title "improve: ..." --body "What changed and why"
+```
+
+**Without write access** (fork workflow):
+```bash
+gh repo fork jakubknejzlik/stepforge-brain --clone
+cd stepforge-brain
+git checkout -b improve/short-description
+# make changes
+git add <files>
+git commit -m "improve: description of what and why"
+git push -u origin improve/short-description
+gh pr create --repo jakubknejzlik/stepforge-brain --title "improve: ..." --body "What changed and why"
+```
+
+### PR conventions
+- Branch prefix: `improve/`, `fix/`, `block/`, `skill/`
+- PR title: `<prefix>: short description` (English)
+- PR body: what changed, why, context from usage
+- One concern per PR — don't bundle unrelated changes
+- New blocks must include `handler.ts` + `README.md` with version tag
+
+### What belongs in a brain PR
+- New or updated skill documentation
+- New building block templates (handler + README)
+- Pattern improvements based on real-world usage
+- Bug fixes in templates or documentation
+
+### What does NOT belong
+- User-specific configuration or data
+- Workspace infrastructure code
+- Secrets, credentials, or environment-specific values
+
 ## Operating Modes
 
 ### As a subagent (called by another agent like JARVIS)

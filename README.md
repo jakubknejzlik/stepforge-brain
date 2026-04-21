@@ -92,7 +92,20 @@ git submodule add https://github.com/jakubknejzlik/stepforge-brain.git modules/s
 
 ## Contributing
 
-Improvements to skills, patterns, and building blocks are welcome via PR. This public brain is the shared knowledge base — keep contributions generic and reusable.
+This brain improves through usage. When an agent (or human) discovers a gap — a missing pattern, a better approach, a new building block — they contribute it back via PR.
+
+### For agents
+
+The brain's `CLAUDE.md` contains full contributing instructions. Agents with write access push branches directly; agents without write access fork first. Either way, changes go through PR review.
+
+### For humans
+
+Standard GitHub flow:
+1. Fork or branch from `main`
+2. Add/fix skills, blocks, or documentation
+3. Open a PR with context on what and why
+
+**Keep contributions generic** — this is a shared knowledge base. User-specific config, workspace code, and secrets never belong here.
 
 ## License
 
