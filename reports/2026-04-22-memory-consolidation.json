@@ -45,5 +45,5 @@
     "[self-critique] The brain has had zero real user interactions, so the entire consolidation pipeline is untested with real content. Current maintenance runs are essentially no-ops — the real validation comes when daily logs contain multiple entries with substantive knowledge to triage across tiers.",
     "[proposal] Consider adding a 'brain age' or 'interaction count' field to the JSON report so evaluators can distinguish between 'no content to consolidate because the brain is new' vs 'no content to consolidate because the agent isn't logging properly'."
   ],
-  "brainCommitSha": "26f72e35c78321f0205498d9caf6127fe2113e2d"
+  "brainCommitSha": "f71e67b59f14f9acc124c2d4bf04418002cfefa0"
 }
