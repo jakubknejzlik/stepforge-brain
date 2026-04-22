@@ -13,5 +13,6 @@
 ## Deep Memory Index
 - memory/core/ — MISTAKES.md, PREFERENCES.md, LEARNINGS.md (all empty, awaiting first entries)
 - memory/semantic/ — empty
-- memory/episodic/ — empty
+- memory/episodic/ — reflection-2026-04-21.md (initial reflection, no issues found)
 - memory/procedural/ — empty
+- memory/daily/2026-04-21.md — bootstrap log
