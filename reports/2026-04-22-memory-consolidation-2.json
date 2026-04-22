@@ -46,5 +46,5 @@
     "[proposal] Add guard file creation as a mandatory checklist item in the consolidation procedure, immediately before the final commit. This ensures it's never skipped.",
     "[blocked] No blocked items — all improvements are within agent control."
   ],
-  "brainCommitSha": "bb09c147cc2279ffcacba0cce6d6432e8736773c"
+  "brainCommitSha": "acaf8ef30b5fb30d56c0622a5120be26e390a487"
 }
