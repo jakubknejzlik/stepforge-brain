@@ -49,5 +49,5 @@
     "[proposal] Add a same-day deduplication check: if a consolidation report for today already exists and no non-maintenance commits have occurred since, skip the run entirely or produce a minimal 'no-change' report instead of a full one.",
     "[blocked] The maintenance-guard.sh script controls run frequency but doesn't account for multiple heartbeats per day. This may need a base-brain change to add an intra-day cooldown."
   ],
-  "brainCommitSha": "005feb94660f76be448f9fd6c8bf881025064f25"
+  "brainCommitSha": "05a4f57b61d6e7aca29027c39d5f92df4b829b53"
 }
