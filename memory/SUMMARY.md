@@ -16,4 +16,4 @@
 - memory/episodic/ — reflection-2026-04-21.md (initial reflection, no issues found)
 - memory/procedural/ — empty
 - memory/daily/2026-04-21.md — bootstrap log
-- memory/daily/2026-04-22.md — consolidation-only activity
+- memory/daily/2026-04-22.md — consolidation-only activity (3 runs total)
