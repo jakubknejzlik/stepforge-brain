@@ -45,5 +45,5 @@
     "[proposal] If the brain remains idle after 5+ days, reduce consolidation frequency to avoid empty reports accumulating. Rationale: the 24h guard threshold creates daily maintenance churn with no content to process.",
     "[blocked] Cannot generate meaningful memory content without user interactions — this is expected and not a process defect."
   ],
-  "brainCommitSha": "PENDING"
+  "brainCommitSha": "4a96915b27a998d3cc4a1a1ee1a8a044c2b03e80"
 }
