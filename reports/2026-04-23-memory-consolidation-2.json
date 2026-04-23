@@ -45,5 +45,5 @@
     "[proposal] After 7 days of idle-only consolidation, consider reducing report verbosity for idle runs to a single-line summary unless there is actual content to process.",
     "[blocked] Cannot verify if the agent's Slack channel is receiving messages — this requires admin-level visibility into TeamVibe routing configuration."
   ],
-  "brainCommitSha": "ac4f7c61ed190a66dffbd22fce36834c0024ac1a"
+  "brainCommitSha": "fd845e07d06280db39fb7ba76d4a82aad8ebe8f9"
 }
