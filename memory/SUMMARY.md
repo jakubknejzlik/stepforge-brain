@@ -17,4 +17,4 @@
 - memory/procedural/ — empty
 - memory/daily/2026-04-21.md — bootstrap log
 - memory/daily/2026-04-22.md — consolidation-only activity (3 runs)
-- memory/TODAY.md — 2026-04-23 working log (consolidation-only, 2 runs)
+- memory/TODAY.md — 2026-04-23 working log (consolidation-only, 3 runs)
