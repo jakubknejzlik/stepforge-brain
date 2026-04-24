@@ -15,6 +15,5 @@
 - memory/semantic/ — empty
 - memory/episodic/ — reflection-2026-04-21.md (initial reflection, no issues found)
 - memory/procedural/ — empty
-- memory/daily/2026-04-21.md — bootstrap log
-- memory/daily/2026-04-22.md — consolidation-only activity (3 runs)
-- memory/TODAY.md — 2026-04-23 working log (consolidation-only, 3 runs)
+- memory/daily/ — 2026-04-21.md (bootstrap), 2026-04-22.md (consolidation), 2026-04-23.md (consolidation)
+- memory/TODAY.md — 2026-04-24 working log
