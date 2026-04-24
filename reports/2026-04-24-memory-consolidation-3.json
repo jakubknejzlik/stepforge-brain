@@ -48,5 +48,5 @@
     "[proposal] Consider adding an idle-detection heuristic: if the last N consolidation runs found nothing to promote, reduce consolidation frequency or produce a minimal report instead of a full one.",
     "[blocked] The maintenance-guard.sh script is in the base-brain but the MAINTENANCE.md instructions reference it as 'scripts/maintenance-guard.sh' (relative), requiring the agent to locate it in the base-brain directory. Could be clearer."
   ],
-  "brainCommitSha": "PENDING"
+  "brainCommitSha": "74f2f5df71ed0071f8d250d2511b627e3bac85a6"
 }
