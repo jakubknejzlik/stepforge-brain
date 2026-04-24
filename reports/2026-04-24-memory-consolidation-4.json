@@ -46,5 +46,5 @@
     "[proposal] Implement an activity-aware consolidation threshold: if the last N consolidation reports all show zero content promoted and zero user sessions, extend the guard interval (e.g., to 48h or 72h) until real activity resumes. This would reduce report bloat without missing real consolidation needs.",
     "[blocked] Cannot modify maintenance-guard.sh — it lives in base-brain which is read-only from this agent's perspective."
   ],
-  "brainCommitSha": "(pending)"
+  "brainCommitSha": "88c57c1246d5e13e4427be30ecf1d6fc7b184844"
 }
