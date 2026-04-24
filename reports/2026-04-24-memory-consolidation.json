@@ -46,5 +46,5 @@
     "[self-critique] The consolidation process is running reliably but has been exercised only with empty/maintenance content for 4 consecutive days. There is no way to validate that the promotion logic (daily → core/semantic/episodic/procedural) works correctly until real user sessions occur. The process itself may be over-reporting 'pass' on criteria that are trivially true due to no content.",
     "[proposal] Consider adding a 'content-richness' metric to the self-assessment that explicitly flags when consolidation runs process zero user-generated content, to distinguish healthy-but-idle from healthy-and-working."
   ],
-  "brainCommitSha": "dc234422f5712052111655f39d40276401978fd6"
+  "brainCommitSha": "a170d540f33c1847f49ba3ad7dcabf461a2ab9c9"
 }

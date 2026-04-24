@@ -33,5 +33,5 @@
     "[proposal] Add a 'days-since-last-user-session' counter to the reflection report to make idle periods explicitly visible. This would help distinguish 'healthy but unused' from 'broken routing/configuration'. Rationale: 4 days idle could be normal for a new agent, but 14 days idle likely signals a problem.",
     "[blocked] Cannot validate the promotion pipeline (daily → tier) without a real user session. This is an operational dependency, not something fixable in the maintenance process itself."
   ],
-  "brainCommitSha": "dc234422f5712052111655f39d40276401978fd6"
+  "brainCommitSha": "a170d540f33c1847f49ba3ad7dcabf461a2ab9c9"
 }
