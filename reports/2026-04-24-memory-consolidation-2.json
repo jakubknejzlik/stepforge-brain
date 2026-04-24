@@ -45,5 +45,5 @@
     "[proposal] Add a 'last-user-session' timestamp check to maintenance-guard.sh. If no user session has occurred since the last consolidation, skip or produce a minimal 'no-op' report instead of a full consolidation cycle. This would reduce noise in the reports directory.",
     "[blocked] Cannot modify maintenance-guard.sh — it lives in base-brain which is readonly from this channel brain."
   ],
-  "brainCommitSha": "0610669057220632017e444250bdf5fa561f5973"
+  "brainCommitSha": "6580ef9bfb26691bceff04cf0d96b95b860d79e3"
 }
