@@ -1,0 +1,49 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 0,
+    "modified": 2,
+    "deleted": 0
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/SUMMARY.md"
+  ],
+  "decisions": [
+    "No content promoted: reviewed daily/2026-04-21.md (1 entry), daily/2026-04-22.md (2 entries), daily/2026-04-23.md (3 entries), TODAY.md (2 entries) — all maintenance-only, no user content to extract",
+    "Retained all daily logs (04-21 through 04-23): oldest is 3 days old, first deletion candidate is 2026-04-28",
+    "Updated SUMMARY.md to add reflection-2026-04-24.md reference missing from earlier run"
+  ],
+  "observations": [
+    "All four memory tiers (core, semantic, episodic, procedural) remain empty after 4 days — expected since no user sessions have occurred",
+    "Daily log chain is continuous (04-21 through 04-24) with no gaps",
+    "Multiple consolidation runs per day (3 on 04-23, 2 on 04-24) with no user activity produces redundant reports with identical findings"
+  ],
+  "recommendations": [
+    "Consider adjusting maintenance-guard threshold to reduce consolidation frequency when brain is idle — current 24h threshold triggers redundant runs",
+    "First real user session should be monitored closely to verify the daily-log-to-tier promotion pipeline works with actual content"
+  ],
+  "selfAssessment": {
+    "reduce-log-count": false,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": false,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true
+  },
+  "processImprovements": [
+    "[self-critique] The consolidation process is running correctly but producing no substantive output after 4 days. Each run reviews the same empty tiers and maintenance-only logs. The process is optimized for active brains but does not adapt to idle ones — there is no short-circuit for 'nothing changed since last run'.",
+    "[proposal] Add a 'last-user-session' timestamp check to maintenance-guard.sh. If no user session has occurred since the last consolidation, skip or produce a minimal 'no-op' report instead of a full consolidation cycle. This would reduce noise in the reports directory.",
+    "[blocked] Cannot modify maintenance-guard.sh — it lives in base-brain which is readonly from this channel brain."
+  ],
+  "brainCommitSha": "0610669057220632017e444250bdf5fa561f5973"
+}
