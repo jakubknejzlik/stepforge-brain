@@ -13,7 +13,7 @@
 ## Deep Memory Index
 - memory/core/ — MISTAKES.md, PREFERENCES.md, LEARNINGS.md (all empty, awaiting first entries)
 - memory/semantic/ — empty
-- memory/episodic/ — reflection-2026-04-21.md (initial reflection), reflection-2026-04-24.md (day-4 reflection, still idle)
+- memory/episodic/ — reflection-2026-04-21.md (initial reflection), reflection-2026-04-24.md (day-4 reflection)
 - memory/procedural/ — empty
-- memory/daily/ — 2026-04-21.md (bootstrap), 2026-04-22.md (consolidation), 2026-04-23.md (consolidation)
-- memory/TODAY.md — 2026-04-24 working log
+- memory/daily/ — 2026-04-21.md, 2026-04-22.md, 2026-04-23.md, 2026-04-24.md
+- memory/TODAY.md — 2026-04-25 working log
