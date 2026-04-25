@@ -48,5 +48,5 @@
     "[proposal] The maintenance-guard.sh could benefit from a secondary check: if the last N consolidation runs all reported 'no promotable content', extend the threshold (e.g., skip until a non-maintenance commit appears). This would reduce churn on idle brains.",
     "[blocked] Cannot modify maintenance-guard.sh — it lives in base-brain which is read-only from channel brain context."
   ],
-  "brainCommitSha": "PENDING"
+  "brainCommitSha": "dc935ccc2c02ad46dd906740d2fc6882db28298f"
 }
