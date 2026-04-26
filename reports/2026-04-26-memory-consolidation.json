@@ -46,5 +46,5 @@
     "[proposal] Introduce a 'dormant brain' fast path: if the last 3+ consolidation runs all show zero user sessions and zero promotions, produce a single-line report entry instead of full markdown+JSON reports. Resume full reporting when the first user session occurs. This would reduce report directory bloat on idle brains.",
     "[blocked] Cannot modify maintenance-guard.sh or MAINTENANCE.md — both live in base-brain which is read-only. The activity-aware consolidation threshold proposed in multiple prior reports remains unimplemented."
   ],
-  "brainCommitSha": "8774c25876086dcde8082089d0f3f54ba20dc12c"
+  "brainCommitSha": "a032f35c07ecfe0f02a444cf614516bf8befa9c7"
 }
