@@ -1,0 +1,49 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 0,
+    "modified": 2,
+    "deleted": 0
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/SUMMARY.md"
+  ],
+  "decisions": [
+    "Retained daily/2026-04-21.md — 6 days old, not yet past 7-day deletion threshold (eligible 04-28)",
+    "Skipped promotion across all tiers — all daily log entries are maintenance-only heartbeat/consolidation records with no user-generated content to promote"
+  ],
+  "observations": [
+    "Brain has been idle for 7 full days since bootstrap with zero user sessions — longest idle period so far",
+    "Daily log chain is complete (04-21 through 04-27) with 100% coverage, but all entries are consolidation metadata",
+    "The 3 reflections (04-21, 04-24, 04-27) correctly identify the idle state as the central gap"
+  ],
+  "recommendations": [
+    "Tomorrow's consolidation should delete daily/2026-04-21.md (7+ days old) — first real log deletion since bootstrap",
+    "If no user sessions occur by day 10, consider reducing consolidation verbosity to avoid generating purely operational reports"
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true
+  },
+  "processImprovements": [
+    "[self-critique] Seven days of purely operational consolidation reports with no user content — the maintenance pipeline is well-tested mechanically but completely untested for its primary purpose of capturing and promoting real knowledge. Every self-assessment criterion passes trivially.",
+    "[proposal] If brain reaches day 10 without user interaction, reduce consolidation reports to a single-line entry in TODAY.md rather than full report pair, to avoid commit noise. Rationale: full reports add no value when there's nothing to consolidate.",
+    "[blocked] Cannot test the promotion pipeline without actual user sessions — this is outside the agent's control."
+  ],
+  "pendingIssues": [],
+  "brainCommitSha": "PENDING"
+}
