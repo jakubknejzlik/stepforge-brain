@@ -1,0 +1,49 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 0,
+    "modified": 2,
+    "deleted": 0
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/SUMMARY.md"
+  ],
+  "decisions": [
+    "Kept all 6 daily logs (04-21 through 04-26): verified by date arithmetic that none are 7+ days old. 04-21 (6 days old) becomes deletion candidate on 04-28.",
+    "No content promoted to any tier: reviewed all daily logs — each contains only consolidation maintenance notes (bootstrap entry in 04-21, routine heartbeat entries in 04-22 through 04-26). No user-generated content, corrections, preferences, or learnings to extract."
+  ],
+  "observations": [
+    "Brain has been idle for 7 days since bootstrap — all daily logs contain only maintenance heartbeat entries with no substantive content to promote",
+    "Memory tiers (core, semantic, episodic, procedural) remain empty except for 3 reflection entries in episodic — this is expected for an agent with no user interactions yet",
+    "Daily log coverage is at 100% (7/7 days) but all entries are maintenance-generated, not user-session-generated"
+  ],
+  "recommendations": [
+    "On 04-28 consolidation, delete memory/daily/2026-04-21.md — its content (bootstrap entry) is already preserved in memory/episodic/reflection-2026-04-21.md",
+    "If brain remains idle past day 10, consider reducing consolidation verbosity — current reports add overhead without new information"
+  ],
+  "selfAssessment": {
+    "reduce-log-count": false,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": false,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true
+  },
+  "processImprovements": [
+    "[self-critique] Seven consecutive days of idle-brain consolidation producing near-identical reports. The process is working correctly but generating overhead with no substantive content to process. Need to distinguish between 'idle maintenance' and 'active maintenance' to avoid report bloat.",
+    "[proposal] For idle brains (no user sessions in 48h+), consolidation could produce a minimal report noting 'no changes, still idle' rather than full-format reports. This would reduce noise while preserving the audit trail.",
+    "[blocked] The maintenance-guard.sh script is in base-brain but the path isn't configured for channel brains — had to use the base-brain absolute path. This should be standardized."
+  ],
+  "pendingIssues": [],
+  "brainCommitSha": "345a0d37153cf0a73c719384e66a15410a5f7bbf"
+}

@@ -15,5 +15,5 @@
 - memory/semantic/ — empty
 - memory/episodic/ — reflection-2026-04-21.md (initial), reflection-2026-04-24.md (day-4), reflection-2026-04-27.md (day-7)
 - memory/procedural/ — empty
-- memory/daily/ — 2026-04-21.md through 2026-04-26.md (all consolidation-only)
-- memory/TODAY.md — 2026-04-27 working log
+- memory/daily/ — 2026-04-21.md through 2026-04-26.md (all consolidation-only; 04-21 becomes deletion candidate 04-28)
+- memory/TODAY.md — 2026-04-27 working log (2 entries)
