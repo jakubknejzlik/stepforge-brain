@@ -1,0 +1,38 @@
+{
+  "operationType": "reflection",
+  "operationCounts": {
+    "created": 1,
+    "modified": 0,
+    "deleted": 0
+  },
+  "filesChanged": [
+    "memory/episodic/reflection-2026-04-27.md"
+  ],
+  "decisions": [
+    "Previous recommendation (04-24) about untested memory pipeline remains valid — no resolution possible without user interaction. Kept as standing observation.",
+    "Previous recommendation (04-24) about trivially passing self-assessments acknowledged as ongoing risk. Will require manual verification when first real session occurs."
+  ],
+  "observations": [
+    "Three consecutive reflections (04-21, 04-24, 04-27) have found zero substantive memory changes — each reflection largely restates 'brain is idle'.",
+    "The consolidation pipeline works mechanically but has never processed real user-generated content. All passes are trivial.",
+    "No workspace has been configured (/setup never run), meaning Smith cannot perform its core function even if a user session occurs."
+  ],
+  "recommendations": [
+    "Extend reflection cadence to 5 days when idle (no user sessions in 7+ days). Success criterion: next reflection occurs on 04-30 instead of 04-30, reducing one no-op cycle. Addresses: three consecutive identical reflections generating noise without insight.",
+    "When first user session occurs, perform a focused mini-reflection within 24 hours to verify the pipeline handles real content correctly. Success criterion: at least one daily log entry is promoted to a tier (semantic, procedural, or core). Addresses: untested pipeline risk identified in all three reflections."
+  ],
+  "selfAssessment": {
+    "concrete-improvement-proposal": true,
+    "previous-recommendations-reviewed": true,
+    "gap-impact-analysis": true,
+    "verifiable-recommendations": true,
+    "deletion-with-preservation-evidence": true
+  },
+  "processImprovements": [
+    "[self-critique] Each reflection cycle produces an increasingly long review of 'still idle' with no new information. The process is mechanically correct but adds no value during prolonged inactivity. The reflection skill should have an idle-mode shortcut.",
+    "[proposal] Add an 'idle threshold' to the reflection process: if no user sessions occurred since last reflection AND no tier changes were made, produce a minimal reflection noting 'still idle, see previous reflection for full analysis' instead of a full review. Rationale: reduces context waste and report bloat without losing coverage.",
+    "[blocked] Cannot validate the memory promotion pipeline without real user sessions — this is the same blocker identified in the first reflection 6 days ago."
+  ],
+  "pendingIssues": [],
+  "brainCommitSha": "PLACEHOLDER"
+}
