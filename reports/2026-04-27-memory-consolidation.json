@@ -51,5 +51,5 @@
     "[blocked] Cannot test the full memory pipeline (capture → log → promote → summarize) without a real user session. This is an operational reality, not a process deficiency."
   ],
   "pendingIssues": [],
-  "brainCommitSha": "PLACEHOLDER"
+  "brainCommitSha": "bfb9b9277030cdf8a783fc3a4cd4be4b819a2116"
 }

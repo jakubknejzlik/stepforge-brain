@@ -34,5 +34,5 @@
     "[blocked] Cannot validate the memory promotion pipeline without real user sessions — this is the same blocker identified in the first reflection 6 days ago."
   ],
   "pendingIssues": [],
-  "brainCommitSha": "PLACEHOLDER"
+  "brainCommitSha": "bfb9b9277030cdf8a783fc3a4cd4be4b819a2116"
 }
