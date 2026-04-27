@@ -45,5 +45,5 @@
     "[blocked] The maintenance-guard.sh script is in base-brain but the path isn't configured for channel brains — had to use the base-brain absolute path. This should be standardized."
   ],
   "pendingIssues": [],
-  "brainCommitSha": "345a0d37153cf0a73c719384e66a15410a5f7bbf"
+  "brainCommitSha": "6061ce10228855d0aeb5c07a0ce8dae093555bd6"
 }
