@@ -45,5 +45,5 @@
     "[blocked] Cannot test the promotion pipeline without actual user sessions — this is outside the agent's control."
   ],
   "pendingIssues": [],
-  "brainCommitSha": "PENDING"
+  "brainCommitSha": "fffca5171136b826c13ae16114d984718582c6c5"
 }
