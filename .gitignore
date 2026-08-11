@@ -1,5 +1,6 @@
 # Local runtime state (per-instance, not shared)
 .local/
+.inbox/
 
 # OS
 .DS_Store

@@ -1,3 +1,3 @@
 # Learnings
 
-*No entries yet — key lessons will be logged here as they arise.*
+- [MEM-2] The environment can carry stray `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY` (e.g. leftover from a scoped test identity like `jarvis-test-s3-writer`) that silently override `--profile`/`AWS_PROFILE` in the AWS SDK credential chain — env vars win over profile files. Any `aws-cli`/`sst`/`pulumi` command that needs an SSO profile must run with `env -u AWS_ACCESS_KEY_ID -u AWS_SECRET_ACCESS_KEY -u AWS_DEFAULT_REGION AWS_PROFILE=<profile> ...` or it silently deploys/queries as the wrong identity and fails with confusing AccessDenied errors that look like the new profile lacks permissions. Detail: [[sst-stepfunctions-jsonata]] test campaign (2026-08-10) hit this first.
