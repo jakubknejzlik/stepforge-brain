@@ -38,5 +38,5 @@
     "[blocked] Cannot add the recommended scheduled message from within this reflection pass — mcp__teamvibe-api__create_scheduled_message requires an active Slack channel/thread context, and this maintenance trigger has none (system-sourced, channel_required error observed earlier this session)."
   ],
   "pendingIssues": [],
-  "brainCommitSha": "6eb3c6c00d41e14db514ec8993dd86f7fec931ee"
+  "brainCommitSha": "3fdbe0d4520bfc9fb2d208494478224bf320e0bd"
 }
