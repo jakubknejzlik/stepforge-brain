@@ -70,7 +70,7 @@ export default $config({
       home: "aws",
       providers: {
         aws: {
-          region: "eu-central-1",
+          region: "YOUR_REGION", // ask the user which region to deploy to during Step 3 — don't default
         },
       },
     };
@@ -114,7 +114,7 @@ workspaces:
 aws:
   profile: stepforge       # AWS profile name
   auth: sso                # sso | iam | pipeline
-  region: eu-central-1
+  region: eu-central-1     # example — actual value is whatever the user chose during setup
 
 setup_completed: true
 setup_date: 2026-04-21

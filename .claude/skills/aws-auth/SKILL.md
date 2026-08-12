@@ -11,11 +11,12 @@ Configure SSO profile in `~/.aws/config`:
 ```ini
 [profile stepforge]
 sso_start_url = https://YOUR_ORG.awsapps.com/start
-sso_region = eu-central-1
+sso_region = YOUR_SSO_REGION
 sso_account_id = YOUR_ACCOUNT_ID
 sso_role_name = AdministratorAccess
-region = eu-central-1
+region = YOUR_REGION
 ```
+Ask the user which region(s) to deploy to — don't default to any specific region. Persist the answer in `.local/config.yaml` (`aws.region`) so it's read from there afterward, not re-asked or hardcoded.
 
 **Login flow:**
 1. Run: `aws sso login --profile stepforge --no-browser --use-device-code`
@@ -45,7 +46,7 @@ aws_secret_access_key = ...
 And region in `~/.aws/config`:
 ```ini
 [profile stepforge]
-region = eu-central-1
+region = YOUR_REGION
 ```
 
 **Usage:** No login needed — credentials are always available.
