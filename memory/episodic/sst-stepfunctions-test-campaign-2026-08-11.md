@@ -27,3 +27,4 @@ These directly inform how future workflows built by this agent should be structu
 
 - The full campaign's infra code lives in the workspace repo's commit history even though the live AWS resources were torn down in Tier4 #31 (`sst remove --stage dev`, verified zero orphans across 9 service categories).
 - No workflows have been built for a real user yet — this was pure platform validation, not a delivered workflow.
+- [MEM-4]'s "genuine AWS/JSONata gap" root-cause claim for the Tier2 #12 timeout gotcha was corrected: empirically verified (local patch + real deploy/execution) as a one-line SST bug (`Timeout`→`TimeoutSeconds` ASL field name), fixed upstream via PR **anomalyco/sst#6966** (not yet merged as of 2026-08-11). See [[sst-stepfunctions-deploy-gotchas]] MEM-4/MEM-11. This closes out the campaign end-to-end: all 32 scenarios verified, one root cause found and fixed upstream.
