@@ -31,16 +31,17 @@ Your **workspace** is where infrastructure code lives — the user's SST project
 - A git repo with CI/CD (pipeline mode)
 
 ```
-stepforge-brain/              # THIS REPO — your knowledge (readonly)
+stepforge-brain/              # THIS REPO — your team wrapper (identity + local paths)
 ├── CLAUDE.md                 # This file — who you are
 ├── README.md                 # User-facing guide
-├── .claude/skills/           # What you know
-│   ├── aws-auth/             # AWS authentication patterns
-│   ├── step-functions/       # SFn workflow patterns & examples
-│   ├── lambda-blocks/        # Building block catalog & templates
-│   ├── connectors/           # External service integrations
-│   ├── deployment/           # Deploy procedures per mode
-│   └── setup/                # Bootstrap procedure
+├── .claude/skills/
+│   ├── shared/                # git submodule → stepforge-skills (read-only, never edit here)
+│   │   ├── aws-auth/          # AWS authentication patterns
+│   │   ├── step-functions/    # SFn workflow patterns & examples
+│   │   ├── lambda-blocks/     # Building block catalog & templates
+│   │   ├── deployment/        # Deploy procedures per mode
+│   │   └── setup/             # Bootstrap procedure
+│   └── local/                 # This team's own skills, if any (not shared, not versioned upstream)
 └── .local/                   # Per-instance runtime state (gitignored)
     └── config.yaml           # Workspace paths, AWS profile, mode
 
@@ -73,18 +74,18 @@ workspace/                    # USER'S CODE — what you build (separate repo/di
 - You have AWS access (SSO or IAM credentials)
 - You generate code into workspace and deploy directly
 - Changes: commit to workspace repo (if git-backed)
-- See skill: `.claude/skills/aws-auth/`
+- See skill: `.claude/skills/shared/aws-auth/`
 
 **Pipeline mode** *(planned):*
 - Workspace is a git repo with CI/CD pipeline
 - You generate code → commit → push → create PR/MR
 - Pipeline deploys on merge
 - You monitor pipeline status
-- See skill: `.claude/skills/deployment/`
+- See skill: `.claude/skills/shared/deployment/`
 
 ### Building Blocks
 Reusable Lambda functions for common tasks. Each block has a versioned skill with documentation and template code. When generating workflows:
-1. Check available blocks in `.claude/skills/lambda-blocks/`
+1. Check available blocks in `.claude/skills/shared/lambda-blocks/`
 2. Use existing blocks where possible
 3. Create new blocks only when needed
 4. Tag generated code with block version: `// generated from: <block>@<version>`
@@ -118,58 +119,49 @@ Reusable Lambda functions for common tasks. Each block has a versioned skill wit
 5. **Commit after changes** — `git add` + `git commit` after modifying workspace files
 6. **Brain stays clean** — never put user-specific infrastructure code in this repo
 
-## Contributing to This Brain
+## Contributing Generic Knowledge Upstream
 
-When you discover gaps, errors, or improvements during work, contribute them back. **Never commit directly to `main`** — always use a PR.
+This repo (`stepforge-brain`) is this **team's own** wrapper — identity, local
+paths, memory. It is not the shared knowledge layer and is not itself a PR
+target for other teams' improvements.
 
-### When to contribute
-- Missing pattern or building block you had to create from scratch
-- Incorrect or outdated information in a skill
-- New block template extracted from a real workflow
-- Better examples or clarifications for existing skills
+Generic skill/pattern knowledge (what would help *any* StepForge team, not
+just this one) lives in a separate repo, `stepforge-skills`, consumed here as
+a read-only git submodule at `.claude/skills/shared/`.
 
-### How to contribute
+**Never edit anything under `.claude/skills/shared/` directly** — it's a
+submodule; local edits there land on a detached HEAD and get silently
+dropped the next time the pointer is bumped. When you discover a gap, error,
+or improvement that's genuinely generic:
 
-**With write access** (direct collaborator):
 ```bash
-cd <brain-directory>
+gh repo fork jakubknejzlik/stepforge-skills --clone
+cd stepforge-skills
 git checkout -b improve/short-description
 # make changes
 git add <files>
 git commit -m "improve: description of what and why"
 git push -u origin improve/short-description
-gh pr create --title "improve: ..." --body "What changed and why"
+gh pr create --repo jakubknejzlik/stepforge-skills --title "improve: ..." --body "What changed and why"
 ```
 
-**Without write access** (fork workflow):
-```bash
-gh repo fork jakubknejzlik/stepforge-brain --clone
-cd stepforge-brain
-git checkout -b improve/short-description
-# make changes
-git add <files>
-git commit -m "improve: description of what and why"
-git push -u origin improve/short-description
-gh pr create --repo jakubknejzlik/stepforge-brain --title "improve: ..." --body "What changed and why"
-```
+See that repo's own `CONTRIBUTING.md` for the full review requirements
+(mechanical secret scan + human review pass — both required, neither
+optional). Once merged, bump this repo's submodule pointer in a separate PR
+against `stepforge-brain`.
 
-### PR conventions
-- Branch prefix: `improve/`, `fix/`, `block/`, `skill/`
-- PR title: `<prefix>: short description` (English)
-- PR body: what changed, why, context from usage
-- One concern per PR — don't bundle unrelated changes
-- New blocks must include `handler.ts` + `README.md` with version tag
+### What belongs in `stepforge-skills` vs. stays here
+- **Upstream (`stepforge-skills`):** patterns, procedures, building-block
+  templates useful to any team — no account IDs, no team-specific config.
+- **Stays here, in `.claude/skills/local/` or elsewhere in this repo:**
+  anything true of only this team's account, infrastructure, or workflows —
+  including any team-specific skill this repo builds for itself.
 
-### What belongs in a brain PR
-- New or updated skill documentation
-- New building block templates (handler + README)
-- Pattern improvements based on real-world usage
-- Bug fixes in templates or documentation
-
-### What does NOT belong
-- User-specific configuration or data
-- Workspace infrastructure code
-- Secrets, credentials, or environment-specific values
+### Harvest cadence
+Once per sprint, review recent daily logs and episodic notes against "would
+this help another team?" — if yes, open a PR upstream per the process above.
+Report the outcome even when nothing qualifies; a silent cycle is
+indistinguishable from one that stopped running.
 
 ## Operating Modes
 
