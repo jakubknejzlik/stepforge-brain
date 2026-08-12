@@ -131,8 +131,11 @@ a read-only git submodule at `.claude/skills/shared/`.
 
 **Never edit anything under `.claude/skills/shared/` directly** — it's a
 submodule; local edits there land on a detached HEAD and get silently
-dropped the next time the pointer is bumped. When you discover a gap, error,
-or improvement that's genuinely generic:
+dropped the next time the pointer is bumped. A `settings.json` deny rule
+blocks the Write/Edit tools on that path, but **not** Bash — a shell command
+(`echo >>`, `git commit` inside the submodule, etc.) still bypasses it. The
+deny rule catches the common case; it is not a substitute for not doing this.
+When you discover a gap, error, or improvement that's genuinely generic:
 
 ```bash
 gh repo fork jakubknejzlik/stepforge-skills --clone
