@@ -1,4 +1,4 @@
-**Last consolidated:** 2026-08-12 04:10 UTC
+**Last consolidated:** 2026-08-13 04:10 UTC
 
 ## How this memory works
 - This file (SUMMARY.md) and TODAY.md are `@`-imported into every session — they are always in your context
@@ -14,22 +14,24 @@
 - Env vars silently override `--profile`/`AWS_PROFILE` in the AWS SDK credential chain — any aws-cli/sst/pulumi command needing an SSO profile must `env -u AWS_ACCESS_KEY_ID -u AWS_SECRET_ACCESS_KEY -u AWS_DEFAULT_REGION AWS_PROFILE=<profile> ...` or it silently runs as the wrong identity (detail: core/LEARNINGS.md, [MEM-2])
 - SST v3 StepFunctions is JSONata-only — no InputPath/OutputPath/ResultPath; use `output`/`assign` instead (detail: semantic/sst-stepfunctions-jsonata.md, [MEM-3])
 - Always narrow a `lambdaInvoke`'s output to `.Payload` before chaining into the next state — the unnarrowed SDK wrapper silently produces NaN/null downstream (detail: semantic/sst-stepfunctions-jsonata.md, [MEM-5])
-- Task-level `timeout` fails deploy in JSONata mode — use the Parallel-race (Wait→Fail) pattern instead; root cause is a one-line SST bug (`Timeout` vs correct `TimeoutSeconds` ASL field), fix submitted upstream as anomalyco/sst#6966 but not yet merged, so the workaround still applies (detail: semantic/sst-stepfunctions-deploy-gotchas.md, [MEM-4]/[MEM-11])
+- Task-level `timeout` fails deploy in JSONata mode — use the Parallel-race (Wait→Fail) pattern instead; root cause is a one-line SST bug (`Timeout` vs correct `TimeoutSeconds` ASL field), fix submitted upstream as anomalyco/sst#6966 but not yet merged, so the workaround still applies (detail: semantic/sst-stepfunctions-deploy-gotchas.md, [MEM-4]/[MEM-11]/[MEM-12])
 - Map's `ToleratedFailurePercentage` is silently ignored in inline mode — requires `mode:'standard'` (distributed) to actually work (detail: semantic/sst-stepfunctions-iam-and-map.md, [MEM-10])
 - SST-generated SFN IAM roles always get a broad `events:*`/`states:StartExecution|DescribeExecution` baseline regardless of what the workflow does — expect this in least-privilege audits (detail: semantic/sst-stepfunctions-iam-and-map.md, [MEM-8])
 - Every new integration pattern needs a real `start-execution` check, not just a clean `sst deploy` — several gotchas are deploy-time-invisible (detail: procedural/sst-stepfunctions-smoke-test-tiers.md)
+- Deleting a GitHub branch does NOT remove its commits from public reachability if a PR was ever opened from it (`refs/pull/<n>/head` survives) — never use a real-shaped secret in a red-CI proof test, even on a to-be-deleted branch (detail: core/LEARNINGS.md, [MEM-14])
 
 ## Preferences (from core/PREFERENCES.md)
 - *No entries yet.*
 
 ## Active Projects (from episodic/)
-- SST v3 StepFunctions JSONata platform validation (2026-08-10/11): 32/32 Tier1–4 smoke-test scenarios SUCCEEDED, root cause of the one open gotcha (MEM-4 timeout) found and fixed upstream (anomalyco/sst#6966, unmerged). Test stack fully torn down (`sst remove`, zero orphans verified). No user workflow has been delivered yet — this was pure platform validation (detail: episodic/sst-stepfunctions-test-campaign-2026-08-11.md).
+- SST v3 StepFunctions JSONata platform validation (2026-08-10/11): 32/32 Tier1–4 smoke-test scenarios SUCCEEDED, root cause of the one open gotcha (MEM-4 timeout) found and fixed upstream (anomalyco/sst#6966, unmerged — tracked via [MEM-12]). Test stack fully torn down (`sst remove`, zero orphans verified). No user workflow has been delivered yet — this was pure platform validation (detail: episodic/sst-stepfunctions-test-campaign-2026-08-11.md).
+- Multi-team distribution rollout for Smith/StepForge (converged 2026-08-12 with DevGuru+Jakub, [MEM-13]/[MEM-15]): public `stepforge-skills` repo live, PR #2 merged (`93bcf26`), `.claude/skills/shared/` submodule wired into this brain. **Open blocker:** write-guard (`.claude/settings.json` deny rule) + SessionStart hook drafted but not yet applied — this repo's harness blocks Smith from writing those sensitive paths itself, so it's handed off to Jakub. A one-time scheduled message fires 2026-08-13T08:00Z to verify the hook once live. CLAUDE.md distribution (Option A) is explicitly deferred until that verification lands (detail: episodic/stepforge-multi-team-distribution.md).
 - No workspace has been configured via `/setup` yet — Smith cannot build a real user workflow until a workspace exists. Next planned work: first real building-block lambda (llm-api-call or send-email), pending assignment.
 
 ## Deep Memory Index
-- memory/core/ — LEARNINGS.md (1 entry, [MEM-2]); MISTAKES.md, PREFERENCES.md empty
-- memory/semantic/ — sst-stepfunctions-jsonata.md (data-flow/payload gotchas), sst-stepfunctions-deploy-gotchas.md (deploy/build-time gotchas, incl. MEM-4 root-cause correction), sst-stepfunctions-iam-and-map.md (IAM baseline & Map fault-tolerance)
-- memory/episodic/ — reflection-2026-04-21/24/27.md, reflection-2026-08-11.md (quality reflections); sst-stepfunctions-test-campaign-2026-08-11.md (32-scenario validation campaign + upstream PR outcome)
+- memory/core/ — LEARNINGS.md (2 entries, [MEM-2], [MEM-14]); MISTAKES.md, PREFERENCES.md empty
+- memory/semantic/ — sst-stepfunctions-jsonata.md (data-flow/payload gotchas), sst-stepfunctions-deploy-gotchas.md (deploy/build-time gotchas, incl. MEM-4 root-cause correction + MEM-12 upstream-PR tracker), sst-stepfunctions-iam-and-map.md (IAM baseline & Map fault-tolerance)
+- memory/episodic/ — reflection-2026-04-21/24/27.md, reflection-2026-08-11.md (quality reflections); sst-stepfunctions-test-campaign-2026-08-11.md (32-scenario validation campaign + upstream PR outcome); stepforge-multi-team-distribution.md (multi-team rollout design + execution log, [MEM-13]/[MEM-15])
 - memory/procedural/ — sst-stepfunctions-smoke-test-tiers.md (reusable 4-tier validation checklist for new SST/SFN patterns)
-- memory/daily/ — 2026-08-10.md, 2026-08-11.md, 2026-08-12.md
-- memory/MEM_REGISTRY.md — 11 keys: MEM-1 REMOVED (superseded same-day, cycled through OBSOLETE), MEM-2 through MEM-11 ACTIVE
+- memory/daily/ — 2026-08-10.md, 2026-08-11.md, 2026-08-12.md, 2026-08-13.md
+- memory/MEM_REGISTRY.md — 15 keys: MEM-1 REMOVED (superseded same-day, cycled through OBSOLETE); MEM-2 through MEM-15 ACTIVE
