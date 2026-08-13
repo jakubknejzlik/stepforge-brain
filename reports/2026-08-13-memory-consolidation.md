@@ -88,4 +88,4 @@ Daily consolidation triggered by the `maintenance-guard.sh` window check (last r
 ## Process Self-Critique
 - The `procedural/` tier has not been updated since 2026-08-10 despite at least one new repeatable operational pattern surfacing this week: MEM-14's "never use a real-shaped secret in a red-CI proof test, even on a to-be-deleted branch" is exactly the kind of reusable how-to that belongs in `memory/procedural/` (e.g. a "safe CI-gate proof-testing" checklist) alongside `sst-stepfunctions-smoke-test-tiers.md`, not just as a narrative lesson in `LEARNINGS.md`. Filing it only as a lesson makes it easy to find when reading LEARNINGS.md top-to-bottom, but hard to find when someone is *about to run* a similar proof test and would benefit from a step-by-step guard. Proposal for next cycle: extract a short `procedural/safe-ci-proof-testing.md` from MEM-14's content, with LEARNINGS.md's entry trimmed to a pointer.
 
-Commit: (recorded after commit)
+Commit: 649ba7a11d336a7141b0530542f0e1c066323a7a
