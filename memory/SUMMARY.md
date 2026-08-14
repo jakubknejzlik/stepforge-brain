@@ -1,4 +1,4 @@
-**Last consolidated:** 2026-08-13 04:10 UTC
+**Last consolidated:** 2026-08-14 04:04 UTC
 
 ## How this memory works
 - This file (SUMMARY.md) and TODAY.md are `@`-imported into every session — they are always in your context
@@ -19,6 +19,7 @@
 - SST-generated SFN IAM roles always get a broad `events:*`/`states:StartExecution|DescribeExecution` baseline regardless of what the workflow does — expect this in least-privilege audits (detail: semantic/sst-stepfunctions-iam-and-map.md, [MEM-8])
 - Every new integration pattern needs a real `start-execution` check, not just a clean `sst deploy` — several gotchas are deploy-time-invisible (detail: procedural/sst-stepfunctions-smoke-test-tiers.md)
 - Deleting a GitHub branch does NOT remove its commits from public reachability if a PR was ever opened from it (`refs/pull/<n>/head` survives) — never use a real-shaped secret in a red-CI proof test, even on a to-be-deleted branch (detail: core/LEARNINGS.md, [MEM-14])
+- Writes to `.claude/settings.json` and `.claude/hooks/` are hard-blocked by the harness as "sensitive files" — this is a sandbox boundary, not a permission gate chat instructions can lift; hand off to the human for direct git access instead of retrying (detail: core/LEARNINGS.md, [MEM-16])
 
 ## Preferences (from core/PREFERENCES.md)
 - *No entries yet.*
@@ -29,9 +30,9 @@
 - No workspace has been configured via `/setup` yet — Smith cannot build a real user workflow until a workspace exists. Next planned work: first real building-block lambda (llm-api-call or send-email), pending assignment.
 
 ## Deep Memory Index
-- memory/core/ — LEARNINGS.md (2 entries, [MEM-2], [MEM-14]); MISTAKES.md, PREFERENCES.md empty
+- memory/core/ — LEARNINGS.md (3 entries, [MEM-2], [MEM-14], [MEM-16]); MISTAKES.md, PREFERENCES.md empty
 - memory/semantic/ — sst-stepfunctions-jsonata.md (data-flow/payload gotchas), sst-stepfunctions-deploy-gotchas.md (deploy/build-time gotchas, incl. MEM-4 root-cause correction + MEM-12 upstream-PR tracker), sst-stepfunctions-iam-and-map.md (IAM baseline & Map fault-tolerance)
 - memory/episodic/ — reflection-2026-04-21/24/27.md, reflection-2026-08-11.md (quality reflections); sst-stepfunctions-test-campaign-2026-08-11.md (32-scenario validation campaign + upstream PR outcome); stepforge-multi-team-distribution.md (multi-team rollout design + execution log, [MEM-13]/[MEM-15])
 - memory/procedural/ — sst-stepfunctions-smoke-test-tiers.md (reusable 4-tier validation checklist for new SST/SFN patterns)
-- memory/daily/ — 2026-08-10.md, 2026-08-11.md, 2026-08-12.md, 2026-08-13.md
-- memory/MEM_REGISTRY.md — 15 keys: MEM-1 REMOVED (superseded same-day, cycled through OBSOLETE); MEM-2 through MEM-15 ACTIVE
+- memory/daily/ — 2026-08-10.md, 2026-08-11.md, 2026-08-12.md, 2026-08-13.md, 2026-08-14.md
+- memory/MEM_REGISTRY.md — 16 keys: MEM-1 REMOVED (superseded same-day, cycled through OBSOLETE); MEM-2 through MEM-16 ACTIVE. Registry at 5530B (>5000B threshold) — MEM-16 has no automated pointer-trim candidate yet (weak hook, see report)
