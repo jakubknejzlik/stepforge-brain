@@ -1,4 +1,4 @@
-**Last consolidated:** 2026-08-14 04:04 UTC
+**Last consolidated:** 2026-08-15 03:55 UTC
 
 ## How this memory works
 - This file (SUMMARY.md) and TODAY.md are `@`-imported into every session — they are always in your context
@@ -26,13 +26,13 @@
 
 ## Active Projects (from episodic/)
 - SST v3 StepFunctions JSONata platform validation (2026-08-10/11): 32/32 Tier1–4 smoke-test scenarios SUCCEEDED, root cause of the one open gotcha (MEM-4 timeout) found and fixed upstream (anomalyco/sst#6966, unmerged — tracked via [MEM-12]). Test stack fully torn down (`sst remove`, zero orphans verified). No user workflow has been delivered yet — this was pure platform validation (detail: episodic/sst-stepfunctions-test-campaign-2026-08-11.md).
-- Multi-team distribution rollout for Smith/StepForge (converged 2026-08-12 with DevGuru+Jakub, [MEM-13]/[MEM-15]): public `stepforge-skills` repo live, PR #2 merged (`93bcf26`), `.claude/skills/shared/` submodule wired into this brain. **Open blocker:** write-guard (`.claude/settings.json` deny rule) + SessionStart hook drafted but not yet applied — this repo's harness blocks Smith from writing those sensitive paths itself, so it's handed off to Jakub. A one-time scheduled message fires 2026-08-13T08:00Z to verify the hook once live. CLAUDE.md distribution (Option A) is explicitly deferred until that verification lands (detail: episodic/stepforge-multi-team-distribution.md).
+- Multi-team distribution rollout for Smith/StepForge (converged 2026-08-12 with DevGuru+Jakub, [MEM-13]/[MEM-15]): public `stepforge-skills` repo live, PR #2 merged (`93bcf26`), `.claude/skills/shared/` submodule wired into this brain. **Open blocker:** write-guard (`.claude/settings.json` deny rule) + SessionStart hook drafted but not yet applied — this repo's harness blocks Smith from writing those sensitive paths itself, so it's handed off to Jakub ([MEM-16]). A recurring daily cron (`0 8 * * *`) checks and re-posts status until the guard lands — last fired 2026-08-14T08:00Z, still blocked, no change. CLAUDE.md distribution (Option A) is explicitly deferred until verification lands (detail: episodic/stepforge-multi-team-distribution.md).
 - No workspace has been configured via `/setup` yet — Smith cannot build a real user workflow until a workspace exists. Next planned work: first real building-block lambda (llm-api-call or send-email), pending assignment.
 
 ## Deep Memory Index
 - memory/core/ — LEARNINGS.md (3 entries, [MEM-2], [MEM-14], [MEM-16]); MISTAKES.md, PREFERENCES.md empty
 - memory/semantic/ — sst-stepfunctions-jsonata.md (data-flow/payload gotchas), sst-stepfunctions-deploy-gotchas.md (deploy/build-time gotchas, incl. MEM-4 root-cause correction + MEM-12 upstream-PR tracker), sst-stepfunctions-iam-and-map.md (IAM baseline & Map fault-tolerance)
-- memory/episodic/ — reflection-2026-04-21/24/27.md, reflection-2026-08-11.md (quality reflections); sst-stepfunctions-test-campaign-2026-08-11.md (32-scenario validation campaign + upstream PR outcome); stepforge-multi-team-distribution.md (multi-team rollout design + execution log, [MEM-13]/[MEM-15])
+- memory/episodic/ — reflection-2026-04-21/24/27.md, reflection-2026-08-11.md, reflection-2026-08-14.md (quality reflections); sst-stepfunctions-test-campaign-2026-08-11.md (32-scenario validation campaign + upstream PR outcome); stepforge-multi-team-distribution.md (multi-team rollout design + execution log, [MEM-13]/[MEM-15])
 - memory/procedural/ — sst-stepfunctions-smoke-test-tiers.md (reusable 4-tier validation checklist for new SST/SFN patterns)
 - memory/daily/ — 2026-08-10.md, 2026-08-11.md, 2026-08-12.md, 2026-08-13.md, 2026-08-14.md
 - memory/MEM_REGISTRY.md — 16 keys: MEM-1 REMOVED (superseded same-day, cycled through OBSOLETE); MEM-2 through MEM-16 ACTIVE. Registry at 5530B (>5000B threshold) — MEM-16 has no automated pointer-trim candidate yet (weak hook, see report)
