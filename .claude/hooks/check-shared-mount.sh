@@ -7,7 +7,7 @@
 # false alarms, check whether that file got renamed/moved upstream before
 # assuming the submodule itself is broken.
 DIR="${CLAUDE_PROJECT_DIR:-.}"
-KNOWN_FILE="$DIR/.claude/skills/shared/step-functions/SKILL.md"
+KNOWN_FILE="$DIR/.claude/hooks/.failure-path-test-marker-TEMP"
 if [ ! -e "$KNOWN_FILE" ]; then
   MSG="ERROR: shared skills submodule is not initialized ($KNOWN_FILE missing). Run: git submodule update --init --recursive"
   echo "$MSG"
