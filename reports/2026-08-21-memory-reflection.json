@@ -1,0 +1,56 @@
+{
+  "operationType": "reflection",
+  "operationCounts": {
+    "created": 3,
+    "modified": 0,
+    "deleted": 0
+  },
+  "filesChanged": [
+    "memory/episodic/reflection-2026-08-21.md",
+    "reports/2026-08-21-memory-reflection.md",
+    "reports/2026-08-21-memory-reflection.json"
+  ],
+  "decisions": [
+    "Classified the 2026-08-18 reflection's MEM_REGISTRY.md manual-review recommendation as implemented, verified against today's consolidation report's MEM-5/MEM-6/MEM-10/MEM-16 trim (6481->3867 bytes).",
+    "Logged a new gap: reports/2026-08-21-memory-consolidation.md's Context section falsely claimed reflection had already run in the same session; resolved by running reflection now rather than editing the append-only prior report.",
+    "Did not treat the false-claim finding as requiring a content-file correction since no core/semantic/episodic file inherited the incorrect claim.",
+    "Rejected core/PREFERENCES.md and MISTAKES.md staying empty as a gap candidate — no dated incident ties it to a problem.",
+    "Rejected the pending 2026-08-21T08:00Z MEM-21 disambiguation check as a gap candidate — not yet due at session time (04:26 UTC)."
+  ],
+  "observations": [
+    "MAINTENANCE.md's reporting convention has no cross-check between a report's prose claims and actual repo/guard state, which caused reports/2026-08-21-memory-consolidation.md to falsely state reflection had run on 2026-08-21 when reflection-guard.sh still showed isOverdue:true and no reflection report file existed.",
+    "episodic/stepforge-multi-team-distribution.md's 8 consecutive per-day status entries (through 2026-08-20) remain internally consistent with MEM_REGISTRY.md and core/LEARNINGS.md on MEM-19/20/21.",
+    "MEM_REGISTRY.md is now 3867 bytes, under its 5000B cap for the first time in 6+ consecutive cycles, following the 2026-08-18 reflection's recommendation.",
+    "All memory tier files (core/, semantic/, SUMMARY.md) are within their size thresholds with no staleness found across a 2026-08-10 through 2026-08-21 review window."
+  ],
+  "recommendations": [
+    "[base-brain] Add a report-accuracy self-check to MAINTENANCE.md requiring any completed-tense claim about a downstream action (e.g. 'reflection ran', 'see report Y') to be verified against that file's actual existence or the relevant guard's live output before commit — problem: reports/2026-08-21-memory-consolidation.md asserted reflection had run when it hadn't — success: no consolidation or reflection report in the next 5 cycles contains an unverifiable completed-action claim.",
+    "Continue routing structurally-invisible size-cap issues (like the resolved MEM_REGISTRY.md case) through reflection's gap-analysis path rather than leaving them to automated trim scripts alone — success: no memory file remains over its size cap for more than 2 consecutive consolidation cycles without an explicit reflection-logged gap."
+  ],
+  "selfAssessment": {
+    "concrete-improvement-proposal": true,
+    "previous-recommendations-reviewed": true,
+    "gap-impact-analysis": true,
+    "verifiable-recommendations": true,
+    "deletion-with-preservation-evidence": true
+  },
+  "processImprovements": [
+    "[self-critique] Reflection is the first cycle to catch a same-day report-accuracy issue in the immediately preceding report rather than a report from a prior cycle — the contradiction-check step has value even when consolidation ran earlier in the same day.",
+    "[proposal] Add a lightweight pre-commit check to the consolidation skill that greps its own draft report for completed-tense claims about files not yet in filesChanged, per the recommendation above.",
+    "[blocked] Cannot retroactively correct reports/2026-08-21-memory-consolidation.md's false claim — reports are append-only per MAINTENANCE.md; the correction lives only in this reflection and going forward.",
+    "[self-critique] Prior rec: \"MEM_REGISTRY.md manual review\" (2026-08-18 reflection) — status: implemented. Resolved in the very next consolidation cycle once flagged with a concrete recommendation, closing a 6+ cycle stuck state."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-08-21",
+    "daysSinceReflection": 0,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0
+  },
+  "brainCommitSha": "3dc667223cbeaadb85771b17cd10dd63a0b06457"
+}
