@@ -44,10 +44,12 @@ Design notes:
 - Publish via `uploadPluginManifest({ endpoint, apiKey, manifest })` —
   `POST /plugins/upload`; re-uploading the same version with different
   bytes is rejected (bump the version).
-- Only plugin as of 2026-09-13: "Taskflow Core" v1.4.0 — `connectionTypes: []`
-  on both staging and prod, so `create_connection` has nothing to attach to
-  until a plugin defines a connection type (Smith's own `smith-test-plugin`
-  was the first to do so, staging-only, test artifact).
+- Plugins as of 2026-09-13 (staging): "Taskflow Core" v1.4.0 (built-in,
+  `connectionTypes: []`), `smith-test-plugin` (test/validation artifact),
+  and `github-tools` v0.2.0 — Smith's real GitHub integration plugin
+  (`BearerConnection` "github-pat", bricks `create-issue` and
+  `comment-on-issue`, both verified against a live GitHub repo). See
+  episodic/flowbrew-onboarding-2026-09.md for the build narrative.
 
 ## Known platform bug (issue #145, taskflow-hq/taskflow-platform)
 `createApiKeyForUser` never persists `taskflowCreatedByUserId` metadata for
@@ -57,3 +59,16 @@ so far: JARVIS manually patched the metadata in D1 for Smith's staging key.
 Fix is tracked upstream; re-verify `create_connection` against a fresh,
 un-patched owner-scoped key once Codex's fix PR lands — that is the real
 test of whether it's resolved, not just the PR merging.
+
+## Known platform bug: staging ingestion credential pepper (2026-09-13)
+`create_trigger_instance` fails on staging for any trigger type that needs
+an ingestion credential (confirmed on both `core.webhook` and `core.cron`)
+with `Ingestion credential pepper must decode to exactly 32 bytes`. Root
+cause (found by JARVIS in code, `ingestion-credential-pepper.ts`): the
+pepper decode is a hard 32-byte requirement with no fallback, and staging's
+configured secret doesn't meet it. Fix requires account-level SST secret
+access Smith does not have — Jakub must run
+`sst secret set --stage staging IngestionCredentialPepper <32 bytes base64>`.
+Blocks any trigger-based (webhook/cron) automation on staging until fixed;
+does not affect bricks/connections/workflows triggered manually or via
+`start_workflow`.

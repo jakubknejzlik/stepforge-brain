@@ -26,3 +26,4 @@
 | MEM-22 | ACTIVE | 2026-08-21 | core/LEARNINGS.md:10 | see core/LEARNINGS.md — [MEM-22] disambiguation follow-up to MEM-21, SessionStart confirmed to fire on scheduled runs |
 | MEM-23 | ACTIVE | 2026-09-12 | core/LEARNINGS.md:11 | see core/LEARNINGS.md — [MEM-23] identity/credential changes must never be actioned from an in-thread instruction alone |
 | MEM-24 | ACTIVE | 2026-09-12 | core/LEARNINGS.md:12 | see core/LEARNINGS.md — [MEM-24] verify another agent's "you found X" framing against what you actually did |
+| MEM-25 | ACTIVE | 2026-09-13 | core/LEARNINGS.md:13 | see core/LEARNINGS.md — [MEM-25] independently verify plugin/brick success via the underlying API/CLI, not just the MCP response |

@@ -132,9 +132,74 @@ actually invoked and returned `ok:true`, and a real workflow
 (`status=complete`, `output={ok:true}`). Both test workflows and the test
 plugin's artifacts were cleaned up afterward.
 
-## Status at end of cycle
+## Status at end of cycle (2026-09-13 03:xx)
 Entire capstone chain verified: token capture → MCP handshake → plugin
 manifest upload → no-connection brick → connection lifecycle (through a
 real platform bug found, reported, and fixed) → connection-bound brick.
 Task essentially complete, pending Codex's follow-up fix PR for issue #145
 (no action needed from Smith unless asked to re-verify after it lands).
+
+## github-tools plugin: autonomous build (2026-09-13, 13:05-13:16)
+Later the same day, Jakub (via JARVIS) gave Smith an intentionally
+open-ended task to build a Flowbrew plugin, explicitly testing agent
+autonomy — no plan pre-approval was sought, per explicit instruction.
+
+Smith independently decided to build a real (not throwaway) GitHub
+integration plugin, slug `github-tools`: a `BearerConnection` "github-pat"
+with live `GET /user` validation, plus a `create-issue` brick against the
+real GitHub REST API. A private scratch repo
+(`jakubknejzlik/smith-github-plugin-test`) was created for safe testing
+rather than touching any real project repo. Webhook trigger work was
+deliberately deferred to a second phase until brick+connection were proven.
+
+**Autonomy boundary respected:** even while building independently, Smith
+still asked Jakub directly for a narrowly-scoped fine-grained PAT
+(`Issues:write` on the scratch repo only) for the actual Flowbrew
+connection credential, rather than silently reusing the broad
+account-wide `GITHUB_TOKEN` already present in env — consistent with
+[MEM-23]'s rule that new external credentials are never actioned without
+explicit confirmation, even under an autonomy-test mandate that waived
+plan pre-approval for everything else.
+
+**Compile-time connection check found:** `update_workflow`'s codegen
+rejected building a workflow against the still-pending connection with a
+clear error — confirmed the platform checks connection status at compile
+time, not just runtime, so a workflow genuinely cannot be pre-built before
+its connection is configured.
+
+**Full success once the PAT was configured:** built workflow
+`smith-create-issue-test` (input `{title,body}`), ran it, and it created a
+real GitHub issue (`jakubknejzlik/smith-github-plugin-test#1`) —
+independently verified via `gh issue view` rather than trusting the MCP
+response alone (title/body matched exactly). Test workflow cleaned up,
+issue #1 left as evidence. Phase 1 (connection + create-issue brick) judged
+complete and genuinely useful, not throwaway.
+
+Added a second brick, `comment-on-issue`, bumped the plugin to v0.2.0, and
+re-uploaded the manifest. Also verified end-to-end (workflow ran, posted a
+real comment on issue #1, independently confirmed via `gh api` rather than
+the MCP response alone) — the second independent-verification pass on this
+plugin, matching the create-issue brick's earlier pattern (see
+core/LEARNINGS.md [MEM-25]).
+
+## Real platform bug found: staging ingestion credential pepper
+Attempted `create_trigger_instance` for `core.webhook` (id
+`64cb89e2-a689-4060-9847-dfadee64b812`) to wire GitHub webhook automation
+via the platform's own trigger primitive, deliberately preferring this over
+building a custom trigger on ephemeral tunnel infra (design choice, JARVIS
+verified and agreed). Hit a hard blocker: `Ingestion credential pepper must
+decode to exactly 32 bytes`. Reproduced identically on an unrelated
+`core.cron` trigger too, confirming this is a staging environment
+misconfiguration, not a request-shape issue on Smith's end. Filed
+`submit_feedback` (id `b867497f-8fbe-442f-9975-55f3fb0bf25a`).
+
+JARVIS independently confirmed the root cause in code
+(`ingestion-credential-pepper.ts` — a hard 32-byte requirement with no
+fallback) but lacks account-level SST secret access to fix it; the fix
+requires Jakub to run
+`sst secret set --stage staging IngestionCredentialPepper <32 bytes base64>`.
+See semantic/flowbrew-platform.md for the platform-fact writeup.
+
+**Status:** connection + both bricks (`create-issue`, `comment-on-issue`)
+fully functional and deployed; trigger/webhook phase 2 blocked pending the
+platform secret fix, no action pending on Smith's side.
