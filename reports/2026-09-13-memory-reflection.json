@@ -1,0 +1,52 @@
+{
+  "operationType": "reflection",
+  "operationCounts": {
+    "created": 1,
+    "modified": 0,
+    "deleted": 0
+  },
+  "filesChanged": [
+    "memory/episodic/reflection-2026-09-13.md"
+  ],
+  "decisions": [
+    "Backfilled this report on 2026-09-14 for a reflection that ran and wrote its full episodic file on 2026-09-13 but was never committed or reported.",
+    "Classified the 2026-08-21 reflection's report-verification recommendation as still pending, no systemic enforcement exists.",
+    "Logged the MEM_REGISTRY.md/LEARNINGS.md cap-drift gap as the cycle's one qualifying gap with a named consequence."
+  ],
+  "observations": [
+    "MEM_REGISTRY.md (4393B) and core/LEARNINGS.md (4756B) both independently crossed their scaled 5000B caps during the 23-day 2026-08-22 to 2026-09-11 dormant gap, requiring reactive same-session trimming instead of gradual reduction.",
+    "The 3 original SST semantic files remain 30+ days stale by mtime but content was re-confirmed accurate this cycle via the Flowbrew AWS-credential check."
+  ],
+  "recommendations": [
+    "Add a lightweight consolidation-gap drift check that flags when MEM_REGISTRY.md/LEARNINGS.md cross their scaled cap between runs, not only at report time, so trimming stays gradual per teamvibeai/poller-brain#324's original intent."
+  ],
+  "selfAssessment": {
+    "concrete-improvement-proposal": true,
+    "previous-recommendations-reviewed": true,
+    "gap-impact-analysis": true,
+    "verifiable-recommendations": true,
+    "deletion-with-preservation-evidence": true
+  },
+  "processImprovements": [
+    "[self-critique] This reflection itself sat uncommitted for over a day because the session died before its own report/commit step — the same failure mode as that day's consolidation.",
+    "[blocked] A mid-gap cap-drift detector for MEM_REGISTRY.md/LEARNINGS.md requires a base-brain skill change (new check between Step 9b runs), not something this brain can add on its own."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-09-13",
+    "daysSinceReflection": 0,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "brainCommitSha": "1b4640d10a0ee62400d10fe7cf5b69edc47262bc"
+}

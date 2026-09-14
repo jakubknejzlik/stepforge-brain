@@ -1,0 +1,71 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 6,
+    "modified": 6,
+    "deleted": 4
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-08-21.md",
+    "memory/daily/2026-09-12.md",
+    "memory/daily/2026-09-13.md",
+    "memory/core/LEARNINGS.md",
+    "memory/MEM_REGISTRY.md",
+    "memory/SUMMARY.md",
+    "memory/episodic/flowbrew-onboarding-2026-09.md",
+    "memory/semantic/flowbrew-platform.md",
+    "memory/episodic/archive/learnings-2026-H2.md",
+    "memory/daily/2026-08-10.md",
+    "memory/daily/2026-08-11.md",
+    "memory/daily/2026-08-12.md",
+    "memory/daily/2026-08-13.md"
+  ],
+  "decisions": [
+    "Backfilled this report on 2026-09-14 for a consolidation that ran 2026-09-13 03:34-03:41 UTC (checkpoint commits f0cb965, 1f09b29) but died before Steps 10-12.",
+    "Promoted [MEM-23]/[MEM-24] to core/LEARNINGS.md and new episodic/flowbrew-onboarding-2026-09.md, per checkpoint diff.",
+    "Archived [MEM-16] to episodic/archive/learnings-2026-H2.md (pointer-stub mode, key stays ACTIVE) when LEARNINGS.md crossed its scaled cap.",
+    "Deleted memory/daily/2026-08-10.md through 2026-08-13.md (30+ days old, preserved in git history).",
+    "Did not fabricate Step 10 live-only compliance checks for a day that already passed."
+  ],
+  "observations": [
+    "memory/daily/2026-09-12.md (14.7KB) held the full Flowbrew MCP onboarding capstone, fully processed into semantic/flowbrew-platform.md and episodic/flowbrew-onboarding-2026-09.md this cycle.",
+    "core/LEARNINGS.md and memory/MEM_REGISTRY.md both crossed their scaled caps mid-cycle from the same 3-key promotion batch and both required Step 5c/trim intervention in one session.",
+    "The session completed both crash-safety checkpoints (Step 6a, Step 9g) but never reached Step 12, showing the checkpoint mechanism protects data but not report delivery."
+  ],
+  "recommendations": [
+    "When a maintenance-guard run finds the newest report older than expected but the working tree is clean, check for checkpoint commits without a matching final report before assuming no work happened — verifiable by diffing HEAD against the last report's referenced commit."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "meaningful-decisions": true,
+    "no-data-loss": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true
+  },
+  "processImprovements": [
+    "[self-critique] This session completed Steps 0-9 with checkpoint commits but died before Step 12, leaving no report for 24h+ until this backfill caught it by chance.",
+    "[proposal] Add a lightweight marker file or commit-message convention that a checkpoint-only commit is written so the next session's maintenance-guard can detect an unfinished cycle deterministically instead of relying on report-file absence plus manual investigation."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-09-13",
+    "daysSinceReflection": 0,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "brainCommitSha": "1b4640d10a0ee62400d10fe7cf5b69edc47262bc"
+}
