@@ -1,0 +1,95 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 3,
+    "modified": 7,
+    "deleted": 8
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-09-14.md",
+    "memory/daily/2026-09-15.md",
+    "memory/daily/2026-08-15.md",
+    "memory/core/LEARNINGS.md",
+    "memory/MEM_REGISTRY.md",
+    "memory/semantic/flowbrew-platform.md",
+    "memory/episodic/flowbrew-onboarding-2026-09.md",
+    "memory/SUMMARY.md",
+    "reports/2026-08-11-memory-consolidation.md",
+    "reports/2026-08-11-memory-reflection.md",
+    "reports/2026-08-12-memory-consolidation.md",
+    "reports/2026-08-13-memory-consolidation.md",
+    "reports/2026-08-14-memory-consolidation.md",
+    "reports/2026-08-14-memory-reflection.md",
+    "reports/2026-08-15-memory-consolidation.md",
+    "reports/2026-09-15-memory-consolidation.md",
+    "reports/2026-09-15-memory-consolidation.json"
+  ],
+  "decisions": [
+    "Archived TODAY.md's 2026-09-14 section (11 entries, 5071B) into memory/daily/2026-09-14.md, merging with its pre-existing git-backfill stub.",
+    "Promoted [MEM-26] to three destinations (LEARNINGS.md, semantic/flowbrew-platform.md, episodic closure narrative) because its content spans a lesson, two platform facts, and an event closure; verified each via grep.",
+    "Condensed [MEM-14] in LEARNINGS.md to a pointer via mem-learnings-trim.ts after confirming episodic/stepforge-multi-team-distribution.md:21 genuinely restates its content, bringing LEARNINGS.md from 5303B back under its 5000B scaled cap.",
+    "Deleted memory/daily/2026-08-15.md and 7 reports/*.md files older than 30 days, preserved in git history.",
+    "Did not split semantic/flowbrew-platform.md despite crossing 100 lines (now 112) — judged still one cohesive topic; flagged for next cycle."
+  ],
+  "observations": [
+    "The flowbrew-github-plugin arc that was 'blocked pending platform secret fix' as of the 2026-09-14 report is now fully closed end-to-end, with no stale 'blocked' status left in any tier.",
+    "MEM_REGISTRY.md rows written by regular sessions (via mem-write.ts) carry the full raw session-log text rather than the file's own 'see <file> — <hook>' pointer convention, requiring manual reformatting every consolidation cycle.",
+    "semantic/flowbrew-platform.md has grown from 59 lines (2026-09-13) to 74 (2026-09-14) to 112 lines (this cycle) — a clear growth trend for an actively-developed integration, worth watching against the split threshold.",
+    "LEARNINGS.md and MEM_REGISTRY.md both crossed their scaled caps this cycle purely from one new promotion's raw text, then both returned under cap once reformatted/trimmed — the caps are workable but tight for any brain promoting content at this pace.",
+    "The 2026-09-14 daily log's non-MEM entries (bg-task-runner orphaning a tunnel process on manual kill) were left unpromoted — genuinely one-off/ephemeral to this test setup's teardown, not a generalizable lesson."
+  ],
+  "recommendations": [
+    "If semantic/flowbrew-platform.md exceeds ~130 lines next cycle, split into a 'reference' file (endpoints/auth/MCP surface/plugin SDK) and a 'bugs' file (known platform bugs) — success criterion: post-split, neither file exceeds 100 lines.",
+    "Consider having mem-write.ts emit the registry Description column pre-formatted as 'see <destination> — <hook>' at write time, once the destination is known, to avoid every cycle's manual reformat — success criterion: a new MEM row's Description no longer needs editing during the next consolidation.",
+    "Once the productionization/hosting decision for github-tools lands, capture it as its own MEM entry rather than folding it into a future webhook-arc entry, since it is a distinct architectural decision.",
+    "Re-verify create_connection against a fresh un-patched owner-scoped token once Codex's issue #145 fix PR merges (carried recommendation, still pending)."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "meaningful-decisions": true,
+    "no-data-loss": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "process-self-critique": true,
+    "mem-integrity-check": true,
+    "semantic-lifecycle-checked": true,
+    "reflection-overdue": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true
+  },
+  "processImprovements": [
+    "[self-critique] Untagged-but-useful operational lessons (this cycle: the bg-task-runner orphaned-tunnel-process note) only get evaluated for promotion when I happen to notice them during the daily-log read-through — there is no systematic prompt in Steps 2-4 to catch non-MEM-tagged gotchas the way Step 1b guarantees for tagged ones.",
+    "[proposal] Add a lightweight heuristic pass in Step 2 that flags daily-log lines matching 'note -', 'gotcha', 'will need to' as promotion candidates for explicit accept/reject, closing the gap between tagged (guaranteed) and untagged (currently ad hoc) fact extraction.",
+    "[blocked] semantic/flowbrew-platform.md's growth rate (59→74→112 lines across 3 cycles) suggests a split will be needed within 1-2 more cycles, but the skill's 'don't split aggressively' guidance and my own conservative judgment keep deferring it — I cannot resolve this tension without either a firmer numeric trigger or explicit human direction on how aggressively to split actively-growing topic files.",
+    "[self-critique] MEM_REGISTRY.md's Description column convention ('see <file> — <hook>') is a brain-specific convention that has drifted from the base-brain skill's literal spec (which treats the 'Obsoleted' column as a date, not a file:line pointer) — I followed the established local convention for consistency rather than the literal skill text, which is a judgment call worth a human sanity check."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-09-13",
+    "daysSinceReflection": 2,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0,
+    "idleSkipped": false
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "brainCommitSha": "PENDING_FINAL_COMMIT"
+}
