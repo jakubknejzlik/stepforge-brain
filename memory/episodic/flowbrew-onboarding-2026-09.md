@@ -200,6 +200,52 @@ requires Jakub to run
 `sst secret set --stage staging IngestionCredentialPepper <32 bytes base64>`.
 See semantic/flowbrew-platform.md for the platform-fact writeup.
 
-**Status:** connection + both bricks (`create-issue`, `comment-on-issue`)
-fully functional and deployed; trigger/webhook phase 2 blocked pending the
-platform secret fix, no action pending on Smith's side.
+**Status (superseded by 2026-09-14 closure below):** connection + both
+bricks (`create-issue`, `comment-on-issue`) fully functional and deployed;
+trigger/webhook phase 2 blocked pending the platform secret fix, no action
+pending on Smith's side.
+
+## Webhook automation closure: full success end-to-end ([MEM-26], 2026-09-14)
+With the ingestion-credential-pepper fix confirmed live, Smith wired up the
+real webhook trigger: `create_trigger_instance` for `core.webhook`
+(status `active`, `publicEndpointUrl` on `core-plugin.staging.flowbrew.app`),
+`create_trigger_subscription` to a new workflow
+`smith-github-issue-autoresponder`, a real GitHub webhook configured on the
+scratch repo pointing at that URL, and a real test issue opened (#2).
+GitHub's delivery log showed 202 OK accepted, but `list_instances` showed
+zero new workflow instances after 20+ seconds — the event was not reaching
+the workflow, with no error visible anywhere over MCP.
+
+JARVIS diagnosed the real cause via server-side telemetry (not visible to
+Smith over MCP): `trigger-dispatch-coordinator.ts` validates the incoming
+payload without a try/catch, so a schema mismatch fails closed and retries
+silently in an infinite queue — not a silent drop as Smith had suspected.
+The mismatch traced back to a workflow `inputSchema` that was narrower
+(`additionalProperties:false` at every level) than GitHub's real payload,
+because `update_workflow`'s codegen had rejected every permissive-schema
+phrasing Smith tried (`record()`/`looseObject()` with options) during
+building, forcing the fallback to a strict schema. Fix: `additionalProperties:{}`
+(fully permissive). See semantic/flowbrew-platform.md for both platform
+facts in full.
+
+After the schema fix, hit one more, unrelated bug: the plugin manifest
+still pointed at the previous day's dead tunnel URL, because the dev server
+had been restarted that day without re-uploading the manifest. Re-uploading
+fixed it. Full chain then verified working end-to-end: real GitHub webhook
+→ `core.webhook` trigger → subscription →
+`smith-github-issue-autoresponder` workflow → `github-tools`
+`comment-on-issue` brick → a real GitHub API comment, independently
+confirmed via `gh api` (not just trusting the MCP response, consistent with
+[MEM-25]).
+
+Filed `submit_feedback` (id `8a939b0c-5a82-45d8-97df-e73d9871a842`) about
+the `update_workflow` codegen gap. Lesson on the manifest/tunnel staleness
+captured as core/LEARNINGS.md [MEM-26]. Smith posed the persistent-hosting
+(AWS/SST) decision to Jakub now that a real recurring need exists, rather
+than deciding unilaterally — still open as of this cycle.
+
+**Status:** github-tools plugin (v0.2.1) fully functional end-to-end,
+including real webhook automation — connection, both bricks, and the
+trigger/subscription chain all independently verified against live
+GitHub. Only open item is the productionization/hosting decision, pending
+Jakub.
