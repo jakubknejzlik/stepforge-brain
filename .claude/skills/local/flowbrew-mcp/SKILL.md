@@ -69,7 +69,7 @@ large (full JSON schemas per tool/brick).
 - Treat this curl workaround as the standing pattern until the platform
   gains a real provisioning path — don't re-ask Jakub to "add the MCP
   server" next time; just use this.
-- See `memory/semantic/flowbrew-platform.md` for the fuller endpoint/tool
+- See `memory/semantic/flowbrew-platform-reference.md` for the fuller endpoint/tool
   reference and known platform bugs, and
   `memory/episodic/flowbrew-onboarding-2026-09.md` for the onboarding
   narrative this pattern came from.
