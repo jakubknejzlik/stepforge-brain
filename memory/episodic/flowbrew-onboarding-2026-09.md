@@ -249,3 +249,72 @@ including real webhook automation — connection, both bricks, and the
 trigger/subscription chain all independently verified against live
 GitHub. Only open item is the productionization/hosting decision, pending
 Jakub.
+
+## Slack plugin blind-user test (2026-09-15)
+JARVIS+Jakub asked Smith to act as a blind user testing a new
+`taskflow-slack-plugin` (staging, plugin id
+`01bef946-768b-4933-a14d-94f3dbaca3ca`) — a different plugin than the
+github-tools one Smith built itself, this time testing someone else's work
+end-to-end via real MCP workflows in this Slack thread.
+
+**Setup friction, resolved without a platform change:** #ai-taskflow had no
+Flowbrew MCP server configured at all (no `.mcp.json`/`mcpServers`), and
+`/channels` admin turned out unable to add arbitrary MCP servers (a platform
+limitation, confirmed by Jakub). Workaround found and used instead:
+`mcp.staging.flowbrew.app` is a stateless streamable-HTTP MCP endpoint,
+directly driveable via raw curl JSON-RPC with `FLOWBREW_STAGING_API_TOKEN`
+(`initialize`+`tools/list` both verified 200 OK, no session-id required).
+Captured as a reusable skill: `.claude/skills/local/flowbrew-mcp/SKILL.md`
+(landed via `gh api` PUT — see core/LEARNINGS.md [MEM-16]/[MEM-18] for why a
+normal Write/mkdir under `.claude/` was blocked and `gh api` was the
+working path).
+
+**Plugin ownership/visibility gotcha:** `create_connection` against the
+target plugin failed because `FLOWBREW_STAGING_API_TOKEN` couldn't see it —
+`list_plugins` only showed Smith's own plugins. Root cause: JARVIS had
+originally uploaded the slack-plugin manifest under a *different* API key
+(`TASKFLOW_STAGING_JARVIS_API_KEY`), and plugin visibility is scoped to the
+uploading token's workspace. Fix: JARVIS re-uploaded the same manifest via
+`POST /plugins/upload` under `FLOWBREW_STAGING_API_TOKEN` instead, which
+created a new plugin id (`2c6bd991-5e68-448d-92e2-9d0f56fa6897`) owned by
+Smith's own workspace — after that, `create_connection` worked immediately.
+
+**Real credential, real test:** Jakub set the new connection's credential to
+Smith's own live Slack bot token (not a throwaway test app) — `slack-auth-test`
+confirmed `userId=U0AU7PWLSM9`, `team=JakubKnejzlik`, all 4 scopes present.
+All 3 planned scenarios then ran for real, end-to-end, via
+`create_workflow`/`update_workflow`/`start_workflow`/`read_instance`:
+1. `slack-auth-test` — passed.
+2. `slack-list-channels` + `slack-send-message` — posted a real message into
+   this thread, passed.
+3. Approval-gate composition (Slack url-button → human decision) — posted a
+   real interactive message into this thread, ran end-to-end once Jakub
+   clicked through, closed with `selected=reject`. Confirmed along the way
+   that a Slack button click alone is just Slack's own link-open
+   acknowledgement (`button_click` notification) — it is not the same event
+   as submitting approve/reject on the actual approval page; `read_instance`
+   still showed `running` until Jakub completed the real approval step.
+
+**Codegen gotcha found (distinct from the earlier permissive-schema gap):**
+`update_workflow`'s plain-language-description codegen does not auto-fill a
+JSON-schema `default` value for a required field — Smith had to explicitly
+spell out `unfurlLinks`/`unfurlMedia` in the description text for the
+generated schema to compile with the intended defaults. Filed via
+`submit_feedback` (id `cec632ef-74a2-427f-a89b-1cc10fc12503`). See
+semantic/flowbrew-platform.md for the platform-fact writeup (this is a
+second, separate `update_workflow` codegen limitation alongside the
+permissive-object-schema one already logged there).
+
+**MCP introspection gap noted:** when Jakub asked for a step-by-step
+breakdown of what each test workflow actually did, there was no per-step
+execution trace tool available over MCP — `read_instance` only returns the
+final status/output. Smith reconstructed the step list from the
+`update_workflow` descriptions and final outputs instead; a genuine MCP
+surface gap, not something Smith could query around. Separately, Smith has
+no Cloudflare credentials to confirm whether workflow instances are visible
+in the CF console — deferred that question to JARVIS/Jakub.
+
+**Status:** all 3 blind-user test scenarios passed end-to-end against a
+real re-uploaded plugin instance and Smith's own live bot token connection.
+Only remaining open item is the plugin's public/private visibility
+decision, deferred to JARVIS/Jakub — no action pending on Smith's side.
