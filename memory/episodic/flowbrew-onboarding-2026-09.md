@@ -198,7 +198,7 @@ JARVIS independently confirmed the root cause in code
 fallback) but lacks account-level SST secret access to fix it; the fix
 requires Jakub to run
 `sst secret set --stage staging IngestionCredentialPepper <32 bytes base64>`.
-See semantic/flowbrew-platform.md for the platform-fact writeup.
+See semantic/flowbrew-platform-bugs.md for the platform-fact writeup.
 
 **Status (superseded by 2026-09-14 closure below):** connection + both
 bricks (`create-issue`, `comment-on-issue`) fully functional and deployed;
@@ -225,7 +225,7 @@ The mismatch traced back to a workflow `inputSchema` that was narrower
 because `update_workflow`'s codegen had rejected every permissive-schema
 phrasing Smith tried (`record()`/`looseObject()` with options) during
 building, forcing the fallback to a strict schema. Fix: `additionalProperties:{}`
-(fully permissive). See semantic/flowbrew-platform.md for both platform
+(fully permissive). See semantic/flowbrew-platform-bugs.md for both platform
 facts in full.
 
 After the schema fix, hit one more, unrelated bug: the plugin manifest
@@ -301,7 +301,7 @@ JSON-schema `default` value for a required field — Smith had to explicitly
 spell out `unfurlLinks`/`unfurlMedia` in the description text for the
 generated schema to compile with the intended defaults. Filed via
 `submit_feedback` (id `cec632ef-74a2-427f-a89b-1cc10fc12503`). See
-semantic/flowbrew-platform.md for the platform-fact writeup (this is a
+semantic/flowbrew-platform-bugs.md for the platform-fact writeup (this is a
 second, separate `update_workflow` codegen limitation alongside the
 permissive-object-schema one already logged there).
 
