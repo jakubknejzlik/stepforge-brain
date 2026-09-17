@@ -1,3 +1,4 @@
 # 2026-09-17
 
 - 04:00 — memory consolidation started
+- [MEM-27] flowbrew P0 incident (issue #184, PR #185, taskflow-hq/taskflow-platform): JARVIS reported ~0/16 prod dispatch failures ('Workers runtime canceled - code had hung' on TriggerDispatchStartEntrypoint wrapping DO RPC startTrusted) and floated a platform-wide CF-side workerd bug (support ticket candidate). Jakub asked Smith to independently confirm with a fresh no-op workflow + new webhook trigger on PROD. Result: 6/6 fires (1 solo + 5 rapid-fire) completed cleanly, no hang, concurrent with live prod traffic. This contradicts the 'universal CF hang-detector bug' theory - points to something specific to the affected workflow/trigger (ranni-menu-prostejov), not a platform-wide issue. Reported to thread 2026-09-17 08:27 UTC.
