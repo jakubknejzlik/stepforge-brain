@@ -1,0 +1,83 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 5,
+    "modified": 5,
+    "deleted": 2
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-09-15.md",
+    "memory/daily/2026-09-16.md",
+    "memory/episodic/flowbrew-onboarding-2026-09.md",
+    "memory/semantic/flowbrew-platform-reference.md",
+    "memory/semantic/flowbrew-platform-bugs.md",
+    "memory/semantic/flowbrew-platform.md",
+    "memory/core/LEARNINGS.md",
+    "memory/SUMMARY.md",
+    "memory/daily/2026-08-16.md",
+    "reports/2026-09-16-memory-consolidation.md",
+    "reports/2026-09-16-memory-consolidation.json"
+  ],
+  "decisions": [
+    "Backfilled this report on 2026-09-17 for a consolidation that ran 2026-09-16 03:36-03:39 UTC (checkpoint commits 23e2955, cc51a4f, 93bfdc6) but died before Steps 10-12.",
+    "Split memory/semantic/flowbrew-platform.md (149 lines) into flowbrew-platform-reference.md (94 lines) and flowbrew-platform-bugs.md (68 lines), the action the 2026-09-15 report's own watch-flag anticipated.",
+    "Repointed core/LEARNINGS.md's [MEM-26] and 3 internal episodic cross-references from the deleted semantic file to the split files.",
+    "Deleted memory/daily/2026-08-16.md (31 days old, preserved in git history).",
+    "Did not retroactively perform the missed report-file-age cleanup (reports/2026-08-16-memory-consolidation.md) since that step never actually ran on 2026-09-16 — left for the live 2026-09-17 cycle."
+  ],
+  "observations": [
+    "This is the second time a consolidation session completed all checkpoint commits but died before Step 12's report/commit, following the identical pattern from 2026-09-13 (backfilled 2026-09-14).",
+    "memory/semantic/flowbrew-platform.md grew past its 100-line split threshold (112 to 149 lines) exactly as the 2026-09-15 report's watch-flag predicted, confirming the growth-rate observation was accurate.",
+    "No new [MEM-NNN] keys were created this cycle — the blind-user test narrative was captured entirely via general fact extraction into episodic/ and semantic/, consistent with the 2026-09-15/16 daily logs' observed under-use of tracked keys already flagged in reflection-2026-09-16.md."
+  ],
+  "recommendations": [
+    "Add a deterministic marker (e.g. a .consolidation-in-progress file or commit-message convention) that the next maintenance-guard run can detect to distinguish checkpoint-complete-but-unreported cycles from genuinely-not-yet-run cycles, since this exact failure has now recurred twice in 4 days — success criterion: the next occurrence is caught by the guard itself, not by a human/scheduler noticing a missing report file."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "meaningful-decisions": true,
+    "no-data-loss": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "process-self-critique": true,
+    "mem-integrity-check": true,
+    "semantic-lifecycle-checked": true,
+    "reflection-overdue": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true
+  },
+  "processImprovements": [
+    "[self-critique] This is now the SECOND time (2026-09-13, 2026-09-16) a consolidation session has completed all checkpoint commits but died before the final report/commit step, and the fix proposed after the first occurrence (a deterministic in-progress marker) was never implemented before the second one happened.",
+    "[proposal] Implement the .consolidation-in-progress marker (or equivalent) proposed after the 2026-09-13 backfill before a third occurrence makes this a recognizable pattern rather than a recoverable exception.",
+    "[blocked] The underlying cause (why the session terminates between the last checkpoint and Step 12) is not diagnosable from within the brain repo — likely a poller/session-lifecycle timing issue outside this brain's visibility."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-09-16",
+    "daysSinceReflection": 0,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0,
+    "idleSkipped": false
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "brainCommitSha": "3334a4d782526ba746b5344caf8c08ac6364864f"
+}
