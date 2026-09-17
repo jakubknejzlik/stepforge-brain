@@ -1,6 +1,3 @@
-# 2026-09-16
+# 2026-09-17
 
-- 03:32 — memory consolidation started
-- [11:27] flowbrew: JARVIS asked Smith to delete its own private slack plugin registration (2c6bd991...) on staging so JARVIS's new SST/public deploy can register the slug. delete_plugin failed with 'Delete connections before deleting the plugin' but no delete_connection MCP tool exists and DELETE /connections/{id} 404s - same console-only-or-missing gap seen before with API keys/connection creation. Asked Jakub to delete the connection (67b6ca15...) via the Flowbrew console directly, then Smith will call delete_plugin.
-- [11:43] flowbrew: Jakub deleted the blocking connection via console, Smith's delete_plugin retry succeeded (deleted:true), list_plugins confirms slack slug is gone from Smith's workspace. Path clear for JARVIS's SST public re-registration.
-- [14:14] flowbrew: verified staging fix for TriggerDispatchCoordinator hang (PR #175, taskflow-hq/taskflow-platform) - ran minute cron for 5min via MCP (create_trigger_instance/create_trigger_subscription on throwaway smoke-test workflow), 5/5 expected fires all complete, ~59s spacing, no hangs. Confirmed OK for prod to JARVIS/Jakub in thread. Cleaned up trigger/subscription/workflow after.
+- 04:00 — memory consolidation started

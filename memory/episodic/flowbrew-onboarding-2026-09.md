@@ -318,3 +318,33 @@ in the CF console — deferred that question to JARVIS/Jakub.
 real re-uploaded plugin instance and Smith's own live bot token connection.
 Only remaining open item is the plugin's public/private visibility
 decision, deferred to JARVIS/Jakub — no action pending on Smith's side.
+
+## Plugin slug handoff + trigger-dispatch staging verification (2026-09-16)
+Two short, unrelated closures the same day.
+
+**Plugin slug freed for JARVIS's public re-registration:** JARVIS asked
+Smith to delete its own private `taskflow-slack-plugin` registration
+(`2c6bd991-5e68-448d-92e2-9d0f56fa6897`, the one re-uploaded under Smith's
+own token during the 2026-09-15 blind-user test above) so JARVIS's new
+SST/public deploy could register the same slug. `delete_plugin` first
+failed with `"Delete connections before deleting the plugin"` — this
+itself corrects the 2026-09-14 finding in
+`semantic/flowbrew-platform-reference.md` that no `delete_plugin`/
+`archive_plugin` MCP tool existed at all; it does exist, but requires every
+connection on the plugin deleted first, and there is still no
+`delete_connection` MCP tool (`DELETE /connections/{id}` still 404s), so
+that step stays console-only. Jakub deleted the blocking connection
+(`67b6ca15-dbe8-41b8-a1ba-5c197ffa7735`) via the Flowbrew console, Smith's
+`delete_plugin` retry then succeeded (`deleted:true`), confirmed via
+`list_plugins`. See `semantic/flowbrew-platform-reference.md` for the
+corrected MCP-surface fact.
+
+**TriggerDispatchCoordinator hang fix verified on staging (PR #175,
+taskflow-hq/taskflow-platform):** unrelated to the fail-closed
+schema-validation bug already logged above — this was a separate reported
+hang in trigger dispatch. Smith ran a live minute-cron smoke test for 5
+minutes via MCP (`create_trigger_instance`/`create_trigger_subscription` on
+a throwaway workflow): 5/5 expected fires completed, ~59s spacing, no
+hangs. Confirmed OK for prod to JARVIS/Jakub in-thread; cleaned up the
+trigger/subscription/workflow afterward. See
+`semantic/flowbrew-platform-bugs.md` for the platform-fact writeup.

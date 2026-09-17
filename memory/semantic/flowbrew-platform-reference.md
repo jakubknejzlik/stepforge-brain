@@ -43,12 +43,19 @@ Design notes:
   console UI (`consoleUrl` returned by `create_connection`); MCP never
   returns credential values, only status (`pending_verification` →
   `configured`).
-- No `delete_plugin`/`archive_plugin` MCP tool exists — verified live
-  2026-09-14: absent from `tools/list`, and direct `DELETE` probes on
-  `/plugins/upload` and `/plugins/{id}` both 404 (route doesn't exist, not
-  a permission denial). Same console-only-or-missing pattern already seen
-  with API key deletion (#114) and connection creation before PR #144
-  (#143) — check console-only first before assuming an MCP gap is
+- `delete_plugin` **does** exist as an MCP tool (correcting the 2026-09-14
+  finding below, superseded 2026-09-16) — it fails with `"Delete
+  connections before deleting the plugin"` if any connection still exists
+  on the plugin, and succeeds (`deleted:true`) once they're gone. There is
+  still no `delete_connection` MCP tool — `DELETE /connections/{id}` still
+  404s — so clearing connections first stays console-only. (Original
+  2026-09-14 finding, now superseded: `delete_plugin`/`archive_plugin`
+  appeared absent from `tools/list` and direct `DELETE` probes on
+  `/plugins/upload` and `/plugins/{id}` 404'd — root cause of that
+  discrepancy not established, possibly a tool-list scoping issue rather
+  than the tool being genuinely new.) Same console-only-or-missing pattern
+  already seen with API key deletion (#114) and connection creation before
+  PR #144 (#143) — check console-only first before assuming an MCP gap is
   fixable via a request-shape change.
 - No per-step execution trace tool exists — `read_instance` returns only
   the final status/output of a workflow run. Reconstructing "what happened
@@ -86,9 +93,9 @@ Design notes:
   `connectionTypes: []`), `smith-test-plugin` (test/validation artifact),
   `github-tools` v0.2.1 — Smith's real GitHub integration plugin
   (`BearerConnection` "github-pat", bricks `create-issue` and
-  `comment-on-issue`, working end-to-end webhook trigger), and a
+  `comment-on-issue`, working end-to-end webhook trigger). The
   `taskflow-slack-plugin` re-upload (plugin id
-  `2c6bd991-5e68-448d-92e2-9d0f56fa6897`, owned by Smith's workspace after
-  the token-scoping re-upload above) used for the 2026-09-15 blind-user
-  test. See episodic/flowbrew-onboarding-2026-09.md for both build/test
-  narratives.
+  `2c6bd991-5e68-448d-92e2-9d0f56fa6897`) used for the 2026-09-15
+  blind-user test was deleted 2026-09-16 at JARVIS's request to free the
+  slug for JARVIS's own SST/public re-registration. See
+  episodic/flowbrew-onboarding-2026-09.md for both build/test narratives.

@@ -58,6 +58,15 @@ codegen limitation, not a description-wording issue Smith could work
 around indefinitely; combined with the fail-closed validation above, this
 gap is what caused the schema-mismatch webhook dispatch failure.
 
+## TriggerDispatchCoordinator hang — fix verified on staging (PR #175, taskflow-hq/taskflow-platform, 2026-09-16)
+Separate from the fail-closed schema-validation bug above — this was a
+reported hang in trigger dispatch. Verified staging fix by running a live
+minute-cron smoke test for 5 minutes via MCP
+(`create_trigger_instance`/`create_trigger_subscription` on a throwaway
+workflow): 5/5 expected fires completed, ~59s spacing, no hangs. Confirmed
+OK for prod to JARVIS/Jakub in-thread. See
+episodic/flowbrew-onboarding-2026-09.md for the full closure note.
+
 ## Known compile-time gap: `update_workflow` codegen doesn't auto-fill JSON-schema defaults (2026-09-15)
 Separate from the permissive-schema gap above: when a plain-language
 description asks for a field with a default value but doesn't spell the
