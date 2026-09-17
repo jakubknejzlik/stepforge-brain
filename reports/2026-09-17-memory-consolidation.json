@@ -1,0 +1,81 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 3,
+    "modified": 6,
+    "deleted": 2
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-09-16.md",
+    "memory/daily/2026-09-17.md",
+    "memory/episodic/flowbrew-onboarding-2026-09.md",
+    "memory/semantic/flowbrew-platform-reference.md",
+    "memory/semantic/flowbrew-platform-bugs.md",
+    "memory/SUMMARY.md",
+    "memory/daily/2026-08-17.md",
+    "reports/2026-08-16-memory-consolidation.md",
+    "reports/2026-09-17-memory-consolidation.md",
+    "reports/2026-09-17-memory-consolidation.json"
+  ],
+  "decisions": [
+    "Corrected semantic/flowbrew-platform-reference.md's 2026-09-14 'no delete_plugin MCP tool' finding after a 2026-09-16 live interaction proved the tool exists (requires connections deleted first).",
+    "Judged flowbrew-platform-reference.md (101 lines, marginally over the 100-line threshold) as still cohesive and did not split it this cycle.",
+    "Deleted memory/daily/2026-08-17.md and reports/2026-08-16-memory-consolidation.md (31+ days old, preserved in git history).",
+    "Trimmed SUMMARY.md's Active Projects section once (9491B to 8757B) after regeneration exceeded the 9000B cap."
+  ],
+  "observations": [
+    "A platform 'capability absent' fact recorded from a single MCP tools/list probe on 2026-09-14 (no delete_plugin tool) was contradicted by a live interaction just 2 days later on 2026-09-16, showing such absence-claims need re-verification triggers rather than being treated as permanent.",
+    "flowbrew-platform-reference.md crossed back over the 100-line split threshold (94 to 101 lines) within one cycle of being split, the same growth pattern flagged as a gap in reflection-2026-09-16.md for the pre-split file.",
+    "No new [MEM-NNN] keys were created this cycle; both promoted facts (plugin-slug handoff, PR #175 fix) went through general extraction, consistent with reflection-2026-09-16.md's observation that tracked keys are under-used for exactly this kind of discovery."
+  ],
+  "recommendations": [
+    "If flowbrew-platform-reference.md exceeds ~115 lines next cycle, split it rather than deferring a second time — success criterion: post-split, neither resulting file exceeds 100 lines."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "meaningful-decisions": true,
+    "no-data-loss": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true,
+    "reflection-overdue": true,
+    "mem-integrity-check": true,
+    "semantic-lifecycle-checked": true
+  },
+  "processImprovements": [
+    "[self-critique] semantic/ facts asserting a platform capability is absent (e.g. 'no delete_plugin MCP tool exists') are written with the same confidence as facts that are unlikely to change, but platform tool surfaces can shift without any corresponding code change on this brain's side being visible — this cycle's delete_plugin correction is the second time an 'absence' claim needed retroactive correction (first: create_connection owner-check, resolved via upstream fix). Absence-claims about a live third-party platform should be phrased with an explicit re-verify-if-contradicted note, not stated as settled fact.",
+    "[proposal] Add a lightweight convention for semantic-file 'absence' claims (no X exists, X is unsupported) to include the verification method and date inline so a later contradiction is recognized as new evidence rather than requiring a full reread to notice the conflict.",
+    "[blocked] The recurring checkpoint-commits-but-no-report failure (2026-09-13, 2026-09-16) still has no deterministic detection mechanism in place — carried forward from the 2026-09-16 backfill's own processImprovements, unresolved this cycle too since it requires a base-brain skill change."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-09-16",
+    "daysSinceReflection": 1,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0,
+    "idleSkipped": false
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "brainCommitSha": "85ea453670ec2e3cf7ddb6fb6545efd6630bbb58"
+}
