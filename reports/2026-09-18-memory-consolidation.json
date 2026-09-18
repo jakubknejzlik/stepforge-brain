@@ -1,0 +1,80 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 2,
+    "modified": 6,
+    "deleted": 1
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-09-17.md",
+    "memory/daily/2026-09-18.md",
+    "memory/daily/2026-08-18.md",
+    "memory/episodic/flowbrew-onboarding-2026-09.md",
+    "memory/semantic/flowbrew-platform-bugs.md",
+    "memory/MEM_REGISTRY.md",
+    "memory/SUMMARY.md"
+  ],
+  "decisions": [
+    "Promoted [MEM-27] from raw registry narrative to episodic/flowbrew-onboarding-2026-09.md:352, with a cross-reference added to semantic/flowbrew-platform-bugs.md.",
+    "Archived TODAY.md's two pending date sections to memory/daily/2026-09-17.md and memory/daily/2026-09-18.md.",
+    "Deleted memory/daily/2026-08-18.md (31 days old) — content already promoted to core/LEARNINGS.md [MEM-16]-[MEM-22] and episodic/stepforge-multi-team-distribution.md.",
+    "Trimmed memory/SUMMARY.md's Active Projects Flowbrew bullet (9442B to 8788B) after regeneration exceeded the 9000B cap.",
+    "Left memory/MEM_REGISTRY.md at 5006B (6B over its scaled cap) — archive and trim scripts both no-op'd, no safe candidate found."
+  ],
+  "observations": [
+    "memory/MEM_REGISTRY.md has been within single digits of its scaled cap for consecutive cycles with no mechanical reduction path currently able to fire (23/26 rows already pointer-form).",
+    "All three original SST/StepForge semantic files remain 30+ days stale by mtime (38-40 days) but content is still accurate — no new SST work since 2026-08-13.",
+    "Weekly daily-log coverage is 7/7 (100%) this cycle — the log-write.ts-before-consolidation convention is holding.",
+    "memory/episodic/flowbrew-onboarding-2026-09.md now covers two distinct incident threads (2026-09-14/15/16 closures vs. the 2026-09-17 P0 dispatch-hang investigation) in one file, approaching a size worth watching."
+  ],
+  "recommendations": [
+    "Re-run mem-scaled-threshold.ts --mode registry next cycle; if MEM_REGISTRY.md is still over cap with both reduction scripts no-op after 2+ more cycles, revisit the threshold formula's floor/overhead constants.",
+    "Watch memory/episodic/flowbrew-onboarding-2026-09.md's size (currently ~365 lines); split by incident-thread if it crosses a size threshold, verified via wc -l after the split.",
+    "If issue #184/PR #185's root cause on the ranni-menu-prostejov workflow is identified later, add a follow-up MEM entry cross-referencing [MEM-27] rather than editing it in place, to keep the contradiction auditable."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true,
+    "reflection-overdue": true,
+    "mem-integrity-check": true,
+    "semantic-lifecycle-checked": true
+  },
+  "processImprovements": [
+    "[self-critique] MEM_REGISTRY.md has sat at/near its scaled 5000B cap for multiple consecutive cycles (5006B this run) with both mem-registry-archive.ts and mem-registry-trim.ts reporting no-op every time once rows are already pointer-form and none are REMOVED — the mechanical reduction path is structurally exhausted for this brain's current content shape.",
+    "[self-critique] memory/SUMMARY.md required an inline trim this cycle (9442B before, over the 9000B cap) because MEM-27's full incident detail was initially written into the Active Projects bullet instead of a pointer from the start.",
+    "[proposal] Default to pointer-only prose in SUMMARY.md's Active Projects section on the first draft, since full narrative already has a canonical home in episodic/ — would reduce the recurring need for post-hoc inline trims."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-09-16",
+    "daysSinceReflection": 2,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0,
+    "idleSkipped": false
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "brainCommitSha": "PENDING"
+}
