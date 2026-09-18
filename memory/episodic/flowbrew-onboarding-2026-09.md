@@ -348,3 +348,22 @@ a throwaway workflow): 5/5 expected fires completed, ~59s spacing, no
 hangs. Confirmed OK for prod to JARVIS/Jakub in-thread; cleaned up the
 trigger/subscription/workflow afterward. See
 `semantic/flowbrew-platform-bugs.md` for the platform-fact writeup.
+
+## P0 incident — prod dispatch hang reports contradicted by independent test ([MEM-27], issue #184, PR #185, taskflow-hq/taskflow-platform, 2026-09-17)
+Follow-on to the PR #175 hang fix directly above, on the same
+`TriggerDispatchStartEntrypoint` code path. JARVIS reported ~0/16 production
+dispatch failures — error `"Workers runtime canceled - code had hung"` —
+wrapping the DO RPC `startTrusted` call, and floated a theory that this was
+a platform-wide Cloudflare-side `workerd` hang-detector bug (a support
+ticket candidate). Jakub asked Smith to independently confirm by standing up
+a fresh no-op workflow with a brand-new webhook trigger directly on PROD
+(not staging, to match the failure environment exactly) and firing it
+repeatedly.
+
+Result: 6/6 fires (1 solo fire, then 5 in rapid succession) completed
+cleanly with no hang, running concurrently with live prod traffic. This
+contradicts the "universal CF hang-detector bug" theory — it points to
+something specific to the affected workflow/trigger (`ranni-menu-prostejov`)
+rather than a platform-wide issue. Reported back to the thread 2026-09-17
+08:27 UTC. See `semantic/flowbrew-platform-bugs.md` for the corresponding
+platform-fact entry.

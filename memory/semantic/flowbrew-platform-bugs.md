@@ -67,6 +67,18 @@ workflow): 5/5 expected fires completed, ~59s spacing, no hangs. Confirmed
 OK for prod to JARVIS/Jakub in-thread. See
 episodic/flowbrew-onboarding-2026-09.md for the full closure note.
 
+## P0 dispatch-hang report NOT reproduced by independent test (issue #184, PR #185, 2026-09-17)
+Follow-on to the PR #175 hang fix above, same `TriggerDispatchStartEntrypoint`
+code path. JARVIS reported ~0/16 prod dispatch failures (`"Workers runtime
+canceled - code had hung"` wrapping DO RPC `startTrusted`) and floated a
+platform-wide CF `workerd` hang-detector bug theory. Smith's independent
+test — fresh no-op workflow + new webhook trigger, fired directly on PROD
+(6/6 fires: 1 solo + 5 rapid-fire) concurrent with live prod traffic —
+completed cleanly with no hang. Conclusion: contradicts the platform-wide
+theory; points to something specific to the affected workflow/trigger
+(`ranni-menu-prostejov`), not a general CF/workerd issue. See
+episodic/flowbrew-onboarding-2026-09.md for the full narrative.
+
 ## Known compile-time gap: `update_workflow` codegen doesn't auto-fill JSON-schema defaults (2026-09-15)
 Separate from the permissive-schema gap above: when a plain-language
 description asks for a field with a default value but doesn't spell the
