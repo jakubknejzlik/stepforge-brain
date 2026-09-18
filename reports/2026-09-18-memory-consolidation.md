@@ -129,4 +129,4 @@ Section trimmed: Active Projects → Flowbrew bullet (volatile/regenerable — i
 - Created: reports/2026-09-18-memory-consolidation.md
 - Created: reports/2026-09-18-memory-consolidation.json
 
-Commit: (see final consolidation commit)
+Commit: 928a372dda5faf93e62fe757392f152d71d42346
