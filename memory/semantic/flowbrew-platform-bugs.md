@@ -79,6 +79,38 @@ theory; points to something specific to the affected workflow/trigger
 (`ranni-menu-prostejov`), not a general CF/workerd issue. See
 episodic/flowbrew-onboarding-2026-09.md for the full narrative.
 
+## Issue #199 (`core.workflow-call` opaque failure-path error) — corrected, closed as false positive (2026-09-18)
+Initial finding: all 3 `core.workflow-call` failure paths (missing required
+input field, nonexistent target `workflowId`, target output violating its
+own declared `outputSchema`) threw the identical opaque
+`TypeError: Cannot read properties of undefined (reading 'get')` instead of
+a descriptive message. Filed as issue #199. Re-tested on a healthy platform
+after an unrelated concurrent staging regression (missing `env.LOADER`
+binding, see episodic writeup) was fixed, and got 3 distinct, specific,
+actionable error messages instead — the original finding's timing lined up
+exactly with the regression window. JARVIS closed #199 as a false positive;
+Smith independently verified the closure via `gh api`. Lesson: readable,
+specific errors ARE the real behavior of `core.workflow-call`'s failure
+paths once the platform is healthy. See
+`episodic/flowbrew-subworkflow-testing-2026-09-18.md` for the full
+narrative (test methodology, regression detour, resolution).
+
+## Known compile-time gap: `delayMs` (milliseconds) compiles into an invalid `step.sleep()` duration (2026-09-18, open, not yet filed)
+A numeric `delayMs` field described in natural language as milliseconds
+compiled into an invalid Cloudflare Workflows `step.sleep()` duration
+format. Workaround: reword the field description to require an explicit
+`"<N> seconds"` string, which compiles correctly. Not yet filed via
+`submit_feedback` — noted as a minor, separate codegen gap from the
+`update_workflow` gaps above. See
+`episodic/flowbrew-subworkflow-testing-2026-09-18.md`.
+
+## UX nuance: `read_instance` shows a terser error wrapper for uncaught vs. caught `core.workflow-call` failures (2026-09-18, not a bug)
+An uncaught `core.workflow-call` error surfaces a terser wrapper via
+`read_instance` than the same error caught via try/catch shows (400 generic
+vs. 422 detailed). Landed as a follow-up idea in the #199 closing comment,
+not filed as its own issue. See
+`episodic/flowbrew-subworkflow-testing-2026-09-18.md`.
+
 ## Known compile-time gap: `update_workflow` codegen doesn't auto-fill JSON-schema defaults (2026-09-15)
 Separate from the permissive-schema gap above: when a plain-language
 description asks for a field with a default value but doesn't spell the
