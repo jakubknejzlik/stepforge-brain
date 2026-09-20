@@ -42,6 +42,6 @@ This closes out subworkflow composition as a validated, reliable building block 
 
 ## Consequences
 
-- Two items remain open and are tracked as facts, not incidents: the `delayMs`(ms)→`step.sleep()` codegen gap (not yet filed as its own issue) and the `read_instance` terse-wrapper-on-uncaught-error UX nuance (landed as a follow-up idea in the #199 closing comment, not its own issue). See `semantic/flowbrew-platform-bugs.md`.
+- Two items remain open and are tracked as facts, not incidents: the `delayMs`(ms)→`step.sleep()` codegen gap (not yet filed as its own issue) and the `read_instance` terse-wrapper-on-uncaught-error UX nuance (landed as a follow-up idea in the #199 closing comment, not its own issue). See `semantic/flowbrew-platform-bugs-open.md`.
 - The LOADER-binding regression itself was JARVIS-side (a stray `sst deploy` hitting shared staging) — no action item for Smith beyond the verification pattern already captured in [MEM-25].
 - All test workflows created during the campaign were cleaned up (deleted) as usual; no orphaned staging resources.

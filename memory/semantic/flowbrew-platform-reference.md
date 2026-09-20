@@ -5,8 +5,10 @@ Smith is onboarded as a test/integration agent for Flowbrew, a separate
 low-code workflow platform (serverInfo.name: `taskflow-platform`), via MCP.
 Captured 2026-09-12/13 during onboarding + plugin-building validation, split
 2026-09-16 from the original `flowbrew-platform.md` (had grown to 149 lines)
-into this reference file (stable facts/behavior) and
-`flowbrew-platform-bugs.md` (bug/gap log). See
+into this reference file (stable facts/behavior) and a bug/gap log, further
+split 2026-09-19 into `flowbrew-platform-bugs-open.md` and
+`flowbrew-platform-bugs-resolved.md` (by lifecycle status, once the combined
+bug/gap log crossed 100 lines again). See
 episodic/flowbrew-onboarding-2026-09.md for the full narrative (security
 incident, misattribution catch, plugin test campaigns, platform bugs found).
 
