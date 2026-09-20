@@ -33,4 +33,4 @@ Reviewed 21 files (3 core/, SUMMARY.md, TODAY.md, MEM_REGISTRY.md, MEM_REGISTRY_
 - Modified: memory/core/LEARNINGS.md, memory/semantic/flowbrew-platform-reference.md, memory/episodic/flowbrew-onboarding-2026-09.md, memory/episodic/flowbrew-subworkflow-testing-2026-09-18.md, memory/SUMMARY.md
 - Deleted: memory/semantic/flowbrew-platform-bugs.md — content fully preserved verbatim across flowbrew-platform-bugs-open.md and flowbrew-platform-bugs-resolved.md (see Decisions #2)
 
-Commit: (recorded after commit)
+Commit: 5c8fe988b891dee6858c99b4c9e0f133a6d62dcb
