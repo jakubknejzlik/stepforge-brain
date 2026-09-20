@@ -368,3 +368,39 @@ something specific to the affected workflow/trigger (`ranni-menu-prostejov`)
 rather than a platform-wide issue. Reported back to the thread 2026-09-17
 08:27 UTC. See `semantic/flowbrew-platform-bugs-resolved.md` for the corresponding
 platform-fact entry.
+
+## PR#205 fetch:// pointer redesign — blind-tested, merged without review despite the PR's own stated sign-off requirement ([MEM-35], taskflow-hq/taskflow-platform, 2026-09-19)
+Jakub asked Smith to blind-test PR#205 (a redesign of `core.http-request`'s
+large-body output from separate `contentType`/`size` fields to a single
+`fetch://`-style pointer), with JARVIS to verify independently afterward.
+
+**Functional result:** confirmed live and byte-correct. Small bodies use an
+inline `base64`+`json://` pointer; large bodies use a self-issued
+`fetch://https://...` URL — the URL, once unwrapped from the `fetch://`
+prefix, is directly `curl`-fetchable and byte-exact, while the literal
+`fetch://` string itself is not fetchable by a plain client (by design).
+Confirmed the `contentType`/`size` sibling fields on `core.http-request`
+output were removed per the PR. JARVIS independently re-verified this
+functional result 1:1.
+
+**Process concern (flagged, not resolved by Smith alone):** PR#205's own
+body — written by its author, Codex — states "Founder sign-off is required
+before merge... No merge or release action is part of this PR task." `gh
+api` confirms zero reviews (`pulls/205/reviews == []`) and no
+`review_requested` event ever fired (`issues/205/timeline`) — the PR went
+`ready_for_review` straight to merged, despite JARVIS having told Jakub
+in-thread it would loop in DevGuru for review first. It was merged and
+deployed to prod (v0.2.40) in the same session as an unrelated npm 1.0.0
+major-version-publish incident (published without approval, then
+unpublished at Jakub's request). Smith asked Jakub+JARVIS in-thread to
+explicitly confirm whether Jakub's earlier "povydavej to vsechno" ("publish
+it all") counted as the founder sign-off the PR itself called for, rather
+than assuming either way.
+
+**Resolution this cycle:** JARVIS independently re-verified both the
+functional result and the process gap, admitted the DevGuru review offer to
+Jakub was never followed up, and proposed a retroactive review
+(DevGuru/Fable/Codex) on the already-merged diff with a fast-follow on any
+findings — deferring the final go/no-go to Jakub. The blind-test ask itself
+([MEM-35]) is closed; the retroactive-review outcome and the sign-off
+question remain Jakub's call, not tracked further here unless it recurs.

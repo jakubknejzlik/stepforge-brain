@@ -57,3 +57,18 @@ An uncaught `core.workflow-call` error surfaces a terser wrapper via
 vs. 422 detailed). Landed as a follow-up idea in the #199 closing comment,
 not filed as its own issue. See
 `episodic/flowbrew-subworkflow-testing-2026-09-18.md`.
+
+## Documentation gap: subworkflow fan-out, error shapes, and delayMs not documented ([MEM-34], taskflow-hq/taskflow-platform, 2026-09-19)
+`docs/workflow-start-call.md` (taskflow-platform repo, last touched
+2026-09-11 PR #131) explicitly states fan-out/recursion policies are out of
+scope, so the N-child parallel/serial subworkflow patterns confirmed
+working ([MEM-32]/[MEM-33]) aren't documented anywhere a developer would
+find them. The actual error message shapes (Zod path detail, "target
+unavailable in workspace/project scope") also aren't documented despite
+being exactly what a workflow author needs to write correct try/catch. The
+`delayMs`→`step.sleep()` codegen gap (above) only exists as a sentence in
+the #199 closing comment, not its own tracked issue. Found in response to
+Jakub asking whether subworkflow testing is well documented; reported
+in-thread with a proposal for JARVIS to add a fan-out+error-shapes section
+to the doc and file the delayMs issue, since Smith only has `gh api`
+read-only access to taskflow-platform, not write/PR access.
