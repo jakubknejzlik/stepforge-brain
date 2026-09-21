@@ -1,4 +1,4 @@
-**Last consolidated:** 2026-09-20 03:37 UTC
+**Last consolidated:** 2026-09-21 03:35 UTC
 
 ## How this memory works
 - This file (SUMMARY.md) and TODAY.md are `@`-imported into every session — they are always in your context
@@ -42,5 +42,6 @@
 - memory/semantic/ — 3 SST/SFN gotcha files (stale, re-confirmed accurate, KEPT); flowbrew-platform-reference.md (103 lines); flowbrew-platform-bugs-open.md (74 lines, +[MEM-34] this cycle) + flowbrew-platform-bugs-resolved.md (79 lines)
 - memory/episodic/ — reflection-*.md (8 quality reflections, 2026-04 through 2026-09-19); sst-stepfunctions-test-campaign-2026-08-11.md; stepforge-multi-team-distribution.md (rollout complete, also holds [MEM-14]); flowbrew-onboarding-2026-09.md (406 lines, +[MEM-35] this cycle); flowbrew-subworkflow-testing-2026-09-18.md ([MEM-28]-[MEM-33] campaign); archive/learnings-2026-H2.md ([MEM-16]/[MEM-2] relocations)
 - memory/procedural/ — sst-stepfunctions-smoke-test-tiers.md (reusable 4-tier validation checklist for new SST/SFN patterns); flowbrew-mcp-via-curl.md (pointer to `.claude/skills/local/flowbrew-mcp/SKILL.md`, the landed curl-based MCP access workaround)
-- memory/daily/ — 2026-08-21.md through 2026-09-20.md (2026-08-20.md deleted this cycle, 31 days old, content already promoted to core/LEARNINGS.md [MEM-21]/[MEM-22] and episodic/stepforge-multi-team-distribution.md)
-- memory/MEM_REGISTRY.md — 34 rows: MEM-1 REMOVED (archived); MEM-2 through MEM-35 ACTIVE, integrity verified. [MEM-34]/[MEM-35] promoted this cycle to semantic/flowbrew-platform-bugs-open.md and episodic/flowbrew-onboarding-2026-09.md. 1589B over its scaled 5400B cap (34 rows); archive/trim scripts no-op again (31/34 already pointer-form, 0 REMOVED) — flagged, not force-trimmed.
+- memory/daily/ — 2026-09-12.md through 2026-09-21.md (2026-08-21.md deleted this cycle, 31 days old, content already promoted to core/LEARNINGS.md [MEM-22] and episodic reflection history)
+- memory/MEM_REGISTRY.md — 34 rows: MEM-1 REMOVED (archived); MEM-2 through MEM-35 ACTIVE, integrity verified. [MEM-34]/[MEM-35] promoted to semantic/flowbrew-platform-bugs-open.md and episodic/flowbrew-onboarding-2026-09.md. 1589B over its scaled 5400B cap; archive/trim scripts no-op again (31/34 already pointer-form, 0 REMOVED) — flagged, not force-trimmed.
+- reports/ — newest consolidation: 2026-09-21-memory-consolidation.md (this run; 2026-09-20 cycle produced no report → episodic/orphaned-consolidation-2026-09-20.md); newest reflection: 2026-09-19 (not due again until ≥2026-09-22).
