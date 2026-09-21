@@ -1,0 +1,85 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 4,
+    "modified": 3,
+    "deleted": 6
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-09-20.md",
+    "memory/daily/2026-09-21.md",
+    "memory/daily/2026-08-21.md",
+    "memory/SUMMARY.md",
+    "memory/episodic/orphaned-consolidation-2026-09-20.md",
+    "reports/2026-08-18-memory-consolidation.md",
+    "reports/2026-08-18-memory-reflection.md",
+    "reports/2026-08-19-memory-consolidation.md",
+    "reports/2026-08-21-memory-consolidation.md",
+    "reports/2026-08-21-memory-reflection.md"
+  ],
+  "decisions": [
+    "Archived TODAY.md's # 2026-09-20 section into existing memory/daily/2026-09-20.md and its # 2026-09-21 section into new memory/daily/2026-09-21.md.",
+    "Deleted memory/daily/2026-08-21.md (31 days old) — content already in core/LEARNINGS.md [MEM-22] and episodic/stepforge-multi-team-distribution.md.",
+    "Deleted 5 reports/*.md files dated 2026-08-18/19/21 (30+ days old, preserved in git history).",
+    "Kept 3 stale (40+ day) semantic/sst-stepfunctions-*.md files — content re-verified accurate, no invalidating change.",
+    "Trimmed SUMMARY.md 9068B->8807B by relocating 2026-09-20 orphaned-cycle detail to new memory/episodic/orphaned-consolidation-2026-09-20.md."
+  ],
+  "observations": [
+    "memory/core/LEARNINGS.md is at 4712B under its scaled 5000B threshold (12 entries) — healthy.",
+    "memory/MEM_REGISTRY.md remains 1589B over its scaled 5400B cap for 2+ consecutive cycles with zero OBSOLETE/REMOVED turnover, so archive/trim scripts stay structurally no-op.",
+    "Two consecutive cycles (2026-09-19 reflection, 2026-09-20 consolidation) died mid-run before producing a report; Step 6a/9g checkpoints preserved all underlying writes.",
+    "memory/core/MISTAKES.md and PREFERENCES.md remain empty (80B/93B) after 10+ consolidation cycles.",
+    "No new [MEM-NNN] tags appeared in the 2026-09-19 to 2026-09-21 window; MEM-34/MEM-35 were already fully promoted by the prior cycle."
+  ],
+  "recommendations": [
+    "Diagnose why consolidation/reflection sessions have twice died mid-run recently — verify by confirming a future cycle completes Steps 0-12 without needing a Step 9g recovery.",
+    "If MEM_REGISTRY.md stays over its scaled cap for a 3rd consecutive cycle with no-op archive/trim, escalate as a [blocked] item instead of re-flagging — verify by checking the next 2 reports.",
+    "Once a StepForge workspace exists via /setup, re-validate the 3 stale SST/SFN semantic files against the live stack — verify by their git-log last-modified date updating.",
+    "Confirm whether MISTAKES.md/PREFERENCES.md are genuinely unused or under-logged — verify by grepping the next 5 daily logs for correction/preference language not yet promoted."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true,
+    "mem-integrity-check": true,
+    "semantic-lifecycle-checked": true,
+    "reflection-overdue": true
+  },
+  "processImprovements": [
+    "[self-critique] Two consecutive maintenance cycles (2026-09-19 reflection, 2026-09-20 consolidation) died mid-run before producing a report; the Step 6a/9g checkpoints prevented data loss but the underlying cause of repeated mid-run termination (idle watchdog vs. session-lock steal vs. something else) has not been diagnosed.",
+    "[proposal] memory/MEM_REGISTRY.md has been over its scaled cap for 2+ cycles with zero lifecycle turnover (no OBSOLETE/REMOVED rows generated) — since Step 9d/9e can only ever act on lifecycle or citation evidence that this brain doesn't produce, consider whether a registry with an all-ACTIVE, all-load-bearing key set should have a different (higher or non-uniform) cap rather than repeatedly flagging an unreachable target.",
+    "[self-critique] The 3 stale SST/SFN semantic files have been marked KEEP across multiple cycles based on re-reading their text, not re-verification against a live SST deployment, because no StepForge workspace has existed since 2026-08-11 — this is a known-stale validation gap that will persist until /setup actually runs."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-09-19",
+    "daysSinceReflection": 2,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0,
+    "idleSkipped": false
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "brainCommitSha": "PENDING"
+}
