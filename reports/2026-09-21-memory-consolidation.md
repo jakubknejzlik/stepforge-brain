@@ -94,4 +94,4 @@ Ran `mem-registry-trim.ts`: no-op — 31/34 data rows are already pointer-form; 
 - Created: memory/daily/2026-09-21.md, memory/episodic/orphaned-consolidation-2026-09-20.md, reports/2026-09-21-memory-consolidation.md, reports/2026-09-21-memory-consolidation.json
 - Deleted: memory/daily/2026-08-21.md, reports/2026-08-18-memory-consolidation.md, reports/2026-08-18-memory-reflection.md, reports/2026-08-19-memory-consolidation.md, reports/2026-08-21-memory-consolidation.md, reports/2026-08-21-memory-reflection.md
 
-Commit: (recorded after commit)
+Commit: 6c3795afa0adc8e9fc5ea1c58bd140eccb549b31
