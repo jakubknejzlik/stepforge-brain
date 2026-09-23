@@ -31,4 +31,4 @@ Reviewed 20 memory files (3 core/, SUMMARY.md, TODAY.md, MEM_REGISTRY.md, MEM_RE
 - Modified: memory/semantic/flowbrew-platform-bugs-open.md, memory/semantic/flowbrew-platform-bugs-resolved.md, memory/semantic/flowbrew-platform-reference.md, memory/core/LEARNINGS.md, memory/episodic/flowbrew-subworkflow-testing-2026-09-18.md, memory/MEM_REGISTRY.md, memory/SUMMARY.md
 - Deleted: none
 
-Commit: (recorded after this commit)
+Commit: 9519dff261bfd5346b51c3f4b1fd03b2b869a7a6

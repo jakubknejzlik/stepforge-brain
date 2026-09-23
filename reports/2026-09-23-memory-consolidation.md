@@ -84,4 +84,4 @@ Ran `mem-registry-trim.ts`: no candidates proposed. 4 destination lines rejected
 - Modified: memory/TODAY.md, memory/daily/2026-09-21.md, memory/semantic/flowbrew-platform-bugs-open.md, memory/semantic/flowbrew-platform-reference.md, memory/MEM_REGISTRY.md, memory/SUMMARY.md
 - Deleted: none
 
-Commit: (recorded after commit)
+Commit: 4269455e1eb1d50a164085c5f6d9dc26eccf4eba
