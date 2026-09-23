@@ -8,9 +8,12 @@ Captured 2026-09-12/13 during onboarding + plugin-building validation, split
 into this reference file (stable facts/behavior) and a bug/gap log, further
 split 2026-09-19 into `flowbrew-platform-bugs-open.md` and
 `flowbrew-platform-bugs-resolved.md` (by lifecycle status, once the combined
-bug/gap log crossed 100 lines again). See
-episodic/flowbrew-onboarding-2026-09.md for the full narrative (security
-incident, misattribution catch, plugin test campaigns, platform bugs found).
+bug/gap log crossed 100 lines again), further split 2026-09-23 into
+`flowbrew-platform-codegen-gaps.md` (compile-time/codegen gaps only, by
+category this time) once `flowbrew-platform-bugs-open.md` crossed 100 lines
+a third time. See episodic/flowbrew-onboarding-2026-09.md for the full
+narrative (security incident, misattribution catch, plugin test campaigns,
+platform bugs found).
 
 ## Endpoints & auth
 - Prod MCP: `https://mcp.flowbrew.app/mcp`

@@ -29,7 +29,7 @@ MCP): `trigger-dispatch-coordinator.ts` validates the incoming payload
 against the workflow's `inputSchema` **without a try/catch**, so a
 narrow/strict schema (`additionalProperties:false` at every level, the
 fallback Smith had used because `update_workflow`'s codegen rejected a
-permissive schema — see `flowbrew-platform-bugs-open.md`) causes the
+permissive schema — see `flowbrew-platform-codegen-gaps.md`) causes the
 dispatch to fail closed and retry infinitely in the queue, with **no
 visible error anywhere in the MCP surface** — not a silent drop as
 originally suspected. Fix: give the workflow's `inputSchema`

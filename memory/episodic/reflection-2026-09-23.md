@@ -1,0 +1,46 @@
+# Memory Reflection — 2026-09-23
+
+## Summary
+- Files reviewed: 20 (3 core/, SUMMARY.md, TODAY.md, MEM_REGISTRY.md, MEM_REGISTRY_ARCHIVE.md, 6 semantic/ files, 3 recent episodic/ files incl. this cycle's new one, prior reflection-2026-09-19.md, this cycle's own consolidation report + prior 2026-09-21 report)
+- Stale entries found: 0 new (3 SST semantic files remain 30+ days by mtime, content re-confirmed accurate — same conclusion as every prior cycle)
+- Contradictions resolved: 0 new (verified issue #199 framing and MEM-36/37/38/39 content are consistent everywhere referenced)
+- Gaps identified: 2 (both with observed consequence, logged below)
+- Files pruned/archived: 0 deleted; 1 split (`flowbrew-platform-bugs-open.md` → itself + new `flowbrew-platform-codegen-gaps.md`, content preserved verbatim, nothing dropped)
+
+## Previous Recommendations Review
+Most recent prior reflection: `memory/episodic/reflection-2026-09-19.md` (its JSON was already platform-deleted; markdown report `reports/2026-09-19-memory-reflection.md` and the episodic file itself are the source of truth).
+
+- **Prior rec:** "proactive semantic-file growth checkpoint below 100 lines" (originally from 2026-09-16, reiterated 2026-09-19 as still not implemented as a mechanism). **Status: still pending as a mechanism, but this cycle broke the recurring pattern differently than before.** The identical failure mode recurred a third time: `flowbrew-platform-bugs-open.md` grew from 74 lines (2026-09-20 per SUMMARY.md) to 111 lines (2026-09-23, this cycle) via 4 new MEM-tagged promotions. Unlike the 2026-09-19 cycle (which split by lifecycle status, an axis already used once before), this cycle split by category (codegen/compile-time gaps → new `flowbrew-platform-codegen-gaps.md`, 45 lines) since both prior splits' axes were exhausted for this lineage. The underlying process gap — no checkpoint mechanism below 100 lines in the shared `stepforge-skills` consolidate skill's Step 5b — remains unimplemented; see Gap Analysis.
+- **Prior rec (originally 2026-09-13, reiterated every cycle since):** mid-gap cap-drift detection for `MEM_REGISTRY.md` between consolidation runs. **Status: still pending**, base-brain-level gap not fixable from a single brain's reflection. This cycle: registry grew from 1345B over its (then) 5100B scaled cap on 2026-09-19 to 1827B over its (now) 6000B scaled cap on 2026-09-23 — both `mem-registry-archive.ts` and `mem-registry-trim.ts` no-op'd again this cycle (35/38 rows already pointer-form, 0 live REMOVED), identical to the 2026-09-18/19 result.
+
+## Staleness Check
+Scanned core/, semantic/, episodic/, MEM_REGISTRY.md, SUMMARY.md, TODAY.md. The three original SST semantic files (`sst-stepfunctions-jsonata.md`, `sst-stepfunctions-deploy-gotchas.md`, `sst-stepfunctions-iam-and-map.md`) remain 30+ days past their last commit (2026-08-11/13) but no new SST/StepForge work occurred this cycle to contradict their content — same KEEP call as every prior cycle (now 4+ consecutive cycles re-confirming the same 3 files). Historical `reflection-*.md` files remain exempt as archived reports.
+
+## Contradiction Check
+No conflicting facts found. Verified issue #199's "corrected/false-positive" framing is still consistent everywhere referenced. Verified the new MEM-36/37/38/39 content is consistent across `memory/MEM_REGISTRY.md`, `semantic/flowbrew-platform-bugs-open.md`, `episodic/flowbrew-email-to-slack-campaign-2026-09-22.md`, and `memory/SUMMARY.md` — same facts, same bug-id (`01M3547ADJ13JH99R04FA3P1CA`), no drift.
+
+## Gap Analysis
+- **[memory/semantic/ growth checkpoint]** No proactive size-threshold check exists below the 100-line split trigger, which caused `flowbrew-platform-bugs-open.md` to cross from 74 lines (2026-09-20, per that date's SUMMARY.md snapshot) to 111 lines (2026-09-23, this cycle) before a split occurred — the third consecutive occurrence of the identical failure mode first flagged in the 2026-09-16 reflection (`flowbrew-platform.md` 112→149 lines) and repeated in the 2026-09-19 reflection (`flowbrew-platform-bugs.md` 89→121 lines). Each cycle fixes the specific instance reactively (this cycle: category-based split into `flowbrew-platform-codegen-gaps.md`) without landing the general mechanism.
+- **[memory/MEM_REGISTRY.md reduction path]** `mem-registry-archive.ts` and `mem-registry-trim.ts` have now no-op'd for 3 consecutive consolidation cycles (2026-09-18: 6B over cap; 2026-09-19: 1345B over cap; 2026-09-23: 1827B over cap) because the vast majority of live rows are already pointer-form (35/38) and 0 rows are `REMOVED` — there is no reachable reduction path for this registry's current shape, which caused the over-cap amount to grow monotonically across all 3 cycles with zero corrective action available each time.
+
+No other gap this cycle cleared the verification gate (named outcome + date). `core/PREFERENCES.md`/`MISTAKES.md` remaining empty was considered again and rejected — no incident in recent daily logs ties this to an actual problem, consistent with every prior reflection's same rejection.
+
+## Size Check
+- `memory/MEM_REGISTRY.md`: 7827 bytes (38 rows), scaled threshold 6000B — **1827B over cap**, both reduction scripts no-op (see Gap Analysis).
+- `memory/core/LEARNINGS.md`: 4712 bytes (12 entries), scaled threshold 5000B — under cap.
+- `memory/SUMMARY.md`: 9030 bytes after consolidation's own Active-Projects trim — required one further inline trim this cycle (episodic/semantic index entries condensed) to land at 8938B, under the 9000B cap, after this reflection's split changed the Deep Memory Index entry.
+- `memory/semantic/*.md`: now 7 files. Three SST files unchanged (all under 12 lines, stale but accurate). `flowbrew-platform-reference.md` grew to 117 lines this cycle (+FLOWBREW_API_TOKEN workspace-mismatch note) — over the guideline but NOT split (still one cohesive "integration reference" topic per the 2026-09-19 reflection's same call at 103 lines; flagged for next cycle if it keeps growing). `flowbrew-platform-bugs-open.md` (111 lines, over threshold) SPLIT this cycle by category into itself (84 lines, runtime bugs/MCP-lag/docs gaps) and new `flowbrew-platform-codegen-gaps.md` (45 lines, `update_workflow` codegen-only gaps). `flowbrew-platform-bugs-resolved.md` unchanged (79 lines).
+- `memory/core/PREFERENCES.md` (93B) / `MISTAKES.md` (80B): still empty of real entries — no dated consequence found this cycle either.
+
+## Changes Made
+- SPLIT `memory/semantic/flowbrew-platform-bugs-open.md` (111 lines, over the 100-line guideline, third consecutive cycle this pattern recurred for this file lineage) into itself (84 lines — retains: issue #145 platform bug, `read_instance` UX nuance, subworkflow-docs gap [MEM-34], MCP tool-surface lag [MEM-36]/[MEM-37]/[MEM-39], staging-MX bug [MEM-38]) and new `memory/semantic/flowbrew-platform-codegen-gaps.md` (45 lines — the three `update_workflow` codegen/compile-time gaps: permissive-schema, delayMs, JSON-schema defaults). Split by category (compile-time vs. runtime) rather than lifecycle status again, since the lifecycle-status axis was already used on this exact file in 2026-09-19. Content preserved verbatim, nothing dropped.
+- Updated 5 cross-references to the relocated permissive-schema/delayMs content: `memory/core/LEARNINGS.md` ([MEM-26]), `memory/semantic/flowbrew-platform-bugs-resolved.md`, `memory/semantic/flowbrew-platform-reference.md` (split-history note), `memory/episodic/flowbrew-subworkflow-testing-2026-09-18.md`, and 4 `memory/MEM_REGISTRY.md` line-number pointers (MEM-34/36/37/38/39) that shifted after the split.
+- Updated `memory/SUMMARY.md`'s Deep Memory Index semantic/episodic entries to describe the split and the new file, with an additional inline trim (episodic index line condensed) to stay under the 9000B cap.
+
+## Gaps to Fill
+- **Proactive semantic-file growth checkpoint (mechanism, not instance):** the underlying process gap — no check below 100 lines in the shared `stepforge-skills` consolidate skill — remains open for a third cycle running. This is a shared-skill change, not a channel-brain-local fix; see recommendations for the concrete ask, which should go through the `stepforge-skills` contribution process (fork/PR) per this brain's own CLAUDE.md "Contributing Generic Knowledge Upstream" section at the next harvest cadence.
+- **MEM_REGISTRY.md reduction path exhaustion:** both mechanical scripts are structurally unable to help once a registry is ACTIVE-heavy with few/no REMOVED rows, confirmed for a third straight cycle. See recommendations.
+
+## Process Observations
+- This is the sixth consecutive cycle (2026-09-16 through 2026-09-23) with real Flowbrew-sourced semantic/episodic growth, each captured in the same cycle as the events it describes — consolidation/reflection are keeping pace with content, but the *size-management* process (as opposed to content capture) is the recurring gap, now documented across 3 reflections in a row with no mechanism landed.
+- `[MEM-NNN]` tags were used consistently this cycle (all 4 of MEM-36 through MEM-39 tracked, registered same-day by the regular session, and promoted to a content tier at this consolidation) — same clean pattern as 2026-09-19.

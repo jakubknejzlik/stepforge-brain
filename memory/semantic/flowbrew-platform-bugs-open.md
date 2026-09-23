@@ -4,10 +4,14 @@
 Split from `flowbrew-platform-bugs.md` during 2026-09-19 reflection (that
 file crossed 121 lines, over the 100-line semantic-file guideline, repeating
 the exact reactive-split pattern the 2026-09-16 reflection flagged for its
-predecessor `flowbrew-platform.md`). Split by lifecycle status this time
-instead of waiting for another 100-line trigger: this file holds bugs/gaps
-that are still open (no confirmed fix or platform-side resolution yet); see
-`flowbrew-platform-bugs-resolved.md` for closed/resolved incidents. See
+predecessor `flowbrew-platform.md`). Split by lifecycle status that time:
+this file holds bugs/gaps that are still open (no confirmed fix or
+platform-side resolution yet); see `flowbrew-platform-bugs-resolved.md` for
+closed/resolved incidents. **2026-09-23 reflection:** this file crossed 111
+lines (third consecutive cycle the same growth pattern recurred) — the three
+`update_workflow` codegen/compile-time gaps were split out to
+`flowbrew-platform-codegen-gaps.md`; this file now holds runtime bugs,
+MCP-surface lag, and documentation gaps. See
 episodic/flowbrew-onboarding-2026-09.md and
 episodic/flowbrew-subworkflow-testing-2026-09-18.md for full narratives.
 
@@ -19,37 +23,6 @@ so far: JARVIS manually patched the metadata in D1 for Smith's staging key.
 Fix is tracked upstream; re-verify `create_connection` against a fresh,
 un-patched owner-scoped key once Codex's fix PR lands — that is the real
 test of whether it's resolved, not just the PR merging.
-
-## Known compile-time gap: `update_workflow` codegen rejects permissive object schemas (2026-09-13/14)
-`update_workflow`'s plain-language-description codegen fails to compile a
-workflow `inputSchema` when asked (in natural language) for an open/
-permissive body — both Zod `record()` and `looseObject()` with any options
-error with "Unsupported arguments for Zod record/looseObject; custom
-options are not supported." The only phrasing that compiled successfully
-was one built around a bare `.passthrough()`. Filed via `submit_feedback`
-(id `8a939b0c-5a82-45d8-97df-e73d9871a842`) — a genuine compile-time
-codegen limitation, not a description-wording issue Smith could work
-around indefinitely; combined with the (now-fixed) fail-closed validation
-behavior (see resolved file), this gap is what caused the original
-schema-mismatch webhook dispatch failure.
-
-## Known compile-time gap: `delayMs` (milliseconds) compiles into an invalid `step.sleep()` duration (2026-09-18, open, not yet filed)
-A numeric `delayMs` field described in natural language as milliseconds
-compiled into an invalid Cloudflare Workflows `step.sleep()` duration
-format. Workaround: reword the field description to require an explicit
-`"<N> seconds"` string, which compiles correctly. Not yet filed via
-`submit_feedback` — noted as a minor, separate codegen gap from the
-`update_workflow` gaps above. See
-`episodic/flowbrew-subworkflow-testing-2026-09-18.md`.
-
-## Known compile-time gap: `update_workflow` codegen doesn't auto-fill JSON-schema defaults (2026-09-15)
-Separate from the permissive-schema gap above: when a plain-language
-description asks for a field with a default value but doesn't spell the
-default out explicitly, the generated `inputSchema` omits it — the default
-must be stated in the description text itself for the compiled schema to
-carry it. Hit while building a slack-send-message test workflow
-(`unfurlLinks`/`unfurlMedia` silently missing until spelled out). Filed via
-`submit_feedback` (id `cec632ef-74a2-427f-a89b-1cc10fc12503`).
 
 ## UX nuance: `read_instance` shows a terser error wrapper for uncaught vs. caught `core.workflow-call` failures (2026-09-18, not a bug)
 An uncaught `core.workflow-call` error surfaces a terser wrapper via
@@ -66,7 +39,7 @@ working ([MEM-32]/[MEM-33]) aren't documented anywhere a developer would
 find them. The actual error message shapes (Zod path detail, "target
 unavailable in workspace/project scope") also aren't documented despite
 being exactly what a workflow author needs to write correct try/catch. The
-`delayMs`→`step.sleep()` codegen gap (above) only exists as a sentence in
+`delayMs`→`step.sleep()` codegen gap (see `flowbrew-platform-codegen-gaps.md`) only exists as a sentence in
 the #199 closing comment, not its own tracked issue. Found in response to
 Jakub asking whether subworkflow testing is well documented; reported
 in-thread with a proposal for JARVIS to add a fan-out+error-shapes section
