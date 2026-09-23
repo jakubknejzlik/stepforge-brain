@@ -23,6 +23,17 @@ incident, misattribution catch, plugin test campaigns, platform bugs found).
 - Secrets in use: `FLOWBREW_API_TOKEN` (prod, poller→channel scope),
   `FLOWBREW_STAGING_API_TOKEN` (staging, channel scope, owner-scoped as of
   2026-09-12).
+- **⚠️ `FLOWBREW_API_TOKEN` workspace mismatch (found 2026-09-22, not yet
+  confirmed fixed):** the token resolves to workspace `e4673c3e...`, but
+  Jakub confirmed the *actual* prod workspace is
+  `fY95o8FW5bmPreaFK4FOH5RUKDiYsPnB` — a different one. Caught when an
+  owner-scoped Slack connection created against a fresh token landed in
+  `fY95...` while the workflow/trigger built moments earlier under
+  `FLOWBREW_API_TOKEN` sat in `e4673c3e...`. Jakub was asked to correct the
+  secret via `/settings/secrets`; **verify which workspace
+  `FLOWBREW_API_TOKEN` resolves to before relying on it for prod work** —
+  don't assume the fix landed. See
+  episodic/flowbrew-email-to-slack-campaign-2026-09-22.md.
 - Brick JWKS (for `createBrickHandler`):
   `https://auth.staging.flowbrew.app/.well-known/taskflow-brick-jwks.json`.
 - `mcp.staging.flowbrew.app` is a stateless streamable-HTTP MCP endpoint —
