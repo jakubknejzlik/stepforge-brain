@@ -77,3 +77,17 @@ specific errors ARE the real behavior of `core.workflow-call`'s failure
 paths once the platform is healthy. See
 `episodic/flowbrew-subworkflow-testing-2026-09-18.md` for the full
 narrative (test methodology, regression detour, resolution).
+
+## MCP metadata gap ([MEM-36]) and staging MX/relay outage ([MEM-38]) — both confirmed fixed live (2026-09-23)
+**[MEM-36]:** `create_trigger_instance`/`list_trigger_instances` now returns
+`metadata.inboundAddress` directly in the MCP response — confirmed
+2026-09-23 while setting up a fresh staging email trigger (`52571d6e`), no
+GET-endpoint workaround ([MEM-37], now obsolete) needed. **[MEM-38]:** the
+staging `triggers.staging.flowbrew.app` MX/relay outage (bug
+`01M3547ADJ13JH99R04FA3P1CA`) is also fixed — PR#228/v0.2.53 shipped an
+authenticated HTTPS relay for staging email trigger domains, and a real
+email sent to a fresh staging trigger arrived and fired workflow instance
+`22f98612` within ~10s, echoing from/title/body correctly. Both closures
+verified via real, non-synthetic traffic (a live email + live MCP response),
+not just a clean deploy. See `memory/daily/2026-09-23.md` (12:56/13:04
+entries) for the full session narrative.

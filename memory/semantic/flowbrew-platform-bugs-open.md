@@ -46,20 +46,12 @@ in-thread with a proposal for JARVIS to add a fan-out+error-shapes section
 to the doc and file the delayMs issue, since Smith only has `gh api`
 read-only access to taskflow-platform, not write/PR access.
 
-## MCP tool surface lag: new platform fields not exposed in MCP schemas ([MEM-36], [MEM-37], [MEM-39], 2026-09-22)
+## MCP tool surface lag: new platform fields not exposed in MCP schemas ([MEM-39], 2026-09-22)
 Recurring pattern: a platform feature ships in the underlying API/console but
 the MCP tool's `outputSchema`/`inputSchema` isn't updated to expose it, so it
-can't be read via MCP alone.
-- **[MEM-36]** `create_trigger_instance`/`list_trigger_instances` outputSchema
-  is still `additionalProperties:false` with no `metadata` field declared,
-  even after PR#221/v0.2.47 shipped the new email `inboundAddress` metadata
-  to browser-api. Verified via `tools/list` schema inspection on staging, not
-  just absence in a response.
-- **[MEM-37]** Workaround for MEM-36: a plain GET on the trigger's
-  `publicEndpointUrl` (`https://core-plugin.staging.flowbrew.app/email/<instanceId>/<secret>`)
-  returns `{"address": "trigger+...@triggers.staging.flowbrew.app"}` — the
-  real inbound SMTP address. POST on the same URL returns 405 (not the
-  ingestion path). Given to Jakub for staging trigger `7341df78`.
+can't be read via MCP alone. MEM-36 (`create_trigger_instance` metadata gap)
+and its MEM-37 GET workaround were resolved 2026-09-23 — see
+`flowbrew-platform-bugs-resolved.md`.
 - **[MEM-39]** Same pattern recurred in v0.2.50 `brick_calls` (issue #213):
   `read_instance`/`list_instances` outputSchemas are unchanged (status/output/
   error only — no duration/brickCount/attempts) despite the feature shipping.
@@ -70,15 +62,22 @@ can't be read via MCP alone.
   new fields — Smith has no such session.
 - Shared MEM-36/37/38 findings with cross-brain agent U0AJN756TTL (working on
   the MCP metadata schema fix) in thread `1790104705.497419` on 2026-09-22.
+- **[MEM-37:obsolete]** Former workaround for MEM-36 (plain GET on the
+  trigger's `publicEndpointUrl` to read the real inbound SMTP address) — no
+  longer needed as of 2026-09-23; `create_trigger_instance` now returns
+  `metadata.inboundAddress` directly. Kept one cycle for visibility, then
+  removed per MEM lifecycle.
 
-## Platform bug: staging email trigger domain has no MX record ([MEM-38], bug `01M3547ADJ13JH99R04FA3P1CA`, 2026-09-22)
-`triggers.staging.flowbrew.app` (the domain backing staging `core.email`
-trigger inbound addresses) has NO MX record (NXDOMAIN) — real email delivery
-to a staging email trigger is impossible. Confirmed via Jakub's bounce
-screenshot plus an independent DNS-over-HTTPS check. The prod equivalent
-`triggers.flowbrew.app` DOES have a working MX (Cloudflare Email Routing).
-Filed as bug `01M3547ADJ13JH99R04FA3P1CA` (high priority) via
-`submit_feedback`, which also references the still-open MEM-36/37
-MCP-metadata-exposure gap as a secondary note. Practical effect: staging
-email triggers can only be tested via `start_workflow`/synthetic payload, not
-real inbound mail, until the platform fixes the staging MX config.
+## Platform gap: no way to open/resolve a Slack DM channel ID via MCP (2026-09-23)
+`slack-send-message`'s `channel` schema requires a C/D/G-prefixed channel ID
+— a raw Slack user ID cannot be used directly. There is no
+`conversations.open`-equivalent brick to resolve a user ID to a DM channel
+ID, and `slack-list-channels` with `types=[im]` requires the `im:read`
+(+`mpim:read`) OAuth scope, which the connected Slack app may not have.
+Net effect: a workflow cannot reliably DM a specific user unless (a) the
+connection already has `im:read`/`mpim:read` and the bot has an existing DM
+with that user (so the IM channel already exists to be listed), or (b) the
+target channel ID is hardcoded from a prior manual lookup. Found while
+attempting to build a DM-based approval gate for `smith-email-to-slack-test`
+(5b97dddc) — abandoned in favor of posting everything to the channel
+instead. See `memory/daily/2026-09-23.md` (20:46 entry).
