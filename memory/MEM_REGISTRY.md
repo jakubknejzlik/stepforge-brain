@@ -16,7 +16,6 @@
 | MEM-13 | ACTIVE | 2026-08-12 | episodic/stepforge-multi-team-distribution.md:6 | see episodic/stepforge-multi-team-distribution.md — multi-team distribution topology decision |
 | MEM-14 | ACTIVE | 2026-08-12 | core/LEARNINGS.md:4 | see core/LEARNINGS.md — deleted git branch commits stay reachable via refs/pull/<n>/head |
 | MEM-15 | ACTIVE | 2026-08-12 | episodic/stepforge-multi-team-distribution.md:26 | see episodic/stepforge-multi-team-distribution.md — CLAUDE.md distribution Option A |
-> 📦 1 REMOVED audit entry archived to [MEM_REGISTRY_ARCHIVE.md](MEM_REGISTRY_ARCHIVE.md) — Keys: MEM-1
 | MEM-16 | ACTIVE | 2026-08-13 | core/LEARNINGS.md:5 | see core/LEARNINGS.md — .claude/settings.json and .claude/hooks/ writes blocked by harness regardless of verbal authorization |
 | MEM-17 | ACTIVE | 2026-08-19 | core/LEARNINGS.md:6 | see core/LEARNINGS.md — Write tool false-positive-blocks files matching SUMMARY/REPORT-like tokens, Edit works around it |
 | MEM-18 | ACTIVE | 2026-08-19 | core/LEARNINGS.md:7 | see core/LEARNINGS.md — sensitive-file block also covers .claude/hooks/ content edits, corroborates MEM-16 |
@@ -37,7 +36,7 @@
 | MEM-33 | ACTIVE | 2026-09-18 | episodic/flowbrew-subworkflow-testing-2026-09-18.md:29 | see episodic/flowbrew-subworkflow-testing-2026-09-18.md — campaign closed out, issue #199 closure independently verified |
 | MEM-34 | ACTIVE | 2026-09-19 | semantic/flowbrew-platform-bugs-open.md:34 | see semantic/flowbrew-platform-bugs-open.md — subworkflow fan-out/error-shapes/delayMs documentation gaps in docs/workflow-start-call.md, reported to Jakub with a proposal for JARVIS |
 | MEM-35 | ACTIVE | 2026-09-19 | episodic/flowbrew-onboarding-2026-09.md:372 | see episodic/flowbrew-onboarding-2026-09.md — PR#205 fetch:// redesign blind-test confirmed functional; unreviewed merge process gap flagged, JARVIS proposed retroactive review, deferred to Jakub |
-| MEM-36 | ACTIVE | 2026-09-22 | semantic/flowbrew-platform-bugs-resolved.md:81 | RESOLVED 2026-09-23 — see semantic/flowbrew-platform-bugs-resolved.md — MCP create_trigger_instance metadata gap fixed, confirmed live |
-| MEM-37 | OBSOLETE | 2026-09-22 | 2026-09-24 | see semantic/flowbrew-platform-bugs-open.md — publicEndpointUrl GET workaround, superseded by MEM-36 fix, no longer needed |
-| MEM-38 | ACTIVE | 2026-09-22 | semantic/flowbrew-platform-bugs-resolved.md:81 | RESOLVED 2026-09-23 — see semantic/flowbrew-platform-bugs-resolved.md — staging MX/relay outage fixed via PR#228/v0.2.53, confirmed live |
+| MEM-36 | ACTIVE | 2026-09-22 | episodic/flowbrew-email-to-slack-approval-gate-2026-09-23.md:15 | see episodic/flowbrew-email-to-slack-approval-gate-2026-09-23.md — Staging relay confirmed live (12:56–13:04) |
+| MEM-38 | ACTIVE | 2026-09-22 | episodic/flowbrew-email-to-slack-approval-gate-2026-09-23.md:19 | see episodic/flowbrew-email-to-slack-approval-gate-2026-09-23.md — Staging relay confirmed live (12:56–13:04) |
 | MEM-39 | ACTIVE | 2026-09-22 | semantic/flowbrew-platform-bugs-open.md:63 | see semantic/flowbrew-platform-bugs-open.md — v0.2.50 brick_calls MCP outputSchema lag, same pattern as MEM-36 |
+> 📦 2 REMOVED audit entries archived to [MEM_REGISTRY_ARCHIVE.md](MEM_REGISTRY_ARCHIVE.md) — Keys: MEM-1, MEM-37

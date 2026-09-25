@@ -62,11 +62,6 @@ and its MEM-37 GET workaround were resolved 2026-09-23 — see
   new fields — Smith has no such session.
 - Shared MEM-36/37/38 findings with cross-brain agent U0AJN756TTL (working on
   the MCP metadata schema fix) in thread `1790104705.497419` on 2026-09-22.
-- **[MEM-37:obsolete]** Former workaround for MEM-36 (plain GET on the
-  trigger's `publicEndpointUrl` to read the real inbound SMTP address) — no
-  longer needed as of 2026-09-23; `create_trigger_instance` now returns
-  `metadata.inboundAddress` directly. Kept one cycle for visibility, then
-  removed per MEM lifecycle.
 
 ## Platform gap: no way to open/resolve a Slack DM channel ID via MCP (2026-09-23)
 `slack-send-message`'s `channel` schema requires a C/D/G-prefixed channel ID
