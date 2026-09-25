@@ -1,0 +1,84 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {
+    "created": 2,
+    "modified": 5,
+    "deleted": 0
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-09-24.md",
+    "memory/daily/2026-09-25.md",
+    "memory/semantic/flowbrew-platform-bugs-open.md",
+    "memory/MEM_REGISTRY.md",
+    "memory/MEM_REGISTRY_ARCHIVE.md",
+    "memory/SUMMARY.md"
+  ],
+  "decisions": [
+    "Set MEM-37 to REMOVED in MEM_REGISTRY.md and deleted its obsolete stub from semantic/flowbrew-platform-bugs-open.md, completing the lifecycle started 2026-09-23.",
+    "Re-ran mem-registry-archive.ts/mem-registry-trim.ts despite the 2026-09-23 report calling them exhausted; they relocated MEM-37 and trimmed MEM-36/MEM-38, shrinking MEM_REGISTRY.md 7804B to 7622B.",
+    "Approved MEM-36 and MEM-38 as promoted-row trim candidates since both citing lines in episodic/flowbrew-email-to-slack-approval-gate-2026-09-23.md genuinely restate the resolved-fix content.",
+    "Rejected 6 other MEM_REGISTRY trim candidates (MEM-2/14/16/26 index-shaped, MEM-20/21 unreliable-hook) as unsafe to trim this cycle.",
+    "Condensed SUMMARY.md's Active Projects section (9519B to 8925B) to clear the 9000B cap, since the trimmed detail already lives verbatim in episodic/flowbrew-email-to-slack-approval-gate-2026-09-23.md."
+  ],
+  "observations": [
+    "MEM_REGISTRY.md remains 1772B over its scaled 5850B cap with 34 of 37 rows already pointers and no further safe trim candidates this cycle.",
+    "Both daily logs in scope (2026-09-24, 2026-09-25) contained only maintenance-session stamps, no user session activity to promote via Steps 2-4.",
+    "All 3 sst-stepfunctions semantic files remain stale (30+ days, last touched 2026-08-11/13) but still accurate on review.",
+    "flowbrew-platform-reference.md is 45 lines, not the 117 lines the prior SUMMARY.md flagged as over-guideline; that note was stale.",
+    "Flowbrew prod push has been blocked on the same FLOWBREW_API_TOKEN workspace-mismatch since 2026-09-22 with no logged follow-up ping to Jakub."
+  ],
+  "recommendations": [
+    "Re-run mem-registry-archive.ts/mem-registry-trim.ts every consolidation cycle rather than trusting a prior report's no-op/exhausted claim, since this cycle found 3 new candidates the 2026-09-23 report missed.",
+    "Once Jakub confirms the FLOWBREW_API_TOKEN fix, verify via list_connections under the token before updating semantic/flowbrew-platform-reference.md.",
+    "Send Jakub a scheduled follow-up on the FLOWBREW_API_TOKEN workspace-mismatch if it stays unconfirmed past 2026-09-27 (5+ days blocked).",
+    "Next cycle, drop the stale 117-line flowbrew-platform-reference.md size note from any manual tracking since the file is now 45 lines.",
+    "Reflection is next due 2026-09-26 (3-day threshold from 2026-09-23) — run it on schedule to keep reflectionStatus.isOverdue false."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "meaningful-decisions": true,
+    "no-data-loss": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "process-self-critique": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true,
+    "reflection-overdue": true,
+    "mem-integrity-check": true,
+    "semantic-lifecycle-checked": true
+  },
+  "processImprovements": [
+    "[self-critique] The 2026-09-23 report declared MEM_REGISTRY.md's reduction scripts structurally exhausted, but re-running them this cycle found and applied 3 new reductions (7804B to 7622B) - future reports should re-run the scripts each cycle instead of propagating a prior cycle's negative result forward.",
+    "[self-critique] No session activity occurred in the last 2 days and the Flowbrew prod-push blocker (FLOWBREW_API_TOKEN workspace mismatch) has sat unconfirmed since 2026-09-22 with no logged nudge to Jakub - idle cycles should include a check for stale open blockers, not just memory-tier processing.",
+    "[proposal] Add a lightweight blocker-age check to consolidation that flags any open episodic blocker older than N days with no follow-up, so stalled cross-party dependencies surface automatically instead of only via manual review."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-09-23",
+    "daysSinceReflection": 2,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0,
+    "idleSkipped": false
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "brainCommitSha": "20cb4156dbcd91922d975510edfbec99ba3537a4"
+}
