@@ -1,0 +1,16 @@
+{
+  "operationType": "reflection",
+  "operationCounts": {"created": 1, "modified": 0, "deleted": 0},
+  "filesChanged": ["memory/episodic/reflection-2026-10-17.md"],
+  "decisions": ["Kept the 3 SST semantic files after re-review since no SST work contradicts them.", "Routed the stalled-blocker gap to proposals since it has no dated consequence."],
+  "observations": ["All 8 semantic files are under 100 lines (max 93, flowbrew-platform-bugs-resolved.md).", "MEM_REGISTRY.md measured 7622B against a 5850B scaled cap with 34 of 37 rows already pointers."],
+  "recommendations": ["Trim/archive MEM_REGISTRY.md — currently 7622B (1772B over 5850B scaled threshold) with no mechanical path — success: MEM_REGISTRY.md under 5850B at next reflection or lifecycle status of MEM-2/14/16/20/21/26 reviewed.", "Schedule a Jakub follow-up on FLOWBREW_API_TOKEN — prod push blocked since 2026-09-22 — success: logged confirmation or fix by next reflection."],
+  "selfAssessment": {"concrete-improvement-proposal": true, "previous-recommendations-reviewed": true, "gap-impact-analysis": true, "verifiable-recommendations": true, "deletion-with-preservation-evidence": true},
+  "processImprovements": [
+    "[self-critique] Prior rec: \"Send Jakub a scheduled follow-up on the FLOWBREW_API_TOKEN workspace-mismatch\" — status: pending. No nudge was logged in 22 idle days.",
+    "[proposal] Add a blocker-age check to consolidation that flags open blockers with no follow-up after N days.",
+    "[blocked] Semantic-file growth checkpoint below 100 lines needs a stepforge-skills change, not a channel-brain fix."
+  ],
+  "reflectionStatus": {"lastReflectionDate": "2026-10-17", "daysSinceReflection": 0, "overdueThresholdDays": 3, "isOverdue": false, "nonConformingReflectionFiles": 0, "idleSkipped": false},
+  "brainCommitSha": "d3b1117c78d9b8808e5b9dc5052c7bcc4c3ca1c0"
+}

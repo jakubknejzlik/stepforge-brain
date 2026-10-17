@@ -1,0 +1,36 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {"created": 2, "modified": 3, "deleted": 9},
+  "filesChanged": ["memory/TODAY.md","memory/daily/2026-10-17.md","memory/daily/2026-09-25.md","memory/SUMMARY.md","memory/daily/2026-09-12.md","memory/daily/2026-09-13.md","memory/daily/2026-09-14.md","memory/daily/2026-09-15.md","memory/daily/2026-09-16.md","reports/2026-09-13-memory-consolidation.md","reports/2026-09-13-memory-reflection.md","reports/2026-09-14-memory-consolidation.md","reports/2026-09-15-memory-consolidation.md","reports/2026-09-16-memory-consolidation.md","reports/2026-09-16-memory-reflection.md"],
+  "decisions": [
+    "Deleted memory/daily/2026-09-12..16.md as 30+ days old with content already promoted in prior cycles.",
+    "Deleted reports/2026-09-13..16 markdown reports as 30+ days old (preserved in git history).",
+    "Kept the 3 SST semantic files after re-review since no new SST work contradicts them.",
+    "Left MEM_REGISTRY.md untouched because archive was a no-op and trim proposed 0 candidates."
+  ],
+  "observations": [
+    "No user sessions or daily-log content existed between 2026-09-25 and 2026-10-17, so Steps 2-4 had nothing to promote.",
+    "MEM_REGISTRY.md is 7622B vs 5850B scaled cap with 34 of 37 rows already pointers and no mechanical reduction left.",
+    "SUMMARY.md is 8959B, 41B under the 9000B cap.",
+    "Flowbrew FLOWBREW_API_TOKEN prod-push blocker has been unconfirmed since 2026-09-22."
+  ],
+  "recommendations": [
+    "Schedule a follow-up to Jakub on the FLOWBREW_API_TOKEN blocker, success: a logged reply or confirmed token fix by next consolidation.",
+    "Review MEM-2/14/16/20/21/26 for lifecycle status change to shrink MEM_REGISTRY.md toward its 5850B cap."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true, "update-relevant-tiers": true, "meaningful-decisions": true, "no-data-loss": true,
+    "daily-log-exists-today": true, "daily-log-continuous-appends": true, "daily-log-recent-retention": true, "daily-log-weekly-coverage": true,
+    "process-self-critique": true, "evidence-backed-decisions": true, "summary-md-regenerated": true, "today-md-archived": true,
+    "at-imports-configured": true, "no-summary-manual-edit": true, "session-capture-logged": true, "semantic-naming-convention": true,
+    "session-capture-has-context": true, "reflection-overdue": true, "mem-integrity-check": true, "semantic-lifecycle-checked": true
+  },
+  "processImprovements": [
+    "[self-critique] Consolidation and its guard went 22 days without running, and the open FLOWBREW_API_TOKEN blocker was not nudged in that window; idle cycles should check stale blockers.",
+    "[proposal] Add a blocker-age check to consolidation that flags open episodic blockers older than N days with no follow-up."
+  ],
+  "heartbeatStatus": {"present": false, "nonEmpty": false, "itemCount": 0},
+  "reflectionStatus": {"lastReflectionDate": "2026-10-17", "daysSinceReflection": 0, "overdueThresholdDays": 3, "isOverdue": false, "nonConformingReflectionFiles": 0, "idleSkipped": false},
+  "rescueBranches": {"count": 0, "oldestAgeDays": null, "refs": []},
+  "brainCommitSha": "d3b1117c78d9b8808e5b9dc5052c7bcc4c3ca1c0"
+}
