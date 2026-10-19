@@ -1,0 +1,62 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {"created": 3, "modified": 3, "deleted": 4},
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-10-17.md",
+    "memory/daily/2026-10-19.md",
+    "memory/SUMMARY.md",
+    "memory/daily/2026-09-17.md",
+    "memory/daily/2026-09-18.md",
+    "reports/2026-09-17-memory-consolidation.md",
+    "reports/2026-09-18-memory-consolidation.md",
+    "reports/2026-10-19-memory-consolidation.md",
+    "reports/2026-10-19-memory-consolidation.json"
+  ],
+  "decisions": [
+    "Archived memory/TODAY.md to memory/daily/2026-10-17.md and memory/daily/2026-10-19.md",
+    "Deleted memory/daily/2026-09-17.md and 2026-09-18.md (30+ days old, content promoted in earlier cycles)",
+    "Deleted reports/2026-09-17-memory-consolidation.md and 2026-09-18 (30+ days old, preserved in git history)",
+    "Kept three sst-stepfunctions-* semantic files after review: still accurate, no contradicting log content",
+    "Skipped registry trim: mem-registry-trim.ts proposed nothing (34/37 rows already pointers)"
+  ],
+  "observations": [
+    "No daily log content since 2026-10-17 required promotion to any tier; no [MEM] tags found.",
+    "SUMMARY.md is 8959B, 41B under the 9000B cap.",
+    "MEM_REGISTRY.md is 7622B vs 5850B scaled cap; remaining rows are index-shaped or unreliable-hook rejections.",
+    "No user-session logs exist since 2026-09-25; the brain is effectively idle apart from maintenance."
+  ],
+  "recommendations": [
+    "Trim the largest volatile SUMMARY.md section (Active Projects Flowbrew bullet) into a pointer; success: SUMMARY.md under 8500B next cycle.",
+    "Consider an explicit reviewed disposition for MEM-2/14/16/26 registry rows; success: registry under 5850B or cap formally waived."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true,
+    "reflection-overdue": true,
+    "semantic-lifecycle-checked": true,
+    "mem-integrity-check": true
+  },
+  "processImprovements": [
+    "[self-critique] Consolidation fired on the 48h fallback with zero promotable content for the second cycle running; the idle guard still forces periodic runs whose only output is a timestamp bump.",
+    "[self-critique] MEM_REGISTRY.md has been over its scaled cap for multiple cycles with no mechanical path left; the cap warning is now noise rather than signal.",
+    "[proposal] Allow a documented waiver for registry rows rejected as index-shaped so the cap warning stops firing on structurally irreducible rows."
+  ],
+  "heartbeatStatus": {"present": false, "nonEmpty": false, "itemCount": 0},
+  "reflectionStatus": {"lastReflectionDate": "2026-10-17", "daysSinceReflection": 2, "overdueThresholdDays": 3, "isOverdue": false, "nonConformingReflectionFiles": 0, "idleSkipped": false},
+  "rescueBranches": {"count": 0, "oldestAgeDays": null, "refs": []},
+  "brainCommitSha": "ac6c54f84258d0ce605f4b36d90180fd13ef044f"
+}
