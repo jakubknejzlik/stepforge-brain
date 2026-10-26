@@ -1,4 +1,4 @@
-**Last consolidated:** 2026-10-19 03:31 UTC
+**Last consolidated:** 2026-10-26 03:35 UTC
 
 ## How this memory works
 - This file (SUMMARY.md) and TODAY.md are `@`-imported into every session — they are always in your context
@@ -42,6 +42,6 @@
 - memory/semantic/ — 3 SST/SFN gotcha files (stale 30+ days, reviewed 2026-10-17, still accurate, KEPT); flowbrew-platform-reference.md (45 lines, well under 100-line guideline — prior 117-line flag was stale, already resolved by an earlier split); flowbrew-platform-bugs-open.md (78 lines, MEM-37 stub removed this cycle) + flowbrew-platform-codegen-gaps.md (45 lines) + flowbrew-platform-bugs-resolved.md (93 lines) + flowbrew-platform-mcp-and-sdk.md (81 lines, new since last SUMMARY)
 - memory/episodic/ — reflection-*.md (10 quality reflections, 2026-04 through 2026-09-23); sst-stepfunctions-test-campaign-2026-08-11.md; stepforge-multi-team-distribution.md (rollout complete, also holds [MEM-14]); flowbrew-onboarding-2026-09.md; flowbrew-subworkflow-testing-2026-09-18.md ([MEM-28]-[MEM-33]); flowbrew-email-to-slack-campaign-2026-09-22.md; flowbrew-email-to-slack-approval-gate-2026-09-23.md ([MEM-36]/[MEM-38] closure evidence, approval-gate v2 build); orphaned-consolidation-2026-09-20.md; archive/learnings-2026-H2.md ([MEM-16]/[MEM-2])
 - memory/procedural/ — sst-stepfunctions-smoke-test-tiers.md (reusable 4-tier validation checklist for new SST/SFN patterns); flowbrew-mcp-via-curl.md (pointer to `.claude/skills/local/flowbrew-mcp/SKILL.md`, the landed curl-based MCP access workaround)
-- memory/daily/ — 2026-09-19.md through 2026-10-19.md (09-17..09-18 deleted 2026-10-19 as 30+ days old; no user-session logs since 2026-09-25)
+- memory/daily/ — 2026-10-17.md through 2026-10-26.md (09-19..09-25 deleted 2026-10-26 as 30+ days old; no user-session logs since 2026-09-25)
 - memory/MEM_REGISTRY.md — 37 rows live (MEM-1, MEM-37 archived to MEM_REGISTRY_ARCHIVE.md; both REMOVED via MEM lifecycle this run and last), integrity verified. 1772B over its scaled 5850B cap; this cycle's archive+trim run was NOT a no-op (contra prior cycle's expectation) — relocated MEM-37 and trimmed MEM-36/MEM-38 to pointers. Remaining over-cap bytes are 5 non-pointer rows rejected as index-shaped or unreliable-hook evidence (MEM-2/14/16/26/20/21) — structurally hard to reduce further without a lifecycle-status change.
-- reports/ — newest consolidation: 2026-10-19-memory-consolidation.md (prior 2026-10-17); newest reflection: 2026-10-17 (prior 2026-09-23). Reports older than 30 days deleted (in git history).
+- reports/ — newest consolidation: 2026-10-26-memory-consolidation.md (prior 2026-10-19); newest reflection: 2026-10-24 (prior 2026-10-17). Reports older than 30 days deleted (in git history).

@@ -1,0 +1,59 @@
+{
+  "operationType": "consolidation",
+  "operationCounts": {"created": 4, "modified": 2, "deleted": 12},
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-10-26.md",
+    "memory/daily/2026-10-24.md",
+    "memory/SUMMARY.md",
+    "memory/daily/2026-09-19.md","memory/daily/2026-09-20.md","memory/daily/2026-09-21.md","memory/daily/2026-09-22.md","memory/daily/2026-09-23.md","memory/daily/2026-09-24.md","memory/daily/2026-09-25.md",
+    "reports/2026-09-19-memory-reflection.md","reports/2026-09-21-memory-consolidation.md","reports/2026-09-23-memory-consolidation.md","reports/2026-09-23-memory-reflection.md","reports/2026-09-25-memory-consolidation.md",
+    "reports/2026-10-26-memory-consolidation.md",
+    "reports/2026-10-26-memory-consolidation.json"
+  ],
+  "decisions": [
+    "Archived memory/TODAY.md to memory/daily/2026-10-26.md (10-19 section already archived)",
+    "Backfilled memory/daily/2026-10-24.md from git (2 commits)",
+    "Deleted memory/daily/2026-09-19.md through 2026-09-25.md (30+ days old, content promoted in earlier cycles)",
+    "Deleted reports/2026-09-19-memory-reflection.md, 2026-09-21, 2026-09-23 (x2), 2026-09-25 (30+ days old, preserved in git history)",
+    "Kept three sst-stepfunctions-* semantic files after review: still accurate",
+    "Registry archive and trim scripts both no-op; no candidates"
+  ],
+  "observations": [
+    "No new daily content since 2026-10-19; no [MEM] tags.",
+    "MEM_REGISTRY.md 7622B vs 5850B scaled cap; remaining rows are index-shaped or unreliable-hook rejections.",
+    "No user-session logs exist since 2026-09-25."
+  ],
+  "recommendations": [
+    "Document a waiver for registry rows rejected as index-shaped; success: cap warning stops firing on irreducible rows."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true,
+    "reflection-overdue": true,
+    "semantic-lifecycle-checked": true,
+    "mem-integrity-check": true
+  },
+  "processImprovements": [
+    "[self-critique] 2026-10-24 was a session day (reflection commits) with no daily log: the reflection run did not call log-write.ts. Prevention: call log-write.ts at the start of every reflection run, as consolidation does.",
+    "[self-critique] Third consecutive idle-fallback consolidation with zero promotable content; the run only refreshes timestamps and prunes aged files.",
+    "[proposal] Allow a documented waiver for registry rows rejected as index-shaped so the MEM_REGISTRY cap warning stops being noise."
+  ],
+  "heartbeatStatus": {"present": false, "nonEmpty": false, "itemCount": 0},
+  "reflectionStatus": {"lastReflectionDate": "2026-10-24", "daysSinceReflection": 2, "overdueThresholdDays": 3, "isOverdue": false, "nonConformingReflectionFiles": 0, "idleSkipped": false},
+  "rescueBranches": {"count": 0, "oldestAgeDays": null, "refs": []},
+  "brainCommitSha": "7828664f0a1f713128be9bddfd6c750b587cd2d6"
+}
