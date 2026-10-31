@@ -1,0 +1,35 @@
+{
+  "operationType": "reflection",
+  "operationCounts": {"created": 3, "modified": 0, "deleted": 0},
+  "filesChanged": ["memory/episodic/reflection-2026-10-31.md", "reports/2026-10-31-memory-reflection.md", "reports/2026-10-31-memory-reflection.json"],
+  "decisions": [
+    "Carried FLOWBREW_API_TOKEN gap as a proposal because no dated consequence arose this cycle.",
+    "Left MEM_REGISTRY.md untrimmed; its over-cap rows were rejected as non-pointer evidence on 2026-10-19.",
+    "Wrote no Slack output because a bare maintenance trigger carries no ask."
+  ],
+  "observations": [
+    "All 8 semantic files are under 100 lines (max 93, flowbrew-platform-bugs-resolved.md).",
+    "SUMMARY.md, MEM_REGISTRY.md and core/LEARNINGS.md unchanged since 2026-10-26; memory content is static with no user sessions since 2026-09-25."
+  ],
+  "recommendations": [
+    "Create a one-time scheduled nudge for the FLOWBREW_API_TOKEN workspace-mismatch — the prod push 798a5810 has been blocked ~36 days with no follow-up — success: a schedule exists or the blocker is confirmed resolved by next reflection.",
+    "Trim MEM_REGISTRY.md — currently 7622 bytes (1.3x over 5850 threshold) — success: under 5850 at next reflection or the cap is formally waived."
+  ],
+  "selfAssessment": {
+    "concrete-improvement-proposal": true,
+    "previous-recommendations-reviewed": true,
+    "gap-impact-analysis": true,
+    "verifiable-recommendations": true,
+    "deletion-with-preservation-evidence": true
+  },
+  "processImprovements": [
+    "[self-critique] Prior rec: \"Create a one-time scheduled nudge for the FLOWBREW_API_TOKEN workspace-mismatch\" — status: pending. Repeated across three reflections without action.",
+    "[self-critique] Prior rec: \"Trim MEM_REGISTRY.md under 5850B\" — status: pending. Remaining rows are structurally hard to shrink.",
+    "[proposal] Schedule a one-time nudge to the Flowbrew thread owner once a human confirms the target.",
+    "[blocked] Cannot post nudges from maintenance runs; the base brain forbids Slack output on bare triggers."
+  ],
+  "heartbeatStatus": {"present": false, "nonEmpty": false, "itemCount": 0},
+  "reflectionStatus": {"lastReflectionDate": "2026-10-31", "daysSinceReflection": 0, "overdueThresholdDays": 3, "isOverdue": false, "nonConformingReflectionFiles": 0, "idleSkipped": false},
+  "rescueBranches": {"count": 0, "oldestAgeDays": null, "refs": []},
+  "brainCommitSha": "5eda6e6"
+}
