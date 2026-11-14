@@ -1,0 +1,28 @@
+{
+  "operationType": "reflection",
+  "operationCounts": {"created": 3, "modified": 0, "deleted": 0},
+  "filesChanged": ["memory/episodic/reflection-2026-11-14.md", "reports/2026-11-14-memory-reflection.md", "reports/2026-11-14-memory-reflection.json"],
+  "decisions": [
+    "Carried the FLOWBREW_API_TOKEN gap as blocked without restating the nudge, since no human target exists.",
+    "Wrote no Slack output because the bare maintenance trigger carried no ask."
+  ],
+  "observations": [
+    "No memory content changed since the 2026-11-09 consolidation and no user session since 2026-09-25.",
+    "Missing human owner for the FLOWBREW_API_TOKEN blocker has left the Flowbrew prod push stalled across four reflections."
+  ],
+  "recommendations": [
+    "Have a human owner confirm the FLOWBREW_API_TOKEN workspace fix; success: the Flowbrew prod push entry in SUMMARY.md changes status in a later consolidation."
+  ],
+  "selfAssessment": {},
+  "processImprovements": [
+    "[self-critique] Prior rec: \"Ask a human owner to confirm the FLOWBREW_API_TOKEN fix, then schedule a one-time check\" — status: pending. No human target exists for four cycles.",
+    "[self-critique] Prior proposal to stop restating the nudge — status: implemented; carried as blocked only.",
+    "[blocked] Skills report shows all 6 skills as not-discovered; needs brain-owner decision on skill lock sources."
+  ],
+  "heartbeatStatus": {"present": false, "nonEmpty": false, "itemCount": 0},
+  "reflectionStatus": {"lastReflectionDate": "2026-11-14", "daysSinceReflection": 0, "overdueThresholdDays": 3, "isOverdue": false, "nonConformingReflectionFiles": 0, "idleSkipped": false},
+  "pushHealth": {"branch": "main", "upstream": "refs/remotes/origin/main", "unpushedCommits": 0, "upstreamRefMissing": false, "lastPushOkAt": null, "oldestUnpushedAt": null},
+  "rescueBranches": {"count": 0, "oldestAgeDays": null, "refs": []},
+  "skills": {"counts": {"current": 0, "outdated": 0, "modified": 0, "waiting-upstream": 0, "own": 0, "not-discovered": 6}, "entries": []},
+  "brainCommitSha": ""
+}
