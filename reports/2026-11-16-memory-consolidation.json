@@ -1,0 +1,102 @@
+{
+  "operationType": "consolidation",
+  "consolidationHistory": {
+    "version": 1,
+    "cycleDate": "2026-11-16",
+    "startingHead": "0b87f12873c4fe5a83d0135d1d6610bc26232994"
+  },
+  "operationCounts": {
+    "created": 7,
+    "modified": 3,
+    "deleted": 0
+  },
+  "filesChanged": [
+    "memory/TODAY.md",
+    "memory/daily/2026-11-09.md",
+    "memory/daily/2026-11-13.md",
+    "memory/daily/2026-11-14.md",
+    "memory/daily/2026-11-15.md",
+    "memory/daily/2026-11-16.md",
+    "memory/SUMMARY.md",
+    "memory/index.md",
+    "memory/episodic/archive/consolidation-history-2026-H2.md"
+  ],
+  "decisions": [
+    "Archived memory/TODAY.md to memory/daily/2026-11-09.md, 2026-11-13.md, 2026-11-15.md and 2026-11-16.md.",
+    "Created memory/index.md and declared it from SUMMARY.md, fixing an incomplete catalog audit (0/13 → 13/13).",
+    "Kept all 8 semantic files after review; none oversized (max 93 lines) so split outcome is justified no-split.",
+    "Backfilled memory/daily/2026-11-14.md from git for the reflection-only session day."
+  ],
+  "observations": [
+    "No [MEM] tags or new daily content since 2026-11-09; all four tiers confirmed unchanged.",
+    "MEM_REGISTRY.md is 91 B over its scaled 7531 B cap due to three rows with unrecognized pointer encoding.",
+    "Rescue-branch query succeeded with zero own refs.",
+    "SUMMARY.md was missing the required Memory Catalog section before this run."
+  ],
+  "recommendations": [
+    "Normalize pointer encoding on MEM_REGISTRY.md rows 22-24 so the next scaled-threshold run shows overCap false."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "no-summary-manual-edit": true,
+    "session-capture-logged": true,
+    "semantic-naming-convention": true,
+    "session-capture-has-context": true,
+    "reflection-overdue": true,
+    "mem-integrity-check": true,
+    "semantic-lifecycle-checked": true
+  },
+  "processImprovements": [
+    "[self-critique] Idle brain's consolidation passed 2 prior cycles while SUMMARY.md lacked the Memory Catalog section the audit requires; earlier runs did not execute Step 9a-catalog, so add it to the run checklist.",
+    "[self-critique] Reflection-only days (2026-11-14) repeatedly skip log-write, forcing consolidation backfills; reflection should call log-write.ts at start.",
+    "[proposal] Normalize MEM_REGISTRY rows 22-24 pointer encoding to clear the 91 B overage."
+  ],
+  "heartbeatStatus": {
+    "present": false,
+    "nonEmpty": false,
+    "itemCount": 0
+  },
+  "reflectionStatus": {
+    "lastReflectionDate": "2026-11-14",
+    "daysSinceReflection": 2,
+    "overdueThresholdDays": 3,
+    "isOverdue": false,
+    "nonConformingReflectionFiles": 0,
+    "idleSkipped": false
+  },
+  "pushHealth": {
+    "branch": "main",
+    "upstream": "refs/remotes/origin/main",
+    "unpushedCommits": 3,
+    "upstreamRefMissing": false,
+    "lastPushOkAt": "2026-11-15T03:30:18.000Z",
+    "oldestUnpushedAt": "2026-11-16T03:30:42.000Z"
+  },
+  "rescueBranches": {
+    "count": 0,
+    "oldestAgeDays": null,
+    "refs": []
+  },
+  "skills": {
+    "counts": {
+      "current": 0,
+      "outdated": 0,
+      "modified": 0,
+      "waiting-upstream": 0,
+      "own": 0,
+      "not-discovered": 6
+    },
+    "entries": []
+  },
+  "brainCommitSha": "a6c0855f9a38fb1b5ad8d2653d8620964ff28977"
+}
