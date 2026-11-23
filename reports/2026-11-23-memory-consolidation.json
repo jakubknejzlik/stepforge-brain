@@ -1,0 +1,52 @@
+{
+  "operationType": "consolidation",
+  "consolidationHistory": {"version": 1, "cycleDate": "2026-11-23", "startingHead": "3aa4e55e61fe556e4b01ba8697925f57cfa39605"},
+  "operationCounts": {"created": 2, "modified": 4, "deleted": 5},
+  "filesChanged": ["memory/TODAY.md","memory/daily/2026-11-16.md","memory/daily/2026-11-21.md","memory/daily/2026-11-23.md","memory/SUMMARY.md","memory/episodic/archive/consolidation-history-2026-H2.md","memory/daily/2026-10-17.md","memory/daily/2026-10-19.md","reports/2026-10-17-memory-consolidation.md","reports/2026-10-17-memory-reflection.md","reports/2026-10-19-memory-consolidation.md"],
+  "decisions": [
+    "Archived memory/TODAY.md to memory/daily/2026-11-16.md, 2026-11-21.md and 2026-11-23.md",
+    "Deleted memory/daily/2026-10-17.md and 2026-10-19.md (stub-only, 30+ days old)",
+    "Deleted reports/2026-10-17-*.md and 2026-10-19-*.md (30+ days old, preserved in git history)",
+    "Kept all 8 semantic files after review; none over 100 lines (max 93)",
+    "Left MEM_REGISTRY.md 91 B over scaled cap; archive and trim scripts are no-ops"
+  ],
+  "observations": [
+    "No [MEM] tags or promotable content in daily logs since 2026-11-16; third consecutive idle check-in.",
+    "SUMMARY.md 8577 B and CLAUDE.md 8151 B are under caps; catalog audit 0/13 uncatalogued.",
+    "MEM_REGISTRY.md 7622 B vs scaled cap 7531 B due to 3 rows with unrecognized pointer encoding.",
+    "Rescue branch query succeeded with zero own refs; push health shows unpushed commits only from this cycle."
+  ],
+  "recommendations": [
+    "Normalize pointer encoding on MEM_REGISTRY.md rows 22-24 so the next mem-scaled-threshold run reports overCap false.",
+    "Have reflection runs call log-write.ts so each day with a commit gets a daily log without Step 0 reconstruction."
+  ],
+  "selfAssessment": {
+    "reduce-log-count": true,
+    "update-relevant-tiers": true,
+    "process-self-critique": true,
+    "meaningful-decisions": true,
+    "no-data-loss": true,
+    "daily-log-exists-today": true,
+    "daily-log-continuous-appends": true,
+    "daily-log-recent-retention": true,
+    "daily-log-weekly-coverage": true,
+    "evidence-backed-decisions": true,
+    "summary-md-regenerated": true,
+    "today-md-archived": true,
+    "at-imports-configured": true,
+    "mem-integrity-check": true,
+    "semantic-lifecycle-checked": true,
+    "reflection-overdue": true
+  },
+  "processImprovements": [
+    "[self-critique] Three consecutive consolidations promoted nothing; the idle fallback re-verifies unchanged tiers weekly, so the real gap is the 91 B registry overage that no automated step can fix.",
+    "[proposal] Hand-normalize MEM_REGISTRY.md rows 22-24 pointer encoding (via mem-registry-trim tooling) so the registry returns under its scaled cap.",
+    "[blocked] mem-scaled-threshold gives unrecognized-pointer rows only 150 B; fixing the recognizer needs a base-brain change."
+  ],
+  "heartbeatStatus": {"present": false, "nonEmpty": false, "itemCount": 0},
+  "reflectionStatus": {"lastReflectionDate": "2026-11-21", "daysSinceReflection": 2, "overdueThresholdDays": 3, "isOverdue": false, "nonConformingReflectionFiles": 0, "idleSkipped": false},
+  "pushHealth": {"branch":"main","upstream":"refs/remotes/origin/main","unpushedCommits":4,"upstreamRefMissing":false,"lastPushOkAt":"2026-11-21T03:30:57.000Z","oldestUnpushedAt":"2026-11-23T03:30:42.000Z"},
+  "rescueBranches": {"count": 0, "oldestAgeDays": null, "refs": []},
+  "skills": {"counts": {"current":0,"outdated":0,"modified":0,"waiting-upstream":0,"own":0,"not-discovered":6}, "entries": [{"name":"local/flowbrew-mcp","state":"not-discovered"},{"name":"shared/aws-auth","state":"not-discovered"},{"name":"shared/deployment","state":"not-discovered"},{"name":"shared/lambda-blocks","state":"not-discovered"},{"name":"shared/setup","state":"not-discovered"},{"name":"shared/step-functions","state":"not-discovered"}]},
+  "brainCommitSha": "bce36b55a7fa3630192dd7ab15c49231ea340391"
+}
