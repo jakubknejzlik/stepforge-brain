@@ -1,4 +1,4 @@
-**Last consolidated:** 2026-11-16 03:31 UTC
+**Last consolidated:** 2026-11-23 03:31 UTC
 
 ## How this memory works
 - This file (SUMMARY.md) and TODAY.md are `@`-imported into every session — they are always in your context
@@ -39,12 +39,12 @@
 
 ## Deep Memory Index
 - memory/core/ — LEARNINGS.md (12 entries, under scaled cap: [MEM-2]→archived-pointer,[MEM-14]→episodic-pointer,[MEM-16]→archived-pointer,[MEM-17],[MEM-18],[MEM-19]/[MEM-20],[MEM-21],[MEM-22],[MEM-23],[MEM-24],[MEM-25],[MEM-26]); MISTAKES.md, PREFERENCES.md empty
-- memory/semantic/ — 3 SST/SFN gotcha files (reviewed 2026-11-16, still accurate, KEPT); 5 flowbrew-platform-* files: reference (45 lines), bugs-open (78), codegen-gaps (45), bugs-resolved (93), mcp-and-sdk (81) — all under 100 lines
-- memory/episodic/ — reflection-*.md (quality reflections, 2026-04 through 2026-11-14); sst-stepfunctions-test-campaign-2026-08-11.md; stepforge-multi-team-distribution.md (rollout complete, also holds [MEM-14]); flowbrew-onboarding-2026-09.md; flowbrew-subworkflow-testing-2026-09-18.md ([MEM-28]-[MEM-33]); flowbrew-email-to-slack-campaign-2026-09-22.md; flowbrew-email-to-slack-approval-gate-2026-09-23.md ([MEM-36]/[MEM-38] closure evidence, approval-gate v2 build); orphaned-consolidation-2026-09-20.md; archive/learnings-2026-H2.md ([MEM-16]/[MEM-2])
+- memory/semantic/ — 3 SST/SFN gotcha files (reviewed 2026-11-23, still accurate, KEPT); 5 flowbrew-platform-* files: reference (45 lines), bugs-open (78), codegen-gaps (45), bugs-resolved (93), mcp-and-sdk (81) — all under 100 lines
+- memory/episodic/ — reflection-*.md (quality reflections, 2026-04 through 2026-11-21); sst-stepfunctions-test-campaign-2026-08-11.md; stepforge-multi-team-distribution.md (rollout complete, also holds [MEM-14]); flowbrew-onboarding-2026-09.md; flowbrew-subworkflow-testing-2026-09-18.md ([MEM-28]-[MEM-33]); flowbrew-email-to-slack-campaign-2026-09-22.md; flowbrew-email-to-slack-approval-gate-2026-09-23.md ([MEM-36]/[MEM-38] closure evidence, approval-gate v2 build); orphaned-consolidation-2026-09-20.md; archive/learnings-2026-H2.md ([MEM-16]/[MEM-2])
 - memory/procedural/ — sst-stepfunctions-smoke-test-tiers.md (reusable 4-tier validation checklist for new SST/SFN patterns); flowbrew-mcp-via-curl.md (pointer to `.claude/skills/local/flowbrew-mcp/SKILL.md`, the landed curl-based MCP access workaround)
-- memory/daily/ — 2026-10-17.md through 2026-11-16.md (none 30+ days old; no user-session logs since 2026-09-25)
-- memory/MEM_REGISTRY.md — 37 rows live, all pointers (MEM-1, MEM-37 archived to MEM_REGISTRY_ARCHIVE.md), integrity verified. 91B over its scaled 7531B cap (3 rows with unrecognized pointer encoding get only a 150B allowance); archive+trim re-run 2026-11-16 was a no-op.
-- reports/ — newest completed consolidation: 2026-11-09-memory-consolidation.md (prior 2026-11-02; 2026-11-16 cycle in progress at SUMMARY regeneration); newest reflection: 2026-11-14 (prior 2026-11-07). Reports older than 30 days deleted (in git history).
+- memory/daily/ — 2026-10-24.md through 2026-11-23.md (2026-10-17/10-19 stub logs deleted 2026-11-23 as 30+ days old; no user-session logs since 2026-09-25)
+- memory/MEM_REGISTRY.md — 37 rows live, all pointers (MEM-1, MEM-37 archived to MEM_REGISTRY_ARCHIVE.md), integrity verified. 91B over its scaled 7531B cap (3 rows with unrecognized pointer encoding get only a 150B allowance); archive+trim re-run 2026-11-23 was a no-op.
+- reports/ — newest completed consolidation: 2026-11-16-memory-consolidation.md (prior 2026-11-09; 2026-11-23 cycle in progress at SUMMARY regeneration); newest reflection: 2026-11-21 (prior 2026-11-14). Reports older than 30 days deleted (in git history).
 
 ## Memory Catalog
 - catalog: [Complete catalog](<index.md>)
