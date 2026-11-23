@@ -1,7 +1,3 @@
-# 2026-11-16
+# 2026-11-23
 
-- [03:31] memory consolidation started
-
-# 2026-11-21
-
-- [03:30] maintenance: reflection session (idle check-in)
+- 03:30 — memory consolidation started
