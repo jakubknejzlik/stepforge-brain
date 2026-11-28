@@ -1,0 +1,32 @@
+{
+  "operationType": "reflection",
+  "operationCounts": {"created": 3, "modified": 1, "deleted": 0},
+  "filesChanged": ["memory/episodic/reflection-2026-11-28.md", "reports/2026-11-28-memory-reflection.md", "reports/2026-11-28-memory-reflection.json", "memory/TODAY.md"],
+  "decisions": [
+    "Kept FLOWBREW_API_TOKEN confirmation as Pending/[blocked] since no human owner is reachable from maintenance runs.",
+    "Skipped semantic split review: largest file flowbrew-platform-bugs-resolved.md is 93 lines, under the 100-line trigger."
+  ],
+  "observations": [
+    "Core memory (LEARNINGS.md 14 lines, MISTAKES/PREFERENCES 3 lines) is compact and unchanged since 2026-11-23.",
+    "All 8 semantic files are under 100 lines; no files pruned or archived this cycle."
+  ],
+  "recommendations": [
+    "Have a human owner confirm the FLOWBREW_API_TOKEN workspace-mismatch fix — it blocks the prod push 798a5810 and no user session has occurred since 2026-09-25 — success: next reflection records Closed with the confirmation evidence."
+  ],
+  "selfAssessment": {
+    "concrete-improvement-proposal": true,
+    "previous-recommendations-reviewed": true,
+    "gap-impact-analysis": true,
+    "verifiable-recommendations": true,
+    "deletion-with-preservation-evidence": true
+  },
+  "processImprovements": [
+    "[self-critique] Prior rec: \"carry FLOWBREW_API_TOKEN workspace-mismatch confirmation as [blocked]\" — status: pending; lifecycle: Pending; no human-confirmed target yet.",
+    "[proposal] Have a human owner confirm the token fix so the Flowbrew prod push can proceed, since maintenance runs cannot escalate via Slack.",
+    "[blocked] Cannot self-resolve the FLOWBREW_API_TOKEN confirmation; needs a human owner."
+  ],
+  "heartbeatStatus": {"present": false, "nonEmpty": false, "itemCount": 0},
+  "reflectionStatus": {"lastReflectionDate": "2026-11-28", "daysSinceReflection": 0, "overdueThresholdDays": 3, "isOverdue": false, "nonConformingReflectionFiles": 0},
+  "skills": {"counts": {"current": 0, "outdated": 0, "modified": 0, "waiting-upstream": 0, "own": 0, "not-discovered": 6}, "entries": []},
+  "brainCommitSha": "d1cf59c7910a7dbfc7451111213dcbf1b225a061"
+}

@@ -17,3 +17,7 @@
 # 2026-11-27
 
 - [03:30] maintenance: guard idle-skip (consolidation+reflection not due); skills status clean, no HEARTBEAT/PENDING_ISSUES
+
+# 2026-11-28
+
+- [03:30] maintenance: reflection check-in (idle-overdue 7d); consolidation idle-skip; no changes
